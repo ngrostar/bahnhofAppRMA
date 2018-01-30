@@ -12,13 +12,25 @@ export class HomePage {
     public posts: any = [];
 
     constructor(public navCtrl: NavController, public ParkplatzProvider: ParkplatzProvider) {
-        this.posts = new Array<Object>();
+        // this.posts = new Array<Object>();
         this.loadpp();
     }
 
 
     loadpp() {
-        this.posts=this.ParkplatzProvider.getpp();
-        this.posts=this.posts.map(posts=>posts.name);
+        this.ParkplatzProvider.getpp().then(data => {
+
+          this.posts = data.result;
+          console.log("POOOOOOOOOOOSTS");
+          console.log(this.posts);
+          console.log("DATAAAAAAAA");
+          console.log(data);
+
+
+          for(let x of this.posts) {
+            console.log(x.name);
+          }
+        });
+
     }
 }

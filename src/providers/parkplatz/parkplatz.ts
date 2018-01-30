@@ -18,7 +18,7 @@ export class ParkplatzProvider {
     }
 
     getpp() {
-        /*return new Promise(resolve => {
+        return new Promise(resolve => {
             const headers = new HttpHeaders().set('Authorization', `Bearer 61142190cdeab44f140c58c9fb40d293`);
             headers.append('Accept','application/json');
             this.http.get('https://api.deutschebahn.com/stada/v2/stations',{headers}).subscribe(data => {
@@ -26,12 +26,12 @@ export class ParkplatzProvider {
             }, err => {
                 console.log(err);
             });
-        });*/
-        const headers = new HttpHeaders().set('Authorization', `Bearer 61142190cdeab44f140c58c9fb40d293`);
-        headers.append('Accept', 'application/json');
-        var response = this.http.get('https://api.deutschebahn.com/stada/v2/stations', {headers}).subscribe(data => {
-            console.log(data);
-            return response;
         });
+        // const headers = new HttpHeaders().set('Authorization', `Bearer 61142190cdeab44f140c58c9fb40d293`);
+        // headers.append('Accept', 'application/json');
+        // var response = this.http.get('https://api.deutschebahn.com/stada/v2/stations', {headers}).subscribe(data => {
+        //     console.log(data);
+        //     return response;
+        // });
     }
 }
