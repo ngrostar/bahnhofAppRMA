@@ -13,6 +13,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StadaProvider } from '../providers/stada/stada';
 import { BfotosProvider } from '../providers/bfotos/bfotos';
 import { HttpClientModule } from '@angular/common/http';
+import { Geolocation } from '@ionic-native/geolocation';  // https://ionicframework.com/docs/native/geolocation/
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { HttpClientModule } from '@angular/common/http';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     StadaProvider,
-    BfotosProvider
+    BfotosProvider,
+    Geolocation
   ]
 })
 export class AppModule {}
