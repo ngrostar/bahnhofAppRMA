@@ -15,8 +15,7 @@ export class HomePage {
         // this.posts = new Array<Object>();
         this.loadpp('stations'); // stations/{id} oder szentralen/{id}
     }
-
-
+  
     loadpp(param) {
         this.StadaProvider.getpp(param).then(data => {
 
