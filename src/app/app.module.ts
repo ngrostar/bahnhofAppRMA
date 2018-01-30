@@ -11,6 +11,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StadaProvider } from '../providers/stada/stada';
+import { BfotosProvider } from '../providers/bfotos/bfotos';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -38,7 +39,8 @@ import { HttpClientModule } from '@angular/common/http';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    StadaProvider
+    StadaProvider,
+    BfotosProvider
   ]
 })
 export class AppModule {}

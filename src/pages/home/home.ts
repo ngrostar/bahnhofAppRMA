@@ -11,16 +11,16 @@ import 'rxjs/operator/map'
 export class HomePage {
     public posts: any = [];
 
-    constructor(public navCtrl: NavController, public StadaProvider: StadaProvider) {
+    constructor(public navCtrl: NavController, public Stada: StadaProvider) {
         // this.posts = new Array<Object>();
-        this.loadpp('stations'); // stations/{id} oder szentralen/{id}
+        this.loadStada('stations'); // stations/{id} oder szentralen/{id}
     }
-  
-    loadpp(param) {
-        this.StadaProvider.getpp(param).then(data => {
+
+    loadStada(param) {
+        this.Stada.load(param).then(data => {
 
           this.posts = data['result'];
-          console.log("POOOOOOOOOOOSTS");
+          console.log("STATIONEN");
           console.log(this.posts);
         });
 

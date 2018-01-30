@@ -17,7 +17,7 @@ export class StadaProvider {
         console.log('Hello StadaProvider Provider');
     }
 
-    getpp(param) {
+    load(param) {
         return new Promise(resolve => {
             const headers = new HttpHeaders().set('Authorization', `Bearer 61142190cdeab44f140c58c9fb40d293`);
             headers.append('Accept','application/json');
