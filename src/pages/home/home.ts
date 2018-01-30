@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {ParkplatzProvider} from "../../providers/parkplatz/parkplatz";
+import {StadaProvider} from "../../providers/stada/stada";
 import 'rxjs/operator/map'
 
 @Component({
@@ -11,25 +11,18 @@ import 'rxjs/operator/map'
 export class HomePage {
     public posts: any = [];
 
-    constructor(public navCtrl: NavController, public ParkplatzProvider: ParkplatzProvider) {
+    constructor(public navCtrl: NavController, public StadaProvider: StadaProvider) {
         // this.posts = new Array<Object>();
-        this.loadpp();
+        this.loadpp('stations'); // stations/{id} oder szentralen/{id}
     }
 
 
-    loadpp() {
-        this.ParkplatzProvider.getpp().then(data => {
+    loadpp(param) {
+        this.StadaProvider.getpp(param).then(data => {
 
-          this.posts = data.result;
+          this.posts = data['result'];
           console.log("POOOOOOOOOOOSTS");
           console.log(this.posts);
-          console.log("DATAAAAAAAA");
-          console.log(data);
-
-
-          // for(let x of this.posts) {
-          //   console.log(x.name);
-          // }
         });
 
     }
