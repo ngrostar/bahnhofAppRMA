@@ -1,0 +1,271 @@
+﻿Bundesland;Regionalbereich;Bf. Nr.;Station;Bf DS 100 Abk.;Kategorie Vst;Straße;PLZ;Ort;Aufgabenträger;Verkehrsverbünde;Fernverkehr;Nahverkehr
+Hessen;Kurhessenbahn (KHB);8263;Ahnatal-Casselbreite;FATC;6;Casselbreite;34292;Ahnatal;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);2616;Ahnatal-Heckershausen;FHEH;6;Bahnhofstraße;34292;Ahnatal;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);6618;Ahnatal-Weimar;FWEI;6;Raiffeisenplatz;34292;Ahnatal;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Bayern;Südostbayernbahn (SOB);33;Aich (Niederbay);MAIC;6;Am Bahnberg;84155;Bodenkirchen;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Hessen;Kurhessenbahn (KHB);102;Altenhasungen;FAHN;6;Hardtstraße;34466;Wolfhagen;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Bayern;Südostbayernbahn (SOB);106;Altenmarkt (Alz);MATM;6;Margaretenstraße;83352;Altenmarkt a.d. Alz;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);127;Altötting;MAT;6;Bahnhofsplatz;84503;Altötting;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Westfrankenbahn (WFB);138;Amorbach;NAMB;6;Am Bahnhof;63916;Amorbach;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);153;Annaberg-Buchholz Mitte;DABM;6;Talstraße;9456;Annaberg-Buchholz;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);154;Annaberg-Buchholz Süd;DAB;6;Schneeberger Straße;9456;Annaberg-Buchholz;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);155;Annaberg-Buchholz unt Bahnhof;DABU;6;Bahnhofsplatz;9456;Annaberg-Buchholz;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);162;Antonsthal;DATL;6;Talstraße;8359;Breitenbrunn;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Südostbayernbahn (SOB);165;Anzenkirchen;MAK;6;Bahnhofsweg;84371;Triftern;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft Rottal-Inn;nein;ja
+Bayern;Westfrankenbahn (WFB);4666;Aschaffenburg-Obernau;NOBN;6;Obernheimweg;63743;Aschaffenburg;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);205;Aue (Sachs);DAU;5;Lößnitzer Straße;8280;Aue;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);8216;Aue (Sachs) Erzgebirgsstadion;DAUS;6;Lößnitzer Straße (Am Stadion);8280;Aue;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Hessen;Kurhessenbahn (KHB);7463;Bad Arolsen;FAR;6;Am Bahnhof;34454;Bad Arolsen;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Bayern;Südostbayernbahn (SOB);255;Bad Birnbach;MBIB;6;Bahnhofstraße;84364;Bad Birnbach;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft Rottal-Inn;nein;ja
+Bayern;Südostbayernbahn (SOB);270;Bad Empfing;MBEP;6;Kotzinger Straße;83278;Traunstein;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);283;Bad Höhenstadt;MBHT;6;Obersulzbach;94081;Fürstenzell;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft Landkreis Passau;nein;ja
+Nordrhein-Westfalen;Kurhessenbahn (KHB);3487;Bad Laasphe;ELSP;6;Bahnhofstraße;57334;Bad Laasphe;Zweckverband Nahverkehr Westfalen-Lippe;Zweckverband / Verkehrsgemeinschaft Westfalen-Süd;nein;ja
+Nordrhein-Westfalen;Kurhessenbahn (KHB);8223;Bad Laasphe-Niederlaasphe;ENL;6;Entenbergstraße;57334;Bad Laasphe;Zweckverband Nahverkehr Westfalen-Lippe;Zweckverband / Verkehrsgemeinschaft Westfalen-Süd;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);305;Bad Mergentheim;TBMR;6;Bahnhofsplatz;97980;Bad Mergentheim;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);5587;Bad Schlema;DSUB;6;Hauptstraße;8301;Bad Schlema;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Hessen;Kurhessenbahn (KHB);362;Bad Wildungen;FBWD;6;Bahnhofstraße;34537;Bad Wildungen;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);407;Bärenstein (Kr Annaberg);DBS;6;Bahnhofstraße;9471;Bärenstein;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Südostbayernbahn (SOB);434;Bayerbach;MBYB;6;Bahnhofstraße;94137;Bayerbach;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft Rottal-Inn;nein;ja
+Thüringen;Oberweißbacher Berg- und Schwarzatalbahn (OBS);445;Bechstedt-Trippstein;UBET;6;Ortsstraße 45;7426;Bechstedt;Nahverkehrsservicegesellschaft Thüringen;Verkehrsverbund Mittelthüringen ;nein;ja
+Bayern;Südostbayernbahn (SOB);8217;Bibelöd;MBID;6;Bibelöd;83324;Ruhpolding;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Hessen;Kurhessenbahn (KHB);620;Biedenkopf;FBIK;6;Am Bahnhof;35216;Biedenkopf;Rhein-Main-Verkehrsverbund;Rhein-Main-Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);8218;Biedenkopf Schulzentrum;FBIZ;6;Vater-Jahn-Straße;35216;Biedenkopf;Rhein-Main-Verkehrsverbund;Rhein-Main-Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);6502;Biedenkopf-Wallau;FWA;6;Bahnhofstraße;35216;Biedenkopf;Rhein-Main-Verkehrsverbund;Rhein-Main-Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);657;Birkenbringhausen;FBBH;6;Bahnhofstraße;35099;Burgwald;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);697;Blaufelden;TBLF;6;Bahnhofstraße;74572;Blaufelden;Nahverkehrsgesellschaft Baden-Württemberg;KreisVerkehr Schwäbisch Hall;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);711;Blumenau;DBLU;6;Hauptstraße;9526;Olbernhau;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);745;Bödigheim;RBGH;6;Bahnhofsweg;74722;Buchen (Odenwald);Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);848;Breitenbrunn (Erzgeb);DBRE;6;Schachtstraße;8359;Breitenbrunn;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);930;Buchen im Odenwald;RBUN;6;Eisenbahnstraße;74722;Buchen (Odenwald);Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);931;Buchen Ost;RBUO;6;Am Wartberg;74722;Buchen (Odenwald);Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Hessen;Kurhessenbahn (KHB);932;Buchenau (Lahn);FBNU;6;Elmshäuser Straße;35232;Dautphetal;Rhein-Main-Verkehrsverbund;Rhein-Main-Verkehrsverbund;nein;ja
+Bayern;Südostbayernbahn (SOB);985;Burghausen;MBUH;6;Berliner Platz;84489;Burghausen;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);990;Burgkirchen;MBGK;6;Bahnhofstraße;84508;Burgkirchen a.d.Alz;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);1001;Burkhardtsdorf;DBUF;6;Bahnhofstraße;9235;Burkhardtsdorf;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);8219;Burkhardtsdorf Mitte;DBUM;6;Ahnerweg;9235;Burkhardtsdorf;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);1018;Cainsdorf;DCDF;6;Am Hammerwald;8064;Zwickau;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Hessen;Kurhessenbahn (KHB);1023;Caldern;FCLD;6;Zum Wollenberg;35094;Lahntal;Rhein-Main-Verkehrsverbund;Rhein-Main-Verkehrsverbund;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);1047;Chemnitz-Erfenschlag;DCE;6;Paul-Franke-Straße;9125;Chemnitz;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);1051;Chemnitz-Reichenhain;DCRE;6;Erfenschlager Straße;9125;Chemnitz;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Westfrankenbahn (WFB);5210;Collenberg;NRF;6;Bahnhofstraße;97903;Collenberg;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Thüringen;Oberweißbacher Berg- und Schwarzatalbahn (OBS);1094;Cursdorf;UCF;6;Bahnhofstraße 6;98744;Cursdorf;Nahverkehrsservicegesellschaft Thüringen;Verkehrsverbund Mittelthüringen ;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);1228;Distelhausen;TDIH;6;Baumgartenweg;97941;Tauberbischofsheim;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);1232;Dittersdorf;DDF;6;Bahnhofstraße;9439;Amtsberg;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);1233;Dittigheim;TDM;6;Frombergstraße;97941;Tauberbischofsheim;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);1267;Dorfchemnitz (b Zwönitz);DDCH;6;An der Bahn;9619;Zwönitz;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Westfrankenbahn (WFB);1272;Dorfprozelten;NDP;6;Bahnstraße;97904;Dorfprozelten;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);1460;Edelfingen;TED;6;Wilhelm-Frank-Straße;97980;Bad Mergentheim;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Bayern;Südostbayernbahn (SOB);1466;Edling;MEDL;6;Bahnstraße;83533;Edling;Bayrische Eisenbahn Gesellschaft;Münchener Verkehrs- und Tarifverbund;nein;ja
+Bayern;Südostbayernbahn (SOB);1474;Eggenfelden;MEGF;6;Bahnhofstraße;84307;Eggenfelden;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft Rottal-Inn;nein;ja
+Bayern;Südostbayernbahn (SOB);8209;Eggenfelden Mitte;MEFM;6;Pfarrkirchner Straße;84307;Eggenfelden;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft Rottal-Inn;nein;ja
+Bayern;Südostbayernbahn (SOB);1477;Egglkofen;MEGK;6;Bahnhofstraße;84546;Egglkofen;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Hessen;Kurhessenbahn (KHB);1490;Ehringen;FEGN;6;Niederelsunger Straße;34471;Volkmarsen;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);1524;Einsiedel;DED;6;Am Einsiedler Bahnhof;9123;Chemnitz;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);8220;Einsiedel Gymnasium;DEDH;6;Einsiedler Hauptstraße;9123;Chemnitz;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Südostbayernbahn (SOB);1531;Eisenärzt;MEZT;6;Dorfstraße;83313;Siegsdorf;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);1559;Elpersheim;TELP;6;Deutschordenstraße;97990;Weikersheim;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Bayern;Südostbayernbahn (SOB);1600;Engertsham;MEGH;6;Raiffeisenstraße;94081;Fürstenzell;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft Landkreis Passau;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);1629;Erdmannsdorf-Augustusburg;DEA;6;Am Bahnhof;9573;Augustusburg;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);1648;Erla;DERA;6;Karlsbader Straße;8340;Schwarzenberg;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);1649;Erlabrunn (Erzgeb);DERB;6;Schwarzenberger Straße;8359;Erlabrunn;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Westfrankenbahn (WFB);1656;Erlenbach am Main;NERL;6;Bahnhofstraße;63906;Erlenbach a.Main;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Hessen;Kurhessenbahn (KHB);1661;Ernsthausen (Kr Frankenberg);FERH;6;Marburger Straße;35099;Burgwald;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);1745;Fährbrücke;DFBE;6;Bahnhofstraße;8134;Langenweißbach;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);1750;Falkenau (Sachs);DFU;6;Am Haltepunkt;9557;Falkenau;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Westfrankenbahn (WFB);1766;Faulbach (Main);NFCH;6;Hauptstraße;97906;Faulbach;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Nordrhein-Westfalen;Kurhessenbahn (KHB);1786;Feudingen;EFEU;6;Sieg-Lahn-Straße;57334;Bad Laasphe;Zweckverband Nahverkehr Westfalen-Lippe;Zweckverband / Verkehrsgemeinschaft Westfalen-Süd;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);8221;Flöha-Plaue;DFLP;6;Augustusburger Straße;9557;Flöha;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);1820;Floßmühle;DFM;6;Mühlenstraße;9579;Wildenstein;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Südostbayernbahn (SOB);1837;Forsting;MFOS;6;Bahnweg;83539;Pfaffing;Bayrische Eisenbahn Gesellschaft;Münchener Verkehrs- und Tarifverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);1841;Frankenberg (Eder);FFRK;6;Am Bahnhof;35066;Frankenberg;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);8302;Frankenberg (Eder) Goßberg;FFRG;6;Otto-Stölker-Straße;35066;Frankenberg / Eder;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);7512;Frankenberg (Eder) Viermünden;FVI;6;Am Schmittenbach;35066;Frankenberg (Eder);Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Bayern;Westfrankenbahn (WFB);1920;Freudenberg-Kirschfurt;NFM;6;Am Bahnhof;97896;Collenberg;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Bayern;Südostbayernbahn (SOB);1928;Fridolfing;MFDF;6;Bahnhofstraße;83413;Fridolfing;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Hessen;Kurhessenbahn (KHB);1933;Friedensdorf (Lahn);FFRD;6;Wilhelmshütter Straße;35232;Dautphetal;Rhein-Main-Verkehrsverbund;Rhein-Main-Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);1964;Fritzlar;FFZ;6;Am Güterbahnhof;34560;Fritzlar;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);1979;Fürstenwald;FFNW;6;Bahnhofstraße;34379;Calden;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Bayern;Südostbayernbahn (SOB);1982;Fürstenzell;MFZL;6;Aspertsham;94081;Fürstenzell;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft Landkreis Passau;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);2004;Gamburg;TGAM;6;Bahnhofstraße;97956;Werbach;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Bayern;Südostbayernbahn (SOB);2010;Garching (Alz);MGA;6;Bahnhofstraße;84518;Garching a.d. Alz;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);2015;Gars (Inn);MGS;6;Bahnhofstraße;83536;Gars a. Inn;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);2041;Geisenhausen;MGHS;6;Bahnhofstraße;84144;Geisenhausen;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);7547;Gendorf;MGND;6;Industriepark;84508;Burgkirchen a.d.Alz;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Westfrankenbahn (WFB);2137;Glanzstoffwerke;NGLW;6;Glanzstoffstraße;63785;Erlenbach a.Main;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Hessen;Kurhessenbahn (KHB);2205;Goßfelden;FGOF;6;Bahnhofstraße;35094;Lahntal;Rhein-Main-Verkehrsverbund;Rhein-Main-Verkehrsverbund;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);2396;Grünhainichen-Borstendorf;DGRB;6;Am Güterbahnhof;9579;Wildenstein;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);2404;Grünstädtel;DGS;6;Am Bahnhof;8340;Schwarzenberg;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);2481;Hainstadt (Baden);RHAI;6;Bahnhofstraße;74722;Buchen (Odenwald);Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);2567;Hartenstein;DHST;6;Bahnhofstraße;8118;Hartenstein;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Westfrankenbahn (WFB);2578;Hasloch am Main;NHCH;6;Bahnhofstraße;97907;Hasloch;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Bayern;Südostbayernbahn (SOB);2612;Hebertsfelden;MHEF;6;Bahnhofstraße;84332;Hebertsfelden;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft Rottal-Inn;nein;ja
+Bayern;Südostbayernbahn (SOB);7549;Heiligenstatt;MHEI;6;Marsstraße;84557;Tüßling;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);2690;Hennersdorf (Sachs);DHRF;6;Bahnhofstraße;9573;Augustusburg;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);2754;Hetzdorf (Flöhatal);DHZF;6;Lindenstraße;9557;Flöha;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);2801;Hochhausen;THO;6;Landstraße;97941;Tauberbischofsheim;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);2845;Hohenfichte;DHOF;6;Bahnhofstraße;9573;Leubsdorf+Hohenfichte;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Südostbayernbahn (SOB);2899;Höpfling;MHPF;6;Ruhpoldinger Straße;83313;Siegsdorf;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);2918;Hörpolding;MHPD;6;Unterdorf;83301;Traunreut;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);2940;Hufschlag;MHUF;6;Waginger Straße;83362;Surberg;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);2968;Igersheim;TIH;6;Bahnhofstraße;97999;Igersheim;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Bayern;Südostbayernbahn (SOB);3052;Jettenbach;MJEB;6;Bahnhofstraße;84555;Jettenbach;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);3059;Johanngeorgenstadt;DJ;6;Pachthausstraße;8349;Johanngeorgenstadt;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Südostbayernbahn (SOB);8222;Julbach;MJUL;6;Hauptstraße;84387;Julbach;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft Rottal-Inn;nein;ja
+Bayern;Südostbayernbahn (SOB);3116;Karpfham;MKH;6;Karpfham Bahnhof;94086;Bad Griesbach i.Rottal;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft Landkreis Passau;nein;ja
+Bayern;Südostbayernbahn (SOB);3128;Kastl (Oberbay);MKAT;6;Bahnhofstraße;84556;Kastl;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Thüringen;Oberweißbacher Berg- und Schwarzatalbahn (OBS);3137;Katzhütte;UKH;6;Bahnhofstraße 103;98746;Katzhütte;Nahverkehrsservicegesellschaft Thüringen;Verkehrsverbund Mittelthüringen ;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);3157;Kemtau;DKAU;6;Mühlenweg;9235;Burkhardtsdorf;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Südostbayernbahn (SOB);3182;Kirchanschöring;MKAG;6;Bahnhofstraße;83417;Kirchanschöring;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);7550;Kirchweidach;MKW;6;Bahnhofstraße;84558;Kirchweidach;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Westfrankenbahn (WFB);3250;Kleinheubach;NKLH;6;Bahnhofstraße;63924;Kleinheubach;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Bayern;Westfrankenbahn (WFB);3262;Kleinwallstadt;NKT;6;Wallstraße;63839;Kleinwallstadt;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Bayern;Westfrankenbahn (WFB);3270;Klingenberg am Main;NKM;6;Bahnhofstraße;63911;Klingenberg;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);897;Kloster Bronnbach;TBR;6;L 509;97877;Wertheim;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Hessen;Kurhessenbahn (KHB);3371;Korbach;FKOB;6;Am Hauptbahnhof;34497;Korbach;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);3372;Korbach Süd;FKBS;6;Am Südbahnhof;34497;Korbach;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);7490;Külte-Wetterburg;FKWB;6;Alte Mühle;34454;Bad Arolsen;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);8246;Lahntal-Sarnau;FLSR;6;Hauptstraße;35094;Lahntal;Rhein-Main-Verkehrsverbund;Rhein-Main-Verkehrsverbund;nein;ja
+Bayern;Südostbayernbahn (SOB);3514;Landshut (Bay) Süd;MLAS;6;Pettenkoferstraße;84036;Landshut;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Westfrankenbahn (WFB);3577;Laudenbach am Main;NLK;6;Miltenberger Straße;63925;Laudenbach;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);3579;Laudenbach (Württ);TLC;6;Bahnstraße;97990;Weikersheim;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Bayern;Südostbayernbahn (SOB);3588;Laufen (Oberbay);MLF;6;Bahnhofstraße;83410;Laufen;Bayrische Eisenbahn Gesellschaft;Salzburger Verkehrsverbund;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);3601;Lauter (Sachs);DLR;6;Bahnhofstraße;8315;Lauter-Bernsbach;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Nordrhein-Westfalen;Kurhessenbahn (KHB);3624;Leimstruth;ELEI;6;Hauptstraße;57339;Erndtebrück;Zweckverband Nahverkehr Westfalen-Lippe;Zweckverband / Verkehrsgemeinschaft Westfalen-Süd;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);3659;Lengefeld-Rauenstein;DRAU;6;Rauenstein;9514;Pockau-Lengefeld;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);3678;Leubsdorf (Sachs);DLEU;6;Hauptstraße;9573;Leubsdorf+Hohenfichte;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Thüringen;Oberweißbacher Berg- und Schwarzatalbahn (OBS);3702;Lichtenhain a d Bergbahn;ULIH;6;Bergbahnstraße 9;98744;Oberweißbach;Nahverkehrsservicegesellschaft Thüringen;Verkehrsverbund Mittelthüringen ;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);3791;Lößnitz ob Bf;DLN;6;Bahnhofstraße;8294;Lößnitz;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);3792;Lößnitz unt Bf;DLNU;6;Bahnhofstraße;8294;Lößnitz;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Hessen;Kurhessenbahn (KHB);3921;Mandern;FMAN;6;Fritzlarer Straße;34537;Bad Wildungen;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);3948;Marienberg (Sachs);DMG;6;Untere Bahnhofstraße;9496;Marienberg;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);3958;Markelsheim;TMA;6;Weikersheimer Straße;97980;Bad Mergentheim;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);3959;Markersbach (Erzgeb);DMAR;6;Bahnhofstraße;8352;Raschau-Markersbach;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Südostbayernbahn (SOB);3975;Marktl;MMK;6;Simbacher Straße;84533;Marktl;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);3998;Massing;MMSG;6;Bahnhofstraße;84323;Massing;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft Rottal-Inn;nein;ja
+Bayern;Südostbayernbahn (SOB);4000;Matzing;MMTZ;6;Bahnhofstraße;83301;Traunreut;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);4030;Meinersdorf (Erzgeb);DMS;6;Bahnhofstraße;9235;Burkhardtsdorf;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Thüringen;Oberweißbacher Berg- und Schwarzatalbahn (OBS);4045;Mellenbach-Glasbach;UMEL;6;August-Bebel-Straße 29;98746;Mellenbach-Glasbach;Nahverkehrsservicegesellschaft Thüringen;Verkehrsverbund Mittelthüringen ;nein;ja
+Hessen;Kurhessenbahn (KHB);7494;Mengeringhausen;FMGH;6;Auf der Schanze;34454;Bad Arolsen;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Thüringen;Oberweißbacher Berg- und Schwarzatalbahn (OBS);4089;Meuselbach-Schwarzmühle;UMEU;6;Mellenbacher Straße 18;98746;Meuselbach-Schwarzmühle;Nahverkehrsservicegesellschaft Thüringen;Verkehrsverbund Mittelthüringen ;nein;ja
+Bayern;Westfrankenbahn (WFB);4110;Miltenberg;NM;5;Brückenstraße;63897;Miltenberg;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Bayern;Westfrankenbahn (WFB);850;Miltenberg-Breitendiel;NBRE;6;Greinbergstraße;63897;Miltenberg;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Bayern;Südostbayernbahn (SOB);4137;Mittergars;MMIG;6;Bahnhofstraße;83559;Gars a.Inn;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);4201;Mühldorf (Oberbay);MMF;4;Bahnhofsplatz;84453;Mühldorf a.Inn;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Hessen;Kurhessenbahn (KHB);4272;Münchhausen;FMHN;6;Am Bahnhof;35117;Münchhausen;Rhein-Main-Verkehrsverbund;Rhein-Main-Verkehrsverbund;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);4339;Nennigmühle;DNGM;6;Nennigmühle;9509;Pockau-Lengefeld;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);4398;Neuhausen (Erzgeb);DNH;6;Bahnhofstraße;9544;Neuhausen;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Südostbayernbahn (SOB);4407;Neukirchen (Inn);MNK;6;;;Neuburg a.Inn;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft Landkreis Passau;nein;ja
+Bayern;Südostbayernbahn (SOB);4417;Neumarkt-St Veit;MNR;5;Bahnhofstraße;84494;Neumarkt-Sankt Veit;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);4430;Neuötting;MNN;6;Bahnhofstraße;84524;Neuötting;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);4459;Neustift (b Passau);NNSP;6;Neustift;94036;Passau;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft Landkreis Passau;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);4530;Niederstetten;TNI;6;Bahnhofstraße;97996;Niederstetten;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);8224;Niederzwönitz;DNZW;6;Rittergutsweg;8297;Zwönitz;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);4556;Niklashausen;TNK;6;Taubertalradweg;97956;Werbach;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Hessen;Kurhessenbahn (KHB);4636;Oberelsungen;FOSN;6;Am Bahnhof;34289;Zierenberg;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Bayern;Westfrankenbahn (WFB);4668;Obernburg-Elsenfeld;NOE;6;Glanzstoffstraße;63820;Elsenfeld;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Nordrhein-Westfalen;Kurhessenbahn (KHB);4669;Oberndorf (Kr Wittgenstein);EOBW;6;Siegener Straße;57334;Bad Laasphe;Zweckverband Nahverkehr Westfalen-Lippe;Zweckverband / Verkehrsgemeinschaft Westfalen-Süd;nein;ja
+Thüringen;Oberweißbacher Berg- und Schwarzatalbahn (OBS);4707;Oberweißbach-Deesbach;UOW;6;Fröbelstraße 24;98744;Oberweißbach;Nahverkehrsservicegesellschaft Thüringen;Verkehrsverbund Mittelthüringen ;nein;ja
+Thüringen;Oberweißbacher Berg- und Schwarzatalbahn (OBS);4716;Obstfelderschmiede;UOFM;5;An der Bergbahn 1;98746;Mellenbach-Glasbach;Nahverkehrsservicegesellschaft Thüringen;Verkehrsverbund Mittelthüringen ;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);4757;Olbernhau;DOL;6;Brandauer Straße;9526;Olbernhau;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);8225;Olbernhau West;DOLW;6;An der Bahnlinie;9526;Olbernhau;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);4758;Olbernhau-Grünthal;DOGT;6;Jagdweg;96526;Olbernhau;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Südostbayernbahn (SOB);4833;Otting;MOTG;6;Holzhauser Straße;833296;Waging a.See;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);4917;Pfarrkirchen;MPKI;6;;;Pfarrkirchen;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft Rottal-Inn;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);8226;Pockau Strobelmühle;DSTM;6;;;;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);4972;Pockau-Lengefeld;DPF;6;;;Pockau-Lengefeld;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Südostbayernbahn (SOB);4973;Pocking;MPKG;6;;;Pocking;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft Landkreis Passau;nein;ja
+Bayern;Südostbayernbahn (SOB);5109;Ramerberg;MRMB;6;;;Ramerberg;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);5124;Raschau (b Schwarzenberg);DRAS;6;;;Raschau-Markersbach;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);5195;Reicholzheim;TRL;6;;;Wertheim;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);5196;Reifland-Wünschendorf;DRF;6;;;Pockau-Lengefeld;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);5290;Rippberg;RRB;6;;;Walldürn;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Bayern;Südostbayernbahn (SOB);5318;Rohrbach (Oberbay);MROH;6;;;Erharting;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);8259;Rosenheim Hochschule;MROS;6;;;Rosenheim;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);5376;Rot am See;TRS;6;;;Rot am See;Nahverkehrsgesellschaft Baden-Württemberg;KreisVerkehr Schwäbisch Hall;nein;ja
+Bayern;Südostbayernbahn (SOB);5396;Rott (Inn);MRT;6;;;Rott a.Inn;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);5426;Ruhpolding;MRPD;6;;;Ruhpolding;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);5427;Ruhstorf;MRUS;6;;;Ruhstorf a.d.Rott;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft Landkreis Passau;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);5515;Satteldorf;TSAT;6;;;Satteldorf;Nahverkehrsgesellschaft Baden-Württemberg;KreisVerkehr Schwäbisch Hall;nein;ja
+Bayern;Südostbayernbahn (SOB);5534;Schalchen;MSCA;6;;;Tacherting;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Nordrhein-Westfalen;Kurhessenbahn (KHB);5539;Schameder;ESCA;6;Steimelweg;57339;Erndtebrück;Zweckverband Nahverkehr Westfalen-Lippe;Zweckverband / Verkehrsgemeinschaft Westfalen-Süd;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);5543;Scharfenstein;DSS;6;;;Drebach;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Südostbayernbahn (SOB);5551;Schechen;MSC;6;;;Schechen;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);5553;Scheibenberg;DSG;6;;;Scheibenberg;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);5589;Schlettau (Erzgeb);DSCL;6;;;Schlettau;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Westfrankenbahn (WFB);5625;Schneeberg im Odenwald;NSCB;6;;;Schneeberg;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);5689;Schrozberg;TSZG;6;;;Schrozberg;Nahverkehrsgesellschaft Baden-Württemberg;KreisVerkehr Schwäbisch Hall;nein;ja
+Thüringen;Oberweißbacher Berg- und Schwarzatalbahn (OBS);5720;Schwarzburg;USCG;6;Bahnhof 1;7427;Schwarzburg;Nahverkehrsservicegesellschaft Thüringen;Verkehrsverbund Mittelthüringen ;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);5728;Schwarzenberg (Erzgeb);DSC;6;;;Schwarzenberg;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);5729;Schwarzenberg (Erzgeb) Hp;DSCH;6;;;Schwarzenberg;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);5730;Schwarzenberg-Neuwelt;DSCN;6;;;Schwarzenberg;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);5801;Sehma;DSEH;6;;;Sehmatal;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Südostbayernbahn (SOB);5803;Seiboldsdorf;MSBD;6;;;Traunstein;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);5845;Siegsdorf;MSGD;6;Bahnhofstraße;83313;Siegsdorf;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);5858;Silberstraße;DSBS;6;;;Wilkau-Haßlau;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Südostbayernbahn (SOB);5859;Simbach (Inn);MSBI;5;;;Simbach a.Inn;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft Rottal-Inn;nein;ja
+Hessen;Kurhessenbahn (KHB);5862;Simtshausen;FSMH;6;;;Münchhausen;Rhein-Main-Verkehrsverbund;Rhein-Main-Verkehrsverbund;nein;ja
+Thüringen;Oberweißbacher Berg- und Schwarzatalbahn (OBS);5874;Sitzendorf-Unterweißbach;USDF;6;Bahnhofstraße 1;7429;Unterweißbach;Nahverkehrsservicegesellschaft Thüringen;Verkehrsverbund Mittelthüringen ;nein;ja
+Bayern;Südostbayernbahn (SOB);5914;Soyen;MSY;6;;;Soyen;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Westfrankenbahn (WFB);5959;Stadtprozelten;NSPO;6;Hauptstraße;97909;Stadtprozelten;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Bayern;Südostbayernbahn (SOB);5978;Stein a d Traun;MSTN;6;;;Traunreut;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);6000;Steinhöring;MSHG;6;;;Steinhöring;Bayrische Eisenbahn Gesellschaft;Münchener Verkehrs- und Tarifverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);6022;Sterzhausen;FSZH;6;;;Lahntal;Rhein-Main-Verkehrsverbund;Rhein-Main-Verkehrsverbund;nein;ja
+Bayern;Westfrankenbahn (WFB);6110;Sulzbach am Main;NSUZ;6;;;Sulzbach a.Main;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Bayern;Südostbayernbahn (SOB);6109;Sulzbach (Inn);MSBH;6;;;Ruhstorf a.d.Rott;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft Landkreis Passau;nein;ja
+Bayern;Südostbayernbahn (SOB);6133;Tacherting;MTCH;6;;;Tacherting;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);6152;Tauberbischofsheim;TTB;6;;;Tauberbischofsheim;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);6187;Thalheim (Erzgeb);DTAL;6;;;Thalheim;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);6196;Thermalbad Wiesenbad;DWIE;6;;;Thermalbad Wiesenbad;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Südostbayernbahn (SOB);6222;Tittmoning-Wiesmühl;MWSL;6;;;Tittmoning;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);6223;Töging (Inn);MTG;6;;;Töging a.Inn;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);6239;Traundorf;MTRD;6;;;Siegsdorf;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);8127;Traunreut;MTRT;6;;;Traunreut;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);6277;Trostberg;MTSB;6;;;Trostberg;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Bayern;Südostbayernbahn (SOB);6285;Tulling;MTUL;6;;;Steinhöring;Bayrische Eisenbahn Gesellschaft;Münchener Verkehrs- und Tarifverbund;nein;ja
+Bayern;Südostbayernbahn (SOB);6289;Tüßling;MTLG;5;;;Tüßling;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Hessen;Kurhessenbahn (KHB);7511;Twiste;FTW;6;;;Twistetal;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);6332;Ungedanken;FUNG;6;;;Fritzlar;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Bayern;Südostbayernbahn (SOB);6343;Unteraschau;MUA;6;;;Waging a.See;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Hessen;Kurhessenbahn (KHB);6381;Usseln;FUS;6;;;Willingen;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Bayern;Südostbayernbahn (SOB);6420;Vilsbiburg;MVSB;6;;;Vilsbiburg;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Hessen;Kurhessenbahn (KHB);7473;Vöhl Ederbringhausen;FEDN;6;;;Vöhl;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);7486;Vöhl Herzhausen;FHZN;6;;;Vöhl;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);7508;Vöhl Schmittlotheim;FSLM;6;;;Vöhl;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);8308;Vöhl Thalitter;FTHA;6;;;Vöhl;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);6446;Volkmarsen;FVA;6;;;Volkmarsen;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Bayern;Südostbayernbahn (SOB);6465;Waging;MWGN;6;;;Waging a.See;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);6488;Waldkirchen (Erzgeb);DWK;6;;;Wildenstein;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Südostbayernbahn (SOB);7870;Waldkraiburg-Kraiburg;MWKG;6;;;Waldkraiburg;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);6505;Walldürn;RWDN;6;;;Walldürn;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);8269;Wallhausen (Württ);TWAL;6;;;Wallhausen;Nahverkehrsgesellschaft Baden-Württemberg;KreisVerkehr Schwäbisch Hall;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);6524;Walthersdorf (Erzgeb);DWF;6;;;Crottendorf;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);6543;Warmbad;DWAB;6;;;Wolkenstein;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Südostbayernbahn (SOB);6559;Wasserburg (Inn) Bahnhof;MWSB;5;;;Wasserburg a.Inn;Bayrische Eisenbahn Gesellschaft;Münchener Verkehrs- und Tarifverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);6583;Wega;FWGA;6;Ederstraße;34537;Bad Wildungen;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Bayern;Südostbayernbahn (SOB);6589;Weibhausen;MWBH;6;;;Wonneberg;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);6605;Weikersheim;TWM;6;;;Weikersheim;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Bayern;Westfrankenbahn (WFB);6611;Weilbach in Unterfranken;NWE;6;;;Weilbach;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);6698;Wertheim;TWT;6;;;Wertheim;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Baden-Württemberg;Westfrankenbahn (WFB);6699;Wertheim-Bestenheid;TWTB;6;;;Wertheim;Nahverkehrsgesellschaft Baden-Württemberg;Verkehrsverbund Rhein-Neckar;nein;ja
+Hessen;Kurhessenbahn (KHB);6727;Wetter (Hess-Nass);FWT;6;;;Wetter;Rhein-Main-Verkehrsverbund;Rhein-Main-Verkehrsverbund;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);7121;Wiesa (Erzgeb);DWIS;6;;;Thermalbad Wiesenbad;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);6753;Wiesenburg (Sachs);DWSB;6;;;Wildenfels;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Hessen;Kurhessenbahn (KHB);6754;Wiesenfeld;FWIF;6;;;Burgwald;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Bayern;Südostbayernbahn (SOB);6760;Wiesmühl (Alz);MWSM;6;;;Engelsberg;Bayrische Eisenbahn Gesellschaft;;nein;ja
+Hessen;Kurhessenbahn (KHB);6774;Wilhelmshütte (Lahn);FWUE;6;;;Dautphetal;Rhein-Main-Verkehrsverbund;Rhein-Main-Verkehrsverbund;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);6776;Wilischthal;DWL;6;;;Amtsberg;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);6777;Wilkau-Haßlau;DWI;6;Am Markt;8112;Wilkau-Haßlau;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Hessen;Kurhessenbahn (KHB);6778;Willingen;FWLN;6;;;Willingen;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);8232;Willingen-Stryck;FSY;6;;;Willingen;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);6841;Witzschdorf;DWIT;6;;;Gornau;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Hessen;Kurhessenbahn (KHB);6857;Wolfhagen;FWFH;6;;;Wolfhagen;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);6869;Wolkenstein;DWO;6;;;Wolkenstein;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Bayern;Westfrankenbahn (WFB);6892;Wörth am Main;NWOE;6;;;Wörth a.Main;Bayrische Eisenbahn Gesellschaft;Verkehrsgemeinschaft am Bayerischen Untermain;nein;ja
+Hessen;Kurhessenbahn (KHB);6997;Zennern;FZE;6;;;Wabern;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);7018;Zierenberg;FZB;6;;;Zierenberg;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Hessen;Kurhessenbahn (KHB);8012;Zierenberg-Rosental;FZBR;6;;;Zierenberg;Nordhessischer Verkehrsverbund;Nordhessischer Verkehrsverbund;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);7038;Zöblitz-Pobershau;DZB;6;;;Zöblitz;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);7055;Zschopau;DZP;6;;;Zschopau;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);8227;Zschopau Ost;DZPO;6;;;Zschopau;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);7071;Zwickau-Schedewitz;DZWS;6;Bahnstraße/Tonstraße;8056;Zwickau;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
+Sachsen;Erzgebirgsbahn (EGB);7076;Zwönitz;DZI;6;;;Zwönitz;Verkehrsverbund Mittelsachsen;Verkehrsverbund Mittelsachsen;nein;ja
