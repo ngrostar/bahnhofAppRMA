@@ -19,8 +19,7 @@ export class HomePage {
 
     loadpp() {
         this.ParkplatzProvider.getpp().then(data => {
-
-          this.posts = data.result;
+          this.posts=data['result'];
           console.log("POOOOOOOOOOOSTS");
           console.log(this.posts);
           console.log("DATAAAAAAAA");
