@@ -27,9 +27,9 @@ export class HomePage {
           console.log(data);
 
 
-          for(let x of this.posts) {
-            console.log(x.name);
-          }
+          // for(let x of this.posts) {
+          //   console.log(x.name);
+          // }
         });
 
     }

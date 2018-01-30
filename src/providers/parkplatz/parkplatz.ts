@@ -27,11 +27,5 @@ export class ParkplatzProvider {
                 console.log(err);
             });
         });
-        // const headers = new HttpHeaders().set('Authorization', `Bearer 61142190cdeab44f140c58c9fb40d293`);
-        // headers.append('Accept', 'application/json');
-        // var response = this.http.get('https://api.deutschebahn.com/stada/v2/stations', {headers}).subscribe(data => {
-        //     console.log(data);
-        //     return response;
-        // });
     }
 }
