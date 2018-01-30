@@ -8,9 +8,10 @@ import {ParkplatzProvider} from "../../providers/parkplatz/parkplatz";
 })
 
 export class HomePage {
-    public posts: any;
+    public posts: any= [];
 
     constructor(public navCtrl: NavController, public ParkplatzProvider: ParkplatzProvider) {
+        this.posts=new Array<Object>();
         this.loadpp();
     }
 
