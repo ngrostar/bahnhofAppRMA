@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {ParkplatzProvider} from "../../providers/parkplatz/parkplatz";
+import 'rxjs/operator/map'
 
 @Component({
   selector: 'page-home',
@@ -17,8 +18,7 @@ export class HomePage {
 
 
     loadpp() {
-        this.ParkplatzProvider.getpp().subscribe((data) => {
-            this.posts = data;
-        });
+        this.posts=this.ParkplatzProvider.getpp();
+        this.posts=this.posts.map(posts=>posts.name);
     }
 }
