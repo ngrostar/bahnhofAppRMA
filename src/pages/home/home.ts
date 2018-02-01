@@ -34,7 +34,9 @@ export class HomePage {
       this.stations = data['result'];
       console.log("STATIONEN");
       console.log(this.stations);
-      this.geocode(this.stations[1]);
+      let ll = new google.maps.LatLng(50,8);
+      this.map.setCenter(ll);
+      // this.geocode(this.stations[1]);
     });
 
   }
@@ -52,7 +54,8 @@ export class HomePage {
 
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
-      this.map.setCenter(latLng);
+      // this.map.setCenter(latLng);
+
 
     }, (err) => {
       console.log(err);
@@ -84,14 +87,14 @@ export class HomePage {
       if (status == google.maps.GeocoderStatus.OK) {
 
         console.log(results);
-        // this.map.setCenter(results[0].geometry.location);
-        let latLng = new google.maps.LatLng(results[0].geometry.viewport.b.b, results[0].geometry.viewport.f.b);
+        this.map.setCenter(results[0].geometry.location);
+        // let latLng = new google.maps.LatLng(results[0].geometry.viewport.b.b, results[0].geometry.viewport.f.b);
         console.log(results[0].geometry.viewport.b.b, results[0].geometry.viewport.f.b, latLng);
-        this.map.setCenter(latLng);
+        // this.map.setCenter(latLng);
         let marker = new google.maps.Marker({
           map: this.map,
-          // position: results[0].geometry.location,
-          position: latLng,
+          position: results[0].geometry.location,
+          // position: latLng,
           animation: google.maps.Animation.DROP
         });
       } else {
