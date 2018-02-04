@@ -17,11 +17,29 @@ export class HomePage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   private lastInfoWindow: any;
+  public aktStation: any = null;
   public markers: any = [];
   public stations: any = [];
-  public urstations: any = []; //Mal testen, ob man das noch braucht
+  public favorites: any = [];
   public stationnames: any = []; // Array der Stationnamen, mit stations geht die Suche NICHT :( ecvtl station.name
   private geocoder = new google.maps.Geocoder();
+  public detailsHidden: boolean = false;
+
+  toggleDetails() {
+    this.detailsHidden = !this.detailsHidden;
+    if(this.detailsHidden == true) {
+      $('.detailBox').css('max-height', '0px');
+      $('#stationDetails').css('max-height', '28px'); //unschöner Workaround
+    } else {
+      $('.detailBox').css('max-height', '500px');
+      $('#stationDetails').css('max-height', '500px'); //unschöner Workaround
+
+    }
+  }
+
+  clearAktStation() {
+    this.aktStation = null;
+  }
 
   constructor(public navCtrl: NavController, public events: Events, public modalCtrl: ModalController, public navParams: NavParams, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider) {
     this.loadStada('stations'); // stations/{id} oder szentralen/{id})
@@ -33,12 +51,27 @@ export class HomePage {
     // this.loadMap();
   }
 
+  isFavorite(): boolean {
+    return this.aktStation && this.favorites.find(id => id == this.aktStation.number);
+  }
+
+  toggleFavorite() {
+    if(this.isFavorite()) {
+      const index: number = this.favorites.indexOf(this.aktStation.number);
+      if (index !== -1) {
+        this.favorites.splice(index, 1);
+      }
+      localStorage.setItem('favoriteStations', this.favorites);
+    } else {
+      this.favorites.push(this.aktStation.number);
+      localStorage.setItem('favoriteStations', this.favorites);
+    }
+  }
 
   loadStada(param) {
     this.Stada.load(param).then(data => {
 
       this.stations = data['result'];
-      this.urstations = data['result']; // Soll dazu dienen, um den Ursprung beim Suchen wiederherzustellen
       console.log("STATIONEN");
       console.log(this.stations);
       // let count = 0;
@@ -111,17 +144,6 @@ export class HomePage {
 
         let ll = new google.maps.LatLng(50, 8);
         this.map.setCenter(ll);
-        // console.log(results);
-        // this.map.setCenter(results[0].geometry.location);
-        // // let latLng = new google.maps.LatLng(results[0].geometry.viewport.b.b, results[0].geometry.viewport.f.b);
-        // console.log(results[0].geometry.viewport.b.b, results[0].geometry.viewport.f.b, latLng);
-        // // this.map.setCenter(latLng);
-        // let marker = new google.maps.Marker({
-        //   map: this.map,
-        //   position: results[0].geometry.location,
-        //   // position: latLng,
-        //   animation: google.maps.Animation.DROP
-        // });
       } else {
         console.log('Geocode for ' + station.name + ' was not successful for the following reason: ' + status);
       }
@@ -130,7 +152,6 @@ export class HomePage {
   }
 
   initializeStations() {
-    /*this.stations=this.urstations;*/
     this.stationnames = [];
     for (let station of this.stations) {
       this.stationnames.push(station.name);
@@ -140,7 +161,6 @@ export class HomePage {
 
   searchStation(ev: any) {
     $('.filteredStations').show();
-
 
     // set val to the value of the searchbar
     let val = ev.target.value;
@@ -172,7 +192,10 @@ export class HomePage {
 
     this.addSpecificMarker(aktStation, true);
 
+    this.aktStation = aktStation;
     $('.filteredStations').hide();
+
+    $('.scroll-content').addClass('overflowHidden');
   }
 
   addContentWindow(station, marker) {
@@ -180,6 +203,8 @@ export class HomePage {
       console.log(data["photoUrl"]);
 
       let fotoURL = data["photoUrl"];
+      this.aktStation = station;
+      this.aktStation.fotoURL = fotoURL;
       console.log('fotoURL', fotoURL);
       let content = '<h6>' + station.name + '</h6>';
 
@@ -187,17 +212,18 @@ export class HomePage {
         content += '<img src="' + fotoURL + '" class="bfoto"/>';
       }
 
+      content += '<button ion-button color="secondary"><ion-icon name="heart"></ion-icon>Favoriten</button>';
+      content += '<button ion-button><ion-icon name="arrow-forward"></ion-icon>Details</button>';
+
       let infoWindow = new google.maps.InfoWindow({content: content});
 
       google.maps.event.addListener(marker, 'click', () => {
-        console.log("here");
+        this.aktStation = station;
+        this.aktStation.fotoURL = fotoURL;
         infoWindow.open(this.map, marker);
         if(this.lastInfoWindow && this.lastInfoWindow != infoWindow) {
           this.lastInfoWindow.close();
         }
-        // for(let marker of this.markers) {
-        //
-        // }
         this.lastInfoWindow = infoWindow;
       });
 

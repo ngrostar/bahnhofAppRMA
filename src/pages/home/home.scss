@@ -39,6 +39,52 @@
         cursor: pointer;
       }
 
+      #stationDetails {
+        z-index: 10;
+        position: absolute;
+        bottom: 0;
+        background: white;
+        width: 100%;
+        transition: max-height 0.25s ease-in;
+
+        .detailSlider {
+          text-align: center;
+          font-size: 2rem;
+          cursor: pointer;
+          background-color: #fafafa;
+          border-bottom: 1px solid #efefef;
+        }
+
+        .detailBox {
+          margin: 10px;
+          max-height: 500px;
+          transition: max-height 0.25s ease-in;
+
+          .closeDetails {
+            float: right;
+            font-size: 1.8rem;
+            cursor: pointer;
+          }
+
+          h6 {
+            margin-top: 10px;
+          }
+
+          button {
+            width: 48%;
+
+            ion-icon {
+              padding-right: 10px;
+            }
+          }
+
+          button.details {
+            float: right;
+          }
+
+        }
+      }
+
     }
 
   }

@@ -19,10 +19,28 @@
     <!--(touchstart)="selectStation(stationn)"-->
   </ion-list>
   <div #map id="map"></div>
-  <!--<ion-list>
-    <ion-item *ngFor="let station of stations">
-      {{station.name}}
-    </ion-item>
-  </ion-list>-->
-
+  <div id="stationDetails" *ngIf="aktStation != null">
+    <div *ngIf="!detailsHidden; else sliderUp">
+      <div class="detailSlider" id="sliderDown" (click)="toggleDetails()"><ion-icon name="arrow-down"></ion-icon></div>
+    </div>
+    <ng-template #sliderUp>
+      <div class="detailSlider" id="sliderUp" (click)="toggleDetails()"><ion-icon name="arrow-up"></ion-icon></div>
+    </ng-template>
+    <div class="detailBox">
+      <div class="closeDetails" (click)="clearAktStation()"><ion-icon name="close-circle"></ion-icon></div>
+      <h6>{{aktStation.name}}</h6>
+      <img *ngIf="aktStation.fotoURL" class="bfoto" src="{{aktStation.fotoURL}}"/>
+      <button ion-button (click)="toggleFavorite()" color="secondary">
+        <ion-icon *ngIf="isFavorite(); else notFave" name="heart"></ion-icon>
+        <ng-template #notFave>
+          <ion-icon name="heart-outline"></ion-icon>
+        </ng-template>
+        Favoriten
+      </button>
+      <button ion-button class="details">
+        <ion-icon name="arrow-forward"></ion-icon>
+        Details
+      </button>
+    </div>
+  </div>
 </ion-content>
