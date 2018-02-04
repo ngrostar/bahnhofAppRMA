@@ -5,6 +5,7 @@ import {BfotosProvider} from "../../providers/bfotos/bfotos";
 import {Geolocation} from '@ionic-native/geolocation';  // https://ionicframework.com/docs/native/geolocation/
 import 'rxjs/operator/map';
 import * as $ from 'jquery';
+import {AboutPage} from "../about/about";
 
 declare let google;
 
@@ -210,6 +211,7 @@ export class HomePage {
   }
 
   foundStation(stationname) {
+    this.cancelSearch();
     let aktStation = this.stations.find(station => station.name == stationname);
     console.log("aktStation ", aktStation);
 
@@ -238,22 +240,25 @@ export class HomePage {
       content += '<button ion-button color="secondary"><ion-icon name="heart"></ion-icon>Favoriten</button>';
       content += '<button ion-button><ion-icon name="arrow-forward"></ion-icon>Details</button>';
 
-      let infoWindow = new google.maps.InfoWindow({content: content});
+      // let infoWindow = new google.maps.InfoWindow({content: content});
 
       google.maps.event.addListener(marker, 'click', () => {
         this.aktStation = station;
         this.aktStation.fotoURL = fotoURL;
-        infoWindow.open(this.map, marker);
-        if(this.lastInfoWindow && this.lastInfoWindow != infoWindow) {
-          this.lastInfoWindow.close();
-        }
-        this.lastInfoWindow = infoWindow;
+        // infoWindow.open(this.map, marker);
+        // if(this.lastInfoWindow && this.lastInfoWindow != infoWindow) {
+        //   this.lastInfoWindow.close();
+        // }
+        // this.lastInfoWindow = infoWindow;
       });
 
     }, (status) => {
       console.log("BFoto-Problem: ", status);
     });
+  }
 
+  openDetails() {
+    this.navCtrl.parent.select(1);
   }
 }
 
