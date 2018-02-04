@@ -4,7 +4,8 @@
   </ion-navbar>
 
   <ion-toolbar>
-    <ion-searchbar (ionInput)="searchStation($event)" (click)="searchStation($event)"></ion-searchbar>
+    <ion-searchbar (ionInput)="searchStation($event)" (click)="searchStation($event)">{{searchInput}}</ion-searchbar>
+    <div class="cancelSearch" (click)="cancelSearch()">Verbergen</div>
   </ion-toolbar>
 </ion-header>
 
@@ -14,11 +15,13 @@
     <ion-item *ngFor="let stationname of stationnames">
       <div class="foundStation" (click)="foundStation(stationname)">
         {{stationname}}
+        <ion-icon *ngIf="isFavorite(stationname)" name="heart"></ion-icon>
       </div>
     </ion-item>
     <!--(touchstart)="selectStation(stationn)"-->
   </ion-list>
   <div #map id="map"></div>
+  <div class="favoriten" (click)="showFavorites()"><ion-icon name="heart"></ion-icon>Favoriten</div>
   <div id="stationDetails" *ngIf="aktStation != null">
     <div *ngIf="!detailsHidden; else sliderUp">
       <div class="detailSlider" id="sliderDown" (click)="toggleDetails()"><ion-icon name="arrow-down"></ion-icon></div>
@@ -31,7 +34,7 @@
       <h6>{{aktStation.name}}</h6>
       <img *ngIf="aktStation.fotoURL" class="bfoto" src="{{aktStation.fotoURL}}"/>
       <button ion-button (click)="toggleFavorite()" color="secondary">
-        <ion-icon *ngIf="isFavorite(); else notFave" name="heart"></ion-icon>
+        <ion-icon *ngIf="isAktFavorite(); else notFave" name="heart"></ion-icon>
         <ng-template #notFave>
           <ion-icon name="heart-outline"></ion-icon>
         </ng-template>

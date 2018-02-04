@@ -21,6 +21,7 @@ export class HomePage {
   public markers: any = [];
   public stations: any = [];
   public favorites: any = [];
+  public searchInput: any;
   public stationnames: any = []; // Array der Stationnamen, mit stations geht die Suche NICHT :( ecvtl station.name
   private geocoder = new google.maps.Geocoder();
   public detailsHidden: boolean = false;
@@ -45,27 +46,63 @@ export class HomePage {
     this.loadStada('stations'); // stations/{id} oder szentralen/{id})
 
     this.loadMap();
+
+    if(localStorage.getItem('favoriteStations')) {
+      this.favorites = (localStorage.getItem('favoriteStations')).split(',');
+    }
   }
 
   ionViewDidLoad() {
     // this.loadMap();
   }
 
-  isFavorite(): boolean {
-    return this.aktStation && this.favorites.find(id => id == this.aktStation.number);
+  isAktFavorite(): boolean {
+    return this.aktStation && this.favorites.find(name => name == this.aktStation.name);
+  }
+
+  isFavorite(searchName): boolean {
+    return this.favorites.find(name => name == searchName);
   }
 
   toggleFavorite() {
-    if(this.isFavorite()) {
-      const index: number = this.favorites.indexOf(this.aktStation.number);
+    if(this.isAktFavorite()) {
+      const index: number = this.favorites.indexOf(this.aktStation.name);
       if (index !== -1) {
         this.favorites.splice(index, 1);
       }
       localStorage.setItem('favoriteStations', this.favorites);
     } else {
-      this.favorites.push(this.aktStation.number);
+      this.favorites.push(this.aktStation.name);
       localStorage.setItem('favoriteStations', this.favorites);
     }
+  }
+
+  showFavorites() {
+    $('.filteredStations').show();
+
+    $('.scroll-content').removeClass('overflowHidden');
+
+    this.stationnames = [];
+    for (let name of this.favorites) {
+      this.stationnames.push(name);
+    }
+
+    console.log(this.stationnames);
+
+    $('ion-searchbar').css('width', '75%');
+    $('ion-searchbar').css('float', 'left');
+    $('.cancelSearch').show();
+  }
+
+  cancelSearch() {
+    $('.filteredStations').hide();
+
+    $('.scroll-content').addClass('overflowHidden');
+
+    this.stationnames = [];
+
+    $('ion-searchbar').css('width', '100%');
+    $('.cancelSearch').hide();
   }
 
   loadStada(param) {
@@ -74,14 +111,7 @@ export class HomePage {
       this.stations = data['result'];
       console.log("STATIONEN");
       console.log(this.stations);
-      // let count = 0;
-      for (let station of this.stations) {
-        // if(count<100)
-        // this.addSpecificMarker(station, false);
-        // count++;
-      }
     });
-
   }
 
   loadMap() {
@@ -155,7 +185,6 @@ export class HomePage {
     this.stationnames = [];
     for (let station of this.stations) {
       this.stationnames.push(station.name);
-      // console.log('Zu stationnames ist' + station.name + 'hinzugefuegt worden. Array:' + this.stationnames);
     }
   }
 
@@ -177,13 +206,7 @@ export class HomePage {
     } else { // clear list
       this.stationnames = [];
       $('.scroll-content').addClass('overflowHidden');
-      console.log('overflow hidden now.')
     }
-  }
-
-  selectStation(stationn) {
-    console.log('Test der Suche:');
-    console.log(stationn);
   }
 
   foundStation(stationname) {

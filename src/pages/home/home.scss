@@ -7,9 +7,19 @@
         border: none;
       }
 
+      .cancelSearch {
+        float: right;
+        width: 25%;
+        display: none;
+        padding: 12px 5px;
+        color: #00aaff;
+        cursor: pointer;
+      }
+
       .overflowHidden {
         overflow: hidden;
       }
+
       .scroll {
         height: 100%
       }
@@ -20,10 +30,25 @@
         position: absolute;
         top: 0;
         z-index: 5;
+      }
 
-          .bfoto {
-            max-width: 100%;
-          }
+      .favoriten {
+        z-index: 20;
+        position: absolute;
+        background: white;
+        top: 10px;
+        right: 10px;
+        padding: 5px 8px;
+        font: 400 11px Roboto, Arial, sans-serif;
+        border: 1px solid #eeeeee;
+        box-shadow: rgba(0, 0, 0, 0.3) 0 1px 4px -1px;
+        border-radius: 2px;
+        cursor: pointer;
+
+        ion-icon {
+          padding-right: 5px;
+          font-size: 1.1rem;
+        }
       }
 
       .filteredStations {
@@ -32,6 +57,10 @@
 
         &.list-ios {
           margin: 0;
+        }
+
+        ion-icon {
+          font-size: 0.8em;
         }
       }
 
