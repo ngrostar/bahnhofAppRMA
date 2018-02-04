@@ -15,6 +15,9 @@ export class HomePage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   public stations: any = [];
+  public urstations:any=[]; //Mal testen, ob man das noch braucht
+  stationnames; // Array der Stationnamen, mit stations geht die Suche NICHT :( ecvtl station.name
+  searchQuery: string = '';
   geocoder = new google.maps.Geocoder();
 
   constructor(public navCtrl: NavController, public events: Events, public modalCtrl: ModalController, public navParams: NavParams, public geolocation: Geolocation, public Stada: StadaProvider) {
@@ -32,6 +35,7 @@ export class HomePage {
     this.Stada.load(param).then(data => {
 
       this.stations = data['result'];
+      this.urstations=data['result']; // Soll dazu dienen, um den Ursprung beim Suchen wiederherzustellen
       console.log("STATIONEN");
       console.log(this.stations);
       let count = 0;
@@ -86,7 +90,7 @@ export class HomePage {
     }
 
   }
-
+  //Brauchen wir das noch?
   geocode(station) {
 
     let address = station.mailingAddress.street + " " + station.mailingAddress.zipcode + " " + station.mailingAddress.city;
@@ -113,4 +117,30 @@ export class HomePage {
     });
 
   }
-}
+  initializeStations(){
+    /*this.stations=this.urstations;*/
+      for(let station of this.stations){
+        this.stationnames.push(station.name);
+        console.log('Zu stationnames ist'+station.name+'hinzugefuegt worden. Array:'+this.stationnames);
+      }
+  }
+  searchStation(ev:any){
+      // Reset items back to all of the items
+      this.initializeStations();
+
+      // set val to the value of the searchbar
+      let val = ev.target.value;
+
+      // if the value is an empty string don't filter the items
+      if (val && val.trim() != '') {
+          this.stationnames = this.stationnames.filter((station) => {
+              return (station.toLowerCase().indexOf(val.toLowerCase()) > -1);
+          })
+      }
+  }
+    selectStation(stationn){
+        console.log('Test der Suche:');
+        console.log(stationn);
+    }
+  }
+

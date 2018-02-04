@@ -1,16 +1,24 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Bahnhof App</ion-title>
+    <ion-title>MyStationFinder</ion-title>
   </ion-navbar>
+  <ion-toolbar>
+    <ion-searchbar (ionInput)="searchStation($event)"></ion-searchbar>
+  </ion-toolbar>
+  <ion-list>
+    <ion-item *ngFor="let stationname of stationnames" >{{stationname}}</ion-item>
+    <!--(touchstart)="selectStation(stationn)"-->
+  </ion-list>
+
 </ion-header>
 
 <ion-content>
 
   <div #map id="map"></div>
-  <ion-list>
+  <!--<ion-list>
     <ion-item *ngFor="let station of stations">
       {{station.name}}
     </ion-item>
-  </ion-list>
+  </ion-list>-->
 
 </ion-content>
