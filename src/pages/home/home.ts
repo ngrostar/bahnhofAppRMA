@@ -132,6 +132,7 @@ export class HomePage {
       }
   }
   searchStation(ev:any){
+      $('.filteredStations').show();
 
 
       // set val to the value of the searchbar
@@ -163,6 +164,7 @@ export class HomePage {
 
       this.addSpecificMarker(aktStation, true);
 
+      $('.filteredStations').hide();
     }
   }
 
