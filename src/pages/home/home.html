@@ -2,18 +2,22 @@
   <ion-navbar>
     <ion-title>MyStationFinder</ion-title>
   </ion-navbar>
+
   <ion-toolbar>
     <ion-searchbar (ionInput)="searchStation($event)"></ion-searchbar>
   </ion-toolbar>
-  <ion-list>
-    <ion-item *ngFor="let stationname of stationnames" >{{stationname}}</ion-item>
-    <!--(touchstart)="selectStation(stationn)"-->
-  </ion-list>
-
 </ion-header>
 
 <ion-content>
 
+  <ion-list class="filteredStations">
+    <ion-item *ngFor="let stationname of stationnames">
+      <div class="foundStation" (click)="foundStation(stationname)">
+        {{stationname}}
+      </div>
+    </ion-item>
+    <!--(touchstart)="selectStation(stationn)"-->
+  </ion-list>
   <div #map id="map"></div>
   <!--<ion-list>
     <ion-item *ngFor="let station of stations">

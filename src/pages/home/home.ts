@@ -3,6 +3,7 @@ import {NavController, NavParams, ModalController, Events} from 'ionic-angular';
 import {StadaProvider} from "../../providers/stada/stada";
 import { Geolocation } from '@ionic-native/geolocation';  // https://ionicframework.com/docs/native/geolocation/
 import 'rxjs/operator/map';
+import * as $ from 'jquery';
 
 declare let google;
 
@@ -16,7 +17,7 @@ export class HomePage {
   map: any;
   public stations: any = [];
   public urstations:any=[]; //Mal testen, ob man das noch braucht
-  stationnames; // Array der Stationnamen, mit stations geht die Suche NICHT :( ecvtl station.name
+  public stationnames: any = []; // Array der Stationnamen, mit stations geht die Suche NICHT :( ecvtl station.name
   searchQuery: string = '';
   geocoder = new google.maps.Geocoder();
 
@@ -38,11 +39,11 @@ export class HomePage {
       this.urstations=data['result']; // Soll dazu dienen, um den Ursprung beim Suchen wiederherzustellen
       console.log("STATIONEN");
       console.log(this.stations);
-      let count = 0;
+      // let count = 0;
       for(let station of this.stations) {
-        if(count<100)
-        this.addSpecificMarker(station);
-        count++;
+        // if(count<100)
+        // this.addSpecificMarker(station, false);
+        // count++;
       }
     });
 
@@ -63,6 +64,7 @@ export class HomePage {
 
       this.map.setCenter(latLng);
 
+      $('.scroll-content').addClass('overflowHidden');
 
     }, (err) => {
       console.log(err);
@@ -70,7 +72,7 @@ export class HomePage {
 
   }
 
-  addSpecificMarker(station) {
+  addSpecificMarker(station, center) {
     console.log("Trying to add marker for " + station.name);
 
     for(let eN of station.evaNumbers) {
@@ -84,6 +86,10 @@ export class HomePage {
           animation: google.maps.Animation.DROP,
           position: latLng
         });
+
+        if(center == true) {
+          this.map.setCenter(latLng);
+        }
 
         let content = "<h6>" + station.name + "</h6><p>Länge: " +  coords[1] + "<br>Breite: " + coords[0] + "</p>";
       }
@@ -119,28 +125,44 @@ export class HomePage {
   }
   initializeStations(){
     /*this.stations=this.urstations;*/
-      for(let station of this.stations){
-        this.stationnames.push(station.name);
-        console.log('Zu stationnames ist'+station.name+'hinzugefuegt worden. Array:'+this.stationnames);
+    this.stationnames = [];
+    for(let station of this.stations){
+          this.stationnames.push(station.name);
+          // console.log('Zu stationnames ist' + station.name + 'hinzugefuegt worden. Array:' + this.stationnames);
       }
   }
   searchStation(ev:any){
-      // Reset items back to all of the items
-      this.initializeStations();
+
 
       // set val to the value of the searchbar
       let val = ev.target.value;
 
       // if the value is an empty string don't filter the items
       if (val && val.trim() != '') {
-          this.stationnames = this.stationnames.filter((station) => {
+        $('.scroll-content').removeClass('overflowHidden');
+
+        // Reset items back to all of the items
+        this.initializeStations();
+        this.stationnames = this.stationnames.filter((station) => {
               return (station.toLowerCase().indexOf(val.toLowerCase()) > -1);
           })
+      } else { // clear list
+        this.stationnames = [];
+        $('.scroll-content').addClass('overflowHidden');
+        console.log('overflow hidden now.')
       }
   }
     selectStation(stationn){
         console.log('Test der Suche:');
         console.log(stationn);
+    }
+
+    foundStation(stationname) {
+      let aktStation = this.stations.find( station => station.name == stationname);
+      console.log("aktStation ", aktStation);
+
+      this.addSpecificMarker(aktStation, true);
+
     }
   }
 
