@@ -1,3 +1,27 @@
 page-about {
 
+  ion-title.title {
+    padding: 0 10px;
+
+  }
+
+  div.noStationSelected {
+    padding: 50px 20px;
+    text-align: center;
+
+    button {
+      margin: auto;
+
+      ion-icon {
+        padding-right: 10px;
+      }
+    }
+  }
+
+  div.services {
+
+    ion-list {
+      
+    }
+  }
 }

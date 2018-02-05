@@ -1,17 +1,19 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      Parkplätze
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+<ion-content padding>
+  <div *ngIf="!station" class="noStationSelected">
+    <p>Bitte wählen Sie auf der Karte eine Station, deren Details Sie anzeigen lassen möchten.</p>
+    <button ion-button (click)="openKarte()">
+      <ion-icon name="map"></ion-icon>
+      Karte
+    </button>
+  </div>
+
+
 </ion-content>

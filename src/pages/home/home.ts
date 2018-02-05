@@ -27,8 +27,12 @@ export class HomePage {
   private geocoder = new google.maps.Geocoder();
   public detailsHidden: boolean = false;
 
-  toggleDetails() {
-    this.detailsHidden = !this.detailsHidden;
+  toggleDetails(preset = null) {
+    if(preset === null) {
+      this.detailsHidden = !this.detailsHidden;
+    } else {
+      this.detailsHidden = !preset;
+    }
     if(this.detailsHidden == true) {
       $('.detailBox').css('max-height', '0px');
       $('#stationDetails').css('max-height', '28px'); //unschöner Workaround
@@ -41,6 +45,8 @@ export class HomePage {
 
   clearAktStation() {
     this.aktStation = null;
+
+    this.events.publish('station:changed', this.aktStation);
   }
 
   constructor(public navCtrl: NavController, public events: Events, public modalCtrl: ModalController, public navParams: NavParams, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider) {
@@ -217,7 +223,10 @@ export class HomePage {
 
     this.addSpecificMarker(aktStation, true);
 
-    this.aktStation = aktStation;
+    // this.aktStation = aktStation;
+    // this.events.publish('station:changed', aktStation);
+
+    this.toggleDetails(true);
     $('.filteredStations').hide();
 
     $('.scroll-content').addClass('overflowHidden');
@@ -230,6 +239,8 @@ export class HomePage {
       let fotoURL = data["photoUrl"];
       this.aktStation = station;
       this.aktStation.fotoURL = fotoURL;
+      this.events.publish('station:changed', this.aktStation);
+
       console.log('fotoURL', fotoURL);
       let content = '<h6>' + station.name + '</h6>';
 
@@ -245,6 +256,9 @@ export class HomePage {
       google.maps.event.addListener(marker, 'click', () => {
         this.aktStation = station;
         this.aktStation.fotoURL = fotoURL;
+        this.events.publish('station:changed', this.aktStation);
+
+        this.toggleDetails(true);
         // infoWindow.open(this.map, marker);
         // if(this.lastInfoWindow && this.lastInfoWindow != infoWindow) {
         //   this.lastInfoWindow.close();
@@ -252,8 +266,6 @@ export class HomePage {
         // this.lastInfoWindow = infoWindow;
       });
 
-    }, (status) => {
-      console.log("BFoto-Problem: ", status);
     });
   }
 
