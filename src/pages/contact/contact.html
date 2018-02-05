@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content padding>
-  <div *ngIf="!station" class="noStationSelected">
+  <div *ngIf="!station; else stationSelected" class="noStationSelected">
     <p>Bitte wählen Sie auf der Karte eine Station, deren Details Sie anzeigen lassen möchten.</p>
     <button ion-button (click)="openKarte()">
       <ion-icon name="map"></ion-icon>
@@ -16,4 +16,42 @@
   </div>
 
 
+<ng-template #stationSelected>
+<div *ngIf="spaceID==0; else spaceSelected">
+  Für den ausgewählten Bahnhof stehen keine Daten zur Verfügung!
+</div>
+  <ng-template #spaceSelected>
+    <ion-title>
+      {{space.name}}
+    </ion-title>
+    <ion-list>
+      <ion-item class="isActive">
+      <span>Ist in Betrieb</span>
+      <ion-icon *ngIf="!space.isOutOfService" name="checkmark-circle-outline"></ion-icon>
+      <ion-icon *ngIf="space.isOutOfService"  name="close-circle"></ion-icon>
+      </ion-item>
+      <ion-item>
+      <span>Anzahl Behindertenparkplätze</span>
+      {{space.numberHandicapedPlaces}}
+      </ion-item>
+      <ion-item>
+        <span>Anzahl Parkplätze gesamt:</span>
+        {{space.numberParkingPlaces}}
+      </ion-item>
+      <ion-item>
+        <span>Wo steht das Auto?</span>
+        {{space.spaceType}}
+      </ion-item>
+      <ion-item>
+        <span>Typ:</span>
+        {{space.spaceType}}
+      </ion-item>
+      <ion-item>
+        <span>Öffnungszeiten:</span>
+        {{space.openingHours}}
+      </ion-item>
+    </ion-list>
+
+  </ng-template>
+</ng-template>
 </ion-content>

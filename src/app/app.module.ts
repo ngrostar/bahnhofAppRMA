@@ -13,7 +13,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StadaProvider } from '../providers/stada/stada';
 import { BfotosProvider } from '../providers/bfotos/bfotos';
 import { HttpClientModule } from '@angular/common/http';
-import { Geolocation } from '@ionic-native/geolocation';  // https://ionicframework.com/docs/native/geolocation/
+import { Geolocation } from '@ionic-native/geolocation';
+import {ParkplatzProvider} from "../providers/parkplatz/parkplatz";  // https://ionicframework.com/docs/native/geolocation/
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { Geolocation } from '@ionic-native/geolocation';  // https://ionicframew
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     StadaProvider,
     BfotosProvider,
-    Geolocation
+    Geolocation,
+      ParkplatzProvider
   ]
 })
 export class AppModule {}
