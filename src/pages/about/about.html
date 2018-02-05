@@ -1,10 +1,62 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Details
+      <div *ngIf="station; else noStation">
+        {{station.name}}
+      </div>
+      <ng-template #noStation>Detailansicht</ng-template>
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <div *ngIf="!station; else stationSelected" class="noStationSelected">
+    <p>Bitte wählen Sie auf der Karte eine Station, deren Parkplätze Sie anzeigen lassen möchten.</p>
+    <button ion-button (click)="openKarte()">
+      <ion-icon name="map"></ion-icon>
+      Karte
+    </button>
+  </div>
+
+  <ng-template #stationSelected>
+      <div class="row">
+        <div class="bfoto">
+          <img *ngIf="station.fotoURL" src="{{station.fotoURL}}" />
+        </div>
+        <div class="address">
+        </div>
+      </div>
+    <div class="services">
+      <ion-list>
+        <ion-item class="service">
+          <span>Toiletten</span>
+          <ion-icon *ngIf="station.hasPublicFacilities" name="checkmark-circle-outline"></ion-icon>
+          <ion-icon *ngIf="!station.hasPublicFacilities"  name="close-circle"></ion-icon>
+        </ion-item>
+        <ion-item class="service">
+          <span>Barrierefreiheit</span>
+          <ion-icon *ngIf="station.hasSteplessAccess == 'yes'" name="checkmark-circle-outline"></ion-icon>
+          <ion-icon *ngIf="station.hasSteplessAccess != 'yes'"  name="close-circle"></ion-icon>
+        </ion-item>
+        <ion-item class="service">
+          <span>Fundbüro</span>
+          <ion-icon *ngIf="station.hasLostAndFound" name="checkmark-circle-outline"></ion-icon>
+          <ion-icon *ngIf="!station.hasLostAndFound"  name="close-circle"></ion-icon>
+        </ion-item>
+        <ion-item class="service">
+          <span>Schließfächer</span>
+          <ion-icon *ngIf="station.hasLockerSystem" name="checkmark-circle-outline"></ion-icon>
+          <ion-icon *ngIf="!station.hasLockerSystem"  name="close-circle"></ion-icon>
+        </ion-item>
+        <ion-item class="service">
+          <span>WLAN</span>
+          <ion-icon *ngIf="station.hasWifi" name="checkmark-circle-outline"></ion-icon>
+          <ion-icon *ngIf="!station.hasWifi"  name="close-circle"></ion-icon>
+        </ion-item>
+      </ion-list>
+
+    </div>
+
+  </ng-template>
+
 </ion-content>

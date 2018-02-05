@@ -1,16 +1,27 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import {ParkplatzProvider} from "../../providers/parkplatz/parkplatz";
+import {Events, NavController} from 'ionic-angular';
+
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
 })
 export class ContactPage {
+  public station: any;
+  pp: any;
 
-  constructor(public navCtrl: NavController, public Parkplatz:ParkplatzProvider) {
+  constructor(public navCtrl: NavController, public events: Events, public Parkplatz:ParkplatzProvider) {
     this.loadParkplatz('spaces');
+
+    events.subscribe('station:changed', (station) => {
+      this.station = station;
+    });
   }
-  pp:any;
+
+  openKarte() {
+    this.navCtrl.parent.select(0);
+  }
+
     loadParkplatz(param) {
         this.Parkplatz.load(param).then(data => {
 
