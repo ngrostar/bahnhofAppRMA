@@ -27,6 +27,16 @@ export class HomePage {
   private geocoder = new google.maps.Geocoder();
   public detailsHidden: boolean = false;
 
+  constructor(public navCtrl: NavController, public events: Events, public modalCtrl: ModalController, public navParams: NavParams, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider) {
+    this.loadStada('stations'); // stations/{id} oder szentralen/{id})
+
+    this.loadMap();
+
+    if(localStorage.getItem('favoriteStations')) {
+      this.favorites = (localStorage.getItem('favoriteStations')).split(',');
+    }
+  }
+
   toggleDetails(preset = null) {
     if(preset === null) {
       this.detailsHidden = !this.detailsHidden;
@@ -38,25 +48,13 @@ export class HomePage {
       $('#stationDetails').css('max-height', '28px'); //unschöner Workaround
     } else {
       $('.detailBox').css('max-height', '500px');
-      $('#stationDetails').css('max-height', '500px'); //unschöner Workaround
-
+      $('#stationDetails').css('max-height', '600px'); //unschöner Workaround
     }
   }
 
   clearAktStation() {
     this.aktStation = null;
-
     this.events.publish('station:changed', this.aktStation);
-  }
-
-  constructor(public navCtrl: NavController, public events: Events, public modalCtrl: ModalController, public navParams: NavParams, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider) {
-    this.loadStada('stations'); // stations/{id} oder szentralen/{id})
-
-    this.loadMap();
-
-    if(localStorage.getItem('favoriteStations')) {
-      this.favorites = (localStorage.getItem('favoriteStations')).split(',');
-    }
   }
 
   ionViewDidLoad() {
@@ -224,7 +222,7 @@ export class HomePage {
     this.addSpecificMarker(aktStation, true);
 
     // this.aktStation = aktStation;
-    // this.events.publish('station:changed', aktStation);
+    // this.events.publish('station:changed', this.aktStation);
 
     this.toggleDetails(true);
     $('.filteredStations').hide();
@@ -253,12 +251,13 @@ export class HomePage {
 
       // let infoWindow = new google.maps.InfoWindow({content: content});
 
-      google.maps.event.addListener(marker, 'click', () => {
+      google.maps.event.addListener(marker, 'click', (data) => {
+        this.toggleDetails(false);
         this.aktStation = station;
         this.aktStation.fotoURL = fotoURL;
         this.events.publish('station:changed', this.aktStation);
-
         this.toggleDetails(true);
+
         // infoWindow.open(this.map, marker);
         // if(this.lastInfoWindow && this.lastInfoWindow != infoWindow) {
         //   this.lastInfoWindow.close();
@@ -270,7 +269,7 @@ export class HomePage {
   }
 
   openDetails() {
-    this.navCtrl.parent.select(1);
+    this.navCtrl.parent.select(1, this.aktStation);
   }
 }
 

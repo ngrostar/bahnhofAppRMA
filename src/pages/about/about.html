@@ -9,7 +9,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <div *ngIf="!station; else stationSelected" class="noStationSelected">
     <p>Bitte wählen Sie auf der Karte eine Station, deren Parkplätze Sie anzeigen lassen möchten.</p>
     <button ion-button (click)="openKarte()">
@@ -19,19 +19,51 @@
   </div>
 
   <ng-template #stationSelected>
-      <div class="row">
-        <div class="bfoto">
-          <img *ngIf="station.fotoURL" src="{{station.fotoURL}}" />
-        </div>
-        <div class="address">
+    <div class="bfoto">
+      <img *ngIf="station.fotoURL" src="{{station.fotoURL}}" />
+      <div class="address">
+        <div class="addressInner">
+          <div class="street">{{station.mailingAddress.street}}</div>
+          <div class="city">{{station.mailingAddress.zipcode}}&nbsp;{{station.mailingAddress.city}}</div>
         </div>
       </div>
+    </div>
     <div class="services">
       <ion-list>
+        <ion-item class="service">
+          <span>ÖPNV</span>
+          <ion-icon *ngIf="station.hasLocalPublicTransport" name="checkmark-circle-outline"></ion-icon>
+          <ion-icon *ngIf="!station.hasLocalPublicTransport"  name="close-circle"></ion-icon>
+        </ion-item>
+        <ion-item class="service parkingService">
+          <ion-icon *ngIf="station.hasParking && !dropdowns[0]" (click)="openDropdown('parking')" name="arrow-down"></ion-icon>
+          <ion-icon *ngIf="station.hasParking && dropdowns[0]" (click)="openDropdown('parking')" name="arrow-up"></ion-icon>
+          <span>Parkplätze</span>
+          <ion-icon *ngIf="station.hasParking" name="checkmark-circle-outline"></ion-icon>
+          <ion-icon *ngIf="!station.hasParking"  name="close-circle"></ion-icon>
+          <div id="parkingDropdown" *ngIf="station.hasParking">
+
+          </div>
+        </ion-item>
+        <ion-item class="service travelCenter">
+          <ion-icon *ngIf="station.hasTravelCenter && !dropdowns[1]" (click)="openDropdown('travelCenter')" name="arrow-down"></ion-icon>
+          <ion-icon *ngIf="station.hasTravelCenter && dropdowns[1]" (click)="openDropdown('travelCenter')" name="arrow-up"></ion-icon>
+          <span>Reisezentrum</span>
+          <ion-icon *ngIf="station.hasTravelCenter" name="checkmark-circle-outline"></ion-icon>
+          <ion-icon *ngIf="!station.hasTravelCenter"  name="close-circle"></ion-icon>
+          <div id="travelCenterDropdown" *ngIf="station.hasParking">
+
+          </div>
+        </ion-item>
         <ion-item class="service">
           <span>Toiletten</span>
           <ion-icon *ngIf="station.hasPublicFacilities" name="checkmark-circle-outline"></ion-icon>
           <ion-icon *ngIf="!station.hasPublicFacilities"  name="close-circle"></ion-icon>
+        </ion-item>
+        <ion-item class="service">
+          <span>Schließfächer</span>
+          <ion-icon *ngIf="station.hasLockerSystem" name="checkmark-circle-outline"></ion-icon>
+          <ion-icon *ngIf="!station.hasLockerSystem"  name="close-circle"></ion-icon>
         </ion-item>
         <ion-item class="service">
           <span>Barrierefreiheit</span>
@@ -39,14 +71,19 @@
           <ion-icon *ngIf="station.hasSteplessAccess != 'yes'"  name="close-circle"></ion-icon>
         </ion-item>
         <ion-item class="service">
+          <span>Mobilitätsservice</span>
+          <ion-icon *ngIf="station.hasMobilityService" name="checkmark-circle-outline"></ion-icon>
+          <ion-icon *ngIf="station.hasMobilityService"  name="close-circle"></ion-icon>
+        </ion-item>
+        <ion-item class="service">
           <span>Fundbüro</span>
           <ion-icon *ngIf="station.hasLostAndFound" name="checkmark-circle-outline"></ion-icon>
           <ion-icon *ngIf="!station.hasLostAndFound"  name="close-circle"></ion-icon>
         </ion-item>
         <ion-item class="service">
-          <span>Schließfächer</span>
-          <ion-icon *ngIf="station.hasLockerSystem" name="checkmark-circle-outline"></ion-icon>
-          <ion-icon *ngIf="!station.hasLockerSystem"  name="close-circle"></ion-icon>
+          <span>DB Lounge</span>
+          <ion-icon *ngIf="station.hasDBLounge" name="checkmark-circle-outline"></ion-icon>
+          <ion-icon *ngIf="!station.hasDBLounge"  name="close-circle"></ion-icon>
         </ion-item>
         <ion-item class="service">
           <span>WLAN</span>
