@@ -56,15 +56,40 @@ page-about {
     ion-list {
       margin: 10px;
 
-      ion-item {
+      ion-item.service {
         padding: 0;
         font-size: 1.3rem;
         line-height: 2rem; // für das alignment mit den Icons
 
         ion-label {
           margin: 5px;
+            #travelCenterDropdown {
+              margin: 5px 30px 5px 15px;
+              max-height: 0;
+
+              h5 {
+                font-style: italic;
+              }
+
+              div.weekday {
+                width: 40%;
+                float: left;
+              }
+
+              div.times {
+                width: 60%;
+                float: right;
+                text-align: right;
+              }
+            }
         }
 
+
+        .comment {
+          font-size: 1rem;
+          display: block;
+          float: left;
+        }
         ion-icon[name="arrow-down"],
         ion-icon[name="arrow-up"] {
           font-size: 1.2rem;

@@ -6,6 +6,7 @@ import {Geolocation} from '@ionic-native/geolocation';  // https://ionicframewor
 import 'rxjs/operator/map';
 import * as $ from 'jquery';
 import {AboutPage} from "../about/about";
+import {DataProvider} from "../../providers/data/data";
 
 declare let google;
 
@@ -17,7 +18,6 @@ export class HomePage {
 
   @ViewChild('map') mapElement: ElementRef;
   map: any;
-  private lastInfoWindow: any;
   public aktStation: any = null;
   public markers: any = [];
   public stations: any = [];
@@ -27,7 +27,7 @@ export class HomePage {
   private geocoder = new google.maps.Geocoder();
   public detailsHidden: boolean = false;
 
-  constructor(public navCtrl: NavController, public events: Events, public modalCtrl: ModalController, public navParams: NavParams, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider) {
+  constructor(public navCtrl: NavController, public events: Events, public navParams: NavParams, public data: DataProvider, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider) {
     this.loadStada('stations'); // stations/{id} oder szentralen/{id})
 
     this.loadMap();
@@ -54,7 +54,8 @@ export class HomePage {
 
   clearAktStation() {
     this.aktStation = null;
-    this.events.publish('station:changed', this.aktStation);
+    // this.events.publish('station:changed', this.aktStation);
+    this.data.aktStation = this.aktStation;
   }
 
   ionViewDidLoad() {
@@ -112,7 +113,6 @@ export class HomePage {
 
   loadStada(param) {
     this.Stada.load(param).then(data => {
-
       this.stations = data['result'];
       console.log("STATIONEN");
       console.log(this.stations);
@@ -139,7 +139,6 @@ export class HomePage {
     }, (err) => {
       console.log(err);
     });
-
   }
 
   addSpecificMarker(station, center) {
@@ -221,9 +220,6 @@ export class HomePage {
 
     this.addSpecificMarker(aktStation, true);
 
-    // this.aktStation = aktStation;
-    // this.events.publish('station:changed', this.aktStation);
-
     this.toggleDetails(true);
     $('.filteredStations').hide();
 
@@ -238,6 +234,7 @@ export class HomePage {
       this.aktStation = station;
       this.aktStation.fotoURL = fotoURL;
       this.events.publish('station:changed', this.aktStation);
+      this.data.aktStation = this.aktStation;
 
       console.log('fotoURL', fotoURL);
       let content = '<h6>' + station.name + '</h6>';
@@ -255,6 +252,7 @@ export class HomePage {
         this.toggleDetails(false);
         this.aktStation = station;
         this.aktStation.fotoURL = fotoURL;
+        this.data.aktStation = this.aktStation;
         this.events.publish('station:changed', this.aktStation);
         this.toggleDetails(true);
 
@@ -269,7 +267,8 @@ export class HomePage {
   }
 
   openDetails() {
-    this.navCtrl.parent.select(1, this.aktStation);
+    this.data.aktStation = this.aktStation;
+    this.navCtrl.parent.select(1, {'aktStation' : this.aktStation});
   }
 }
 

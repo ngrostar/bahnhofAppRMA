@@ -11,7 +11,7 @@
 
 <ion-content>
   <div *ngIf="!station; else stationSelected" class="noStationSelected">
-    <p>Bitte wählen Sie auf der Karte eine Station, deren Parkplätze Sie anzeigen lassen möchten.</p>
+    <p>Bitte wählen Sie auf der Karte eine Station, deren Informationen Sie anzeigen lassen möchten.</p>
     <button ion-button (click)="openKarte()">
       <ion-icon name="map"></ion-icon>
       Karte
@@ -46,13 +46,43 @@
           </div>
         </ion-item>
         <ion-item class="service travelCenter">
-          <ion-icon *ngIf="station.hasTravelCenter && !dropdowns[1]" (click)="openDropdown('travelCenter')" name="arrow-down"></ion-icon>
-          <ion-icon *ngIf="station.hasTravelCenter && dropdowns[1]" (click)="openDropdown('travelCenter')" name="arrow-up"></ion-icon>
+          <ion-icon *ngIf="tc && station.hasTravelCenter && !dropdowns[1]" (click)="openDropdown('travelCenter')" name="arrow-down"></ion-icon>
+          <ion-icon *ngIf="tc && station.hasTravelCenter && dropdowns[1]" (click)="openDropdown('travelCenter')" name="arrow-up"></ion-icon>
           <span>Reisezentrum</span>
           <ion-icon *ngIf="station.hasTravelCenter" name="checkmark-circle-outline"></ion-icon>
           <ion-icon *ngIf="!station.hasTravelCenter"  name="close-circle"></ion-icon>
-          <div id="travelCenterDropdown" *ngIf="station.hasParking">
-
+          <div id="travelCenterDropdown" *ngIf="tc && station.hasTravelCenter">
+            <div class="tcOpeningTimes">
+              <h5>Öffnungszeiten</h5>
+              <div class="weekday">Montag</div>
+              <div class="times">
+                <div *ngFor="let time of tc.openingTimes['mon']">{{time}}</div>
+              </div>
+              <div class="weekday">Dienstag</div>
+              <div class="times">
+                <div *ngFor="let time of tc.openingTimes['tue']">{{time}}</div>
+              </div>
+              <div class="weekday">Mittwoch</div>
+                <div class="times">
+                  <div *ngFor="let time of tc.openingTimes['wed']">{{time}}</div>
+                </div>
+              <div class="weekday">Donnerstag</div>
+                <div class="times">
+                  <div *ngFor="let time of tc.openingTimes['thu']">{{time}}</div>
+                </div>
+              <div class="weekday">Freitag</div>
+                <div class="times">
+                  <div *ngFor="let time of tc.openingTimes['fri']">{{time}}</div>
+                </div>
+              <div class="weekday">Samstag</div>
+                <div class="times">
+                  <div *ngFor="let time of tc.openingTimes['sat']">{{time}}</div>
+                </div>
+              <div class="weekday">Sonntag</div>
+                <div class="times">
+                  <div *ngFor="let time of tc.openingTimes['sun']">{{time}}</div>
+                </div>
+            </div>
           </div>
         </ion-item>
         <ion-item class="service">
@@ -72,8 +102,9 @@
         </ion-item>
         <ion-item class="service">
           <span>Mobilitätsservice</span>
-          <ion-icon *ngIf="station.hasMobilityService" name="checkmark-circle-outline"></ion-icon>
-          <ion-icon *ngIf="station.hasMobilityService"  name="close-circle"></ion-icon>
+          <span class="comment" *ngIf="station.hasMobilityService != 'no' && station.hasMobilityService != 'yes'">{{station.hasMobilityService}}</span>
+          <ion-icon *ngIf="station.hasMobilityService != 'no'" name="checkmark-circle-outline"></ion-icon>
+          <ion-icon *ngIf="station.hasMobilityService == 'no'"  name="close-circle"></ion-icon>
         </ion-item>
         <ion-item class="service">
           <span>Fundbüro</span>
