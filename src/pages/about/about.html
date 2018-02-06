@@ -30,6 +30,47 @@
     </div>
     <div class="services">
       <ion-list>
+        <ion-item *ngIf="station.DBinformation && station.DBinformation.availability" class="service">
+          <ion-icon *ngIf="!dropdowns[2]" (click)="openDropdown('availability')" name="arrow-down"></ion-icon>
+          <ion-icon *ngIf="dropdowns[2]" (click)="openDropdown('availability')" name="arrow-up"></ion-icon>
+          <span>Öffnungszeiten</span>
+          <div id="availabilityDropdown" *ngIf="tc && station.hasTravelCenter">
+            <div class="openingTimes">
+              <div class="weekday">Montag</div>
+              <div class="times">
+                {{station.DBinformation.availability.monday.fromTime}} - {{station.DBinformation.availability.monday.toTime}}
+              </div>
+              <div class="weekday">Dienstag</div>
+              <div class="times">
+                {{station.DBinformation.availability.tuesday.fromTime}} - {{station.DBinformation.availability.tuesday.toTime}}
+              </div>
+              <div class="weekday">Mittwoch</div>
+              <div class="times">
+                {{station.DBinformation.availability.wednesday.fromTime}} - {{station.DBinformation.availability.wednesday.toTime}}
+              </div>
+              <div class="weekday">Donnerstag</div>
+              <div class="times">
+                {{station.DBinformation.availability.thursday.fromTime}} - {{station.DBinformation.availability.thursday.toTime}}
+              </div>
+              <div class="weekday">Freitag</div>
+              <div class="times">
+                {{station.DBinformation.availability.friday.fromTime}} - {{station.DBinformation.availability.friday.toTime}}
+              </div>
+              <div class="weekday">Samstag</div>
+              <div class="times">
+                {{station.DBinformation.availability.saturday.fromTime}} - {{station.DBinformation.availability.saturday.toTime}}
+              </div>
+              <div class="weekday">Sonntag</div>
+              <div class="times">
+                {{station.DBinformation.availability.sunday.fromTime}} - {{station.DBinformation.availability.sunday.toTime}}
+              </div>
+              <div class="weekday">Feiertage</div>
+              <div class="times">
+                {{station.DBinformation.availability.holiday.fromTime}} - {{station.DBinformation.availability.holiday.toTime}}
+              </div>
+            </div>
+          </div>
+        </ion-item>
         <ion-item class="service">
           <span>ÖPNV</span>
           <ion-icon *ngIf="station.hasLocalPublicTransport" name="checkmark-circle-outline"></ion-icon>

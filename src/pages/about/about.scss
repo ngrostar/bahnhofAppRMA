@@ -62,10 +62,11 @@ page-about {
         line-height: 2rem; // für das alignment mit den Icons
 
         ion-label {
-          margin: 5px;
-            #travelCenterDropdown {
+            #travelCenterDropdown,
+            #availabilityDropdown {
               margin: 5px 30px 5px 15px;
               max-height: 0;
+              display: none;
 
               h5 {
                 font-style: italic;
