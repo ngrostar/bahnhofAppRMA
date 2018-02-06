@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation';
 import { DataProvider } from '../providers/data/data';
 import { TravelCenterProvider } from '../providers/travel-center/travel-center';  // https://ionicframework.com/docs/native/geolocation/
+import {ParkplatzProvider} from "../providers/parkplatz/parkplatz";  // https://ionicframework.com/docs/native/geolocation/
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { TravelCenterProvider } from '../providers/travel-center/travel-center';
     BfotosProvider,
     Geolocation,
     DataProvider,
-    TravelCenterProvider
+    TravelCenterProvider,
+    ParkplatzProvider
   ]
 })
 export class AppModule {}
