@@ -34,11 +34,10 @@ page-about {
             width: 100%;
             height: 100%;
             color: wheat;
-            padding: 20px;
             text-align: center;
 
             div.addressInner {
-                width: calc(100% - 40px);
+                width: 100%;
                 text-align: center;
                 position: absolute;
                 top: 50%;
@@ -46,6 +45,36 @@ page-about {
 
                 div {
                     margin: 5px;
+                }
+            }
+
+            div.pictureButtons {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+
+                button {
+                    margin: 5px;
+
+                    &.fastaButton {
+                        float: left;
+                        width: 58%;
+                    }
+
+                    &.parkingButton {
+                        float: right;
+                        width: 36%;
+                        margin-left: 2px;
+                    }
+
+                    &.singleButton {
+                        margin: 5px auto;
+                        width: 97%;
+                    }
+
+                    ion-icon {
+                        padding-right: 5px;
+                    }
                 }
             }
         }

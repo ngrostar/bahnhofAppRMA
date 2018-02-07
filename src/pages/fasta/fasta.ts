@@ -3,6 +3,11 @@ import {AlertController, Events, IonicPage, NavController} from 'ionic-angular';
 import {DataProvider} from "../../providers/data/data";
 import {Geolocation} from '@ionic-native/geolocation';  // https://ionicframework.com/docs/native/geolocation/
 import 'rxjs/operator/map';
+import { DatePipe } from '@angular/common';import { registerLocaleData } from '@angular/common';
+import localeDE from '@angular/common/locales/de';
+
+// the second parameter 'fr' is optional
+registerLocaleData(localeDE, 'de');
 import * as $ from "jquery";
 
 declare let google;
@@ -35,18 +40,18 @@ export class FastaPage {
         this.station = this.data.aktStation;
 
         events.subscribe('station:changed', (station) => {
-            console.log("Detailansicht: Bahnhof aktualisiert");
             this.station = station;
         });
     }
 
     ionViewDidLoad() {
         this.loadMap();
-        this.loadFastas();
     }
 
     ionViewWillEnter() {
         this.station = this.data.aktStation;
+        this.loadMap();
+        this.loadFastas();
     }
 
     clearAktFasta() {
@@ -54,7 +59,7 @@ export class FastaPage {
     }
 
     updatePosition(center = false) {
-        if (center === true) {
+        if (center === true) { // direktes Zentrieren auf letzte Position bis neue geladen
             this.map.setCenter(this.locMarker.getPosition());
         }
 
@@ -99,7 +104,6 @@ export class FastaPage {
 
         this.locMarker = new google.maps.Marker({
             map: this.map,
-            position: latLng,
             icon: markericon
         });
 
@@ -111,16 +115,16 @@ export class FastaPage {
     loadFastas() {
         console.log('fasta loading', this.station.fasta.facilities);
         for (let fasta of this.station.fasta.facilities) {
-            fasta.working = (fasta.state == ('ACTIVE'));
+            fasta.running = (fasta.state == ('ACTIVE'));
             this.addSpecificMarker(fasta);
         }
     }
 
     addSpecificMarker(fasta) {
         let latLng = new google.maps.LatLng(fasta.geocoordY, fasta.geocoordX);
-
+console.log('working? ', fasta.working);
         let markericon = {
-            url: '../../assets/imgs/' + fasta.type.toLowerCase() + ((fasta.working) ? '1' : '0') + '.png',
+            url: '../../assets/imgs/' + fasta.type.toLowerCase() + ((fasta.running) ? '1' : '0') + '.png',
             scaledSize: new google.maps.Size(30, 30)
         };
 
@@ -137,8 +141,6 @@ export class FastaPage {
         });
 
         this.markers.push(marker);
-        console.log(marker);
-
     }
 
     toggleDetails(preset = null) {
@@ -173,20 +175,29 @@ export class FastaPage {
                 {
                     text: 'Senden',
                     handler: (input) => {
-                        console.log(new Date(), input, this.aktFasta.description);
                         let desc;
-                        desc += (this.aktFasta.type == 'ELEVATOR') ? 'Aufzug ' : '';
-                        desc += (this.aktFasta.type == 'ESCALATOR') ? 'Rolltreppe ' : '';
+                        if(this.aktFasta.type == 'ELEVATOR') desc = 'Aufzug ';
+                        else if(this.aktFasta.type == 'ESCALATOR') desc = 'Rolltreppe ';
                         desc += this.aktFasta.description;
 
-                        let currTime = new Date().toISOString();
+                        let datePipe = new DatePipe('de');
+                        let currDate = datePipe.transform(new Date(), 'dd. MMMM y HH:mm');
+
+                        let title = 'Vielen Dank für Ihre Nachricht';
+                        let subtitle = 'Folgende Nachricht wurde gesendet:';
+                        let message = currDate + ' Uhr<br>' + desc + '<br>' + input.comment;
+
+                        if(input.comment === '') {
+                            title = 'Keine Nachricht gesendet';
+                            subtitle = '';
+                            message = 'Fehlerbeschreibung nicht ausgefüllt';
+                        }
 
                         let alert = this.alertCtrl.create({
-                            title: 'Vielen Dank für Ihre Nachricht',
-                            subTitle: 'Folgende Nachricht wurde gesendet:',
-                            message: '<ion-datetime displayFormat="DD. MMM YYYY HH:mm" [(ngModel)]="currTime"></ion-datetime><br>' +
-                            desc + '<br>' + input.comment,
-                            buttons: ['OK']
+                            title: title,
+                            subTitle: subtitle,
+                            message: message,
+                            buttons: ['Schließen']
                         });
                         alert.present();
                     }

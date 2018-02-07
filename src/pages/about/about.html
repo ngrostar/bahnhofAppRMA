@@ -26,6 +26,14 @@
                     <div class="street">{{station.mailingAddress.street}}</div>
                     <div class="city">{{station.mailingAddress.zipcode}}&nbsp;{{station.mailingAddress.city}}</div>
                 </div>
+                <div class="pictureButtons">
+                    <button ion-button outline *ngIf="station.fasta" class="fastaButton" (click)="openFasta()">
+                        Aufzüge & Rolltreppen
+                    </button>
+                    <button ion-button outline *ngIf="station.parking" class="parkingButton" (click)="openParking()">
+                        <ion-icon name="car"></ion-icon>Parkplätze
+                    </button>
+                </div>
             </div>
         </div>
         <div class="services">
@@ -85,17 +93,10 @@
                     <ion-icon *ngIf="station.hasLocalPublicTransport" name="checkmark-circle-outline"></ion-icon>
                     <ion-icon *ngIf="!station.hasLocalPublicTransport" name="close-circle"></ion-icon>
                 </ion-item>
-                <ion-item class="service parkingService">
-                    <ion-icon *ngIf="station.hasParking && !dropdowns[0]" (click)="toggleDropdown('parking')"
-                              name="arrow-down"></ion-icon>
-                    <ion-icon *ngIf="station.hasParking && dropdowns[0]" (click)="toggleDropdown('parking')"
-                              name="arrow-up"></ion-icon>
+                <ion-item *ngIf="!station.parking" class="service parkingService">
                     <span>Parkplätze</span>
                     <ion-icon *ngIf="station.hasParking" name="checkmark-circle-outline"></ion-icon>
                     <ion-icon *ngIf="!station.hasParking" name="close-circle"></ion-icon>
-                    <div id="parkingDropdown" *ngIf="station.hasParking">
-
-                    </div>
                 </ion-item>
                 <ion-item class="service travelCenter">
                     <ion-icon *ngIf="tc && station.hasTravelCenter && !dropdowns[1]"
@@ -139,9 +140,6 @@
                             </div>
                         </div>
                     </div>
-                </ion-item>
-                <ion-item *ngIf="station.fasta" class="service">
-                    <button ion-button (click)="openFasta()">Aufzüge & Rolltreppen</button>
                 </ion-item>
                 <ion-item class="service">
                     <span>Toiletten</span>

@@ -1,5 +1,5 @@
 import {Component, ViewChild, ElementRef} from '@angular/core';
-import {NavController, NavParams, AlertController, Events} from 'ionic-angular';
+import {NavController, NavParams, AlertController, Events, LoadingController} from 'ionic-angular';
 import {StadaProvider} from "../../providers/stada/stada";
 import {BfotosProvider} from "../../providers/bfotos/bfotos";
 import {Geolocation} from '@ionic-native/geolocation';  // https://ionicframework.com/docs/native/geolocation/
@@ -19,6 +19,7 @@ export class HomePage {
     map: any;
     public aktStation: any = null;
     public markers: any = [];
+    public loaded: boolean = false;
     public stations: any = [];
     public favorites: any = [];
     public searchInput: any;
@@ -26,16 +27,29 @@ export class HomePage {
     private geocoder = new google.maps.Geocoder();
     public detailsHidden: boolean = false;
     public locMarker: any;
-    public timer;
+    public timer: any;
+    public loadingPopup: any;
 
-    constructor(public navCtrl: NavController, public events: Events, private alertCtrl: AlertController, public navParams: NavParams, public data: DataProvider, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider) {
+    constructor(public navCtrl: NavController, public events: Events, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public navParams: NavParams, public data: DataProvider, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider) {
         this.loadStada('stations'); // stations/{id} oder szentralen/{id})
+
+        this.loadingPopup = this.loadingCtrl.create({
+            spinner: 'dots',
+            // content: '<div class="custom-spinner-container"><div class="custom-spinner-box"></div></div>'
+            content: 'Stationsdaten werden geladen...'
+        });
+
+        this.loadingPopup.present();
 
         this.loadMap();
 
         if (localStorage.getItem('favoriteStations')) {
             this.favorites = (localStorage.getItem('favoriteStations')).split(',');
         }
+
+        events.subscribe('station:changed', (station) => {
+            this.aktStation = station;
+        });
     }
 
     toggleDetails(preset = null) {
@@ -125,6 +139,8 @@ export class HomePage {
             this.stations = data['result'];
             console.log("STATIONEN");
             console.log(this.stations);
+            this.loaded = true;
+            this.loadingPopup.dismiss();
         });
     }
 
@@ -267,26 +283,17 @@ export class HomePage {
     }
 
     addContentWindow(station, marker) {
+        this.aktStation = station;
+        this.events.publish('station:changed', this.aktStation);
+        this.data.aktStation = this.aktStation;
+
         this.Bfotos.load('stations/' + station.number).then(data => {
-            console.log(data["photoUrl"]);
+            console.log("Foto-URL geladen:", data["photoUrl"]);
 
             let fotoURL = data["photoUrl"];
-            this.aktStation = station;
             this.aktStation.fotoURL = fotoURL;
             this.events.publish('station:changed', this.aktStation);
             this.data.aktStation = this.aktStation;
-
-            console.log('fotoURL', fotoURL);
-            let content = '<h6>' + station.name + '</h6>';
-
-            if (fotoURL !== null) {
-                content += '<img src="' + fotoURL + '" class="bfoto"/>';
-            }
-
-            content += '<button ion-button color="secondary"><ion-icon name="heart"></ion-icon>Favoriten</button>';
-            content += '<button ion-button><ion-icon name="arrow-forward"></ion-icon>Details</button>';
-
-            // let infoWindow = new google.maps.InfoWindow({content: content});
 
             google.maps.event.addListener(marker, 'click', (data) => {
                 this.toggleDetails(false);
@@ -295,12 +302,6 @@ export class HomePage {
                 this.data.aktStation = this.aktStation;
                 this.events.publish('station:changed', this.aktStation);
                 this.toggleDetails(true);
-
-                // infoWindow.open(this.map, marker);
-                // if(this.lastInfoWindow && this.lastInfoWindow != infoWindow) {
-                //   this.lastInfoWindow.close();
-                // }
-                // this.lastInfoWindow = infoWindow;
             });
 
         });
@@ -311,4 +312,3 @@ export class HomePage {
         this.navCtrl.parent.select(1, { 'aktStation': this.aktStation });
     }
 }
-

@@ -21,7 +21,7 @@
         </ion-item>
     </ion-list>
     <div #map id="map"></div>
-    <div class="favoriten" (click)="showFavorites()">
+    <div class="favoriten" *ngIf="loaded" (click)="showFavorites()">
         <ion-icon name="heart"></ion-icon>
         Favoriten
     </div>

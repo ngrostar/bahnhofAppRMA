@@ -1,11 +1,20 @@
-page-fasta {
+.alert-message,
+#alert-msg-0,
+#alert-msg-1 {
+    overflow-y: auto;
+}
 
-    .overflowHidden {
+page-fasta {
+    .scroll-content {
         overflow: hidden;
     }
 
     .scroll {
         height: 100%
+    }
+
+    ion-title.title {
+         padding: 0 70px;
     }
 
     #map {
@@ -62,6 +71,14 @@ page-fasta {
 
             h6 {
                 margin-top: 10px;
+            }
+
+            p.notWorking {
+                font-style: italic;
+
+                ion-icon {
+                    padding-right: 5px;
+                }
             }
 
             button {

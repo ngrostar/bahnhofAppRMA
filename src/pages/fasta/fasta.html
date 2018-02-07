@@ -39,6 +39,9 @@
                 <span *ngIf="aktFasta.type == 'ELEVATOR'">Aufzug </span>
                 {{aktFasta.description}}
             </h6>
+            <p class="notWorking" *ngIf="!aktFasta.running">
+                <ion-icon name="close-circle" color="danger"></ion-icon>Zur Zeit außer Betrieb
+            </p>
             <p *ngIf="aktFasta.stateExplanation != 'available' && aktFasta.stateExplanation != 'not available'"> <!--show special explanations-->
                 Kommentar: "{{aktFasta.stateExplanation}}"
             </p>

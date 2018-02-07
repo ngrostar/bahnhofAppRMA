@@ -12,7 +12,7 @@ import {FastaPage} from "../fasta/fasta";
 })
 export class AboutPage {
     public station: any;
-    public dropdowns: boolean[] = [false, false, false];
+    public dropdowns: boolean[] = [false, false, false]; //@todo dropdowns ordnen
     public tc: any;
 
     constructor(public navCtrl: NavController, public events: Events, public TC: TravelCenterProvider, public fasta: FastaProvider, public navParams: NavParams, public data: DataProvider) {
@@ -28,7 +28,7 @@ export class AboutPage {
         }
 
         events.subscribe('station:changed', (station) => {
-            console.log("Detailansicht: Bahnhof aktualisiert");
+            console.log("Detailansicht empfängt: Bahnhof aktualisiert");
             this.station = station;
         });
     }
@@ -55,18 +55,23 @@ export class AboutPage {
     }
 
     loadFasta() {
+        console.log('Fasta loading');
         this.fasta.load(this.station.number).then(data => {
             this.station.fasta = data;
             console.log("Fasta");
             console.log(this.station.fasta);
             this.data.aktStation = this.station;
             console.log(this.station);
+            if(this.station.fasta) {
+                $('div.bfoto').css('min-height', '15rem');
+            }
             this.events.publish('station:changed', this.station);
         });
     }
 
+    // @todo nach dem laden: falls parking XOR fasta: add class singleButton
+
     ionViewWillEnter() {
-        this.station = this.data.aktStation;
     }
 
     openKarte() {
