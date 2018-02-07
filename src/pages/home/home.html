@@ -1,48 +1,61 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>MyStationFinder</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>MyStationFinder</ion-title>
+    </ion-navbar>
 
-  <ion-toolbar>
-    <ion-searchbar (ionInput)="searchStation($event)" (click)="searchStation($event)">{{searchInput}}</ion-searchbar>
-    <div class="cancelSearch" (click)="cancelSearch()">Verbergen</div>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-searchbar (ionInput)="searchStation($event)" (click)="searchStation($event)">{{searchInput}}
+        </ion-searchbar>
+        <div class="cancelSearch" (click)="cancelSearch()">Verbergen</div>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-list class="filteredStations">
-    <ion-item *ngFor="let stationname of stationnames">
-      <div class="foundStation" (click)="foundStation(stationname)">
-        {{stationname}}
-        <ion-icon *ngIf="isFavorite(stationname)" name="heart"></ion-icon>
-      </div>
-    </ion-item>
-  </ion-list>
-  <div #map id="map"></div>
-  <div class="favoriten" (click)="showFavorites()"><ion-icon name="heart"></ion-icon>Favoriten</div>
-  <div id="stationDetails" *ngIf="aktStation != null">
-    <div *ngIf="!detailsHidden; else sliderUp">
-      <div class="detailSlider" id="sliderDown" (click)="toggleDetails()"><ion-icon name="arrow-down"></ion-icon></div>
-    </div>
-    <ng-template #sliderUp>
-      <div class="detailSlider" id="sliderUp" (click)="toggleDetails()"><ion-icon name="arrow-up"></ion-icon></div>
-    </ng-template>
-    <div class="detailBox">
-      <div class="closeDetails" (click)="clearAktStation()"><ion-icon name="close-circle"></ion-icon></div>
-      <h6>{{aktStation.name}}</h6>
-      <img *ngIf="aktStation.fotoURL" class="bfoto" src="{{aktStation.fotoURL}}"/>
-      <button ion-button (click)="toggleFavorite()" color="secondary">
-        <ion-icon *ngIf="isAktFavorite(); else notFave" name="heart"></ion-icon>
-        <ng-template #notFave>
-          <ion-icon name="heart-outline"></ion-icon>
-        </ng-template>
+    <ion-list class="filteredStations">
+        <ion-item *ngFor="let stationname of stationnames">
+            <div class="foundStation" (click)="foundStation(stationname)">
+                {{stationname}}
+                <ion-icon *ngIf="isFavorite(stationname)" name="heart"></ion-icon>
+            </div>
+        </ion-item>
+    </ion-list>
+    <div #map id="map"></div>
+    <div class="favoriten" (click)="showFavorites()">
+        <ion-icon name="heart"></ion-icon>
         Favoriten
-      </button>
-      <button ion-button class="details" (click)="openDetails()">
-        <ion-icon name="arrow-forward"></ion-icon>
-        Details
-      </button>
     </div>
-  </div>
+    <div class="location" (click)="updatePosition(true)">
+        <ion-icon name="locate"></ion-icon>
+    </div>
+    <div id="stationDetails" *ngIf="aktStation != null">
+        <div *ngIf="!detailsHidden; else sliderUp">
+            <div class="detailSlider" id="sliderDown" (click)="toggleDetails()">
+                <ion-icon name="arrow-down"></ion-icon>
+            </div>
+        </div>
+        <ng-template #sliderUp>
+            <div class="detailSlider" id="sliderUp" (click)="toggleDetails()">
+                <ion-icon name="arrow-up"></ion-icon>
+            </div>
+        </ng-template>
+        <div class="detailBox">
+            <div class="closeDetails" (click)="clearAktStation()">
+                <ion-icon name="close-circle"></ion-icon>
+            </div>
+            <h6>{{aktStation.name}}</h6>
+            <img *ngIf="aktStation.fotoURL" class="bfoto" src="{{aktStation.fotoURL}}"/>
+            <button ion-button (click)="toggleFavorite()" color="secondary">
+                <ion-icon *ngIf="isAktFavorite(); else notFave" name="heart"></ion-icon>
+                <ng-template #notFave>
+                    <ion-icon name="heart-outline"></ion-icon>
+                </ng-template>
+                Favoriten
+            </button>
+            <button ion-button class="details" (click)="openDetails()">
+                <ion-icon name="arrow-forward"></ion-icon>
+                Details
+            </button>
+        </div>
+    </div>
 </ion-content>

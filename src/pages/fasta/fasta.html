@@ -1,0 +1,48 @@
+<!--
+  Generated template for the FastaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Aufzüge & Rolltreppen</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div #map id="map"></div>
+    <div class="location" (click)="updatePosition(true)">
+        <ion-icon name="locate"></ion-icon>
+    </div>
+
+    <div id="fastaDetails" *ngIf="aktFasta != null">
+        <div *ngIf="!detailsHidden; else sliderUp">
+            <div class="detailSlider" id="sliderDown" (click)="toggleDetails()">
+                <ion-icon name="arrow-down"></ion-icon>
+            </div>
+        </div>
+        <ng-template #sliderUp>
+            <div class="detailSlider" id="sliderUp" (click)="toggleDetails()">
+                <ion-icon name="arrow-up"></ion-icon>
+            </div>
+        </ng-template>
+        <div class="detailBox">
+            <div class="closeDetails" (click)="clearAktFasta()">
+                <ion-icon name="close-circle"></ion-icon>
+            </div>
+            <h6>{{aktFasta.name}}</h6>
+            <button ion-button (click)="toggleFavorite()" color="danger">
+                <ion-icon name="clipboard"></ion-icon>
+                Fehler melden
+            </button>
+            <button ion-button class="details" (click)="openDetails()">
+                <ion-icon name="arrow-forward"></ion-icon>
+                Details
+            </button>
+        </div>
+    </div>
+</ion-content>

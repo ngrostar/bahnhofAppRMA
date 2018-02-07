@@ -1,74 +1,100 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {DataProvider} from "../../providers/data/data";
 import {TravelCenterProvider} from "../../providers/travel-center/travel-center";
 import {NavController, Events, NavParams} from 'ionic-angular';
+import {FastaProvider} from "../../providers/fasta/fasta";
 import * as $ from "jquery";
+import {FastaPage} from "../fasta/fasta";
 
 @Component({
-  selector: 'page-about',
-  templateUrl: 'about.html'
+    selector: 'page-about',
+    templateUrl: 'about.html'
 })
 export class AboutPage {
-  public station: any;
-  public dropdowns: boolean[] = [false, false, false];
-  public tc: any;
+    public station: any;
+    public dropdowns: boolean[] = [false, false, false];
+    public tc: any;
 
-  constructor(public navCtrl: NavController, public events: Events, public TC: TravelCenterProvider, public navParams: NavParams, public data: DataProvider) {
-    this.dropdowns[0] = false;
-    this.dropdowns[1] = false;
-    this.dropdowns[2] = false;
+    constructor(public navCtrl: NavController, public events: Events, public TC: TravelCenterProvider, public fasta: FastaProvider, public navParams: NavParams, public data: DataProvider) {
+        this.dropdowns[0] = false;
+        this.dropdowns[1] = false;
+        this.dropdowns[2] = false;
 
-    this.station = data.aktStation;
+        this.station = data.aktStation;
 
-    // this.loadTC(this.station.number);
-    this.loadTC();
+        if (this.station) {
+            this.loadTC();
+            this.loadFasta();
+        }
 
-    events.subscribe('station:changed', (station) => {
-      console.log("Detailansicht: Bahnhof aktualisiert");
-      this.station = station;
-    });
-  }
-
-  loadTC() {
-    for (let eN of this.station.evaNumbers) {
-      if (eN.isMain) {
-        let coords = eN.geographicCoordinates.coordinates;
-
-        this.TC.load(coords[1],coords[0]).then(data => {
-          this.tc = data[0];
-          console.log("TravelCenter");
-          console.log(this.tc);
+        events.subscribe('station:changed', (station) => {
+            console.log("Detailansicht: Bahnhof aktualisiert");
+            this.station = station;
         });
-      }
     }
-  }
 
-  ionViewWillEnter() {
-    this.station =  this.data.aktStation;
-  }
-
-  openKarte() {
-    this.navCtrl.parent.select(0);
-  }
-
-  openDropdown(service) {
-    let id;
-    if (service == 'parking') {
-      id = 0;
-    } else if (service == 'travelCenter') {
-      id = 1;
-    } else if (service == 'availability') {
-      id = 2;
-    } else return null;
-
-    this.dropdowns[id] = !this.dropdowns[id];
-    if(this.dropdowns[id] == true) {
-      $('#' + service + 'Dropdown').css('max-height', '1000px');
-      $('#' + service + 'Dropdown').css('display', 'block');
-    } else {
-      $('#' + service + 'Dropdown').css('max-height', '0px'); // funktionier nicht. Warum?!
-      $('#' + service + 'Dropdown').css('display', 'none');
+    ionViewWillLoad() {
+        if (this.station) {
+            this.loadTC();
+            this.loadFasta();
+        }
     }
-  }
+
+    loadTC() {
+        for (let eN of this.station.evaNumbers) {
+            if (eN.isMain) {
+                let coords = eN.geographicCoordinates.coordinates;
+
+                this.TC.load(coords[1], coords[0]).then(data => {
+                    this.tc = data[0];
+                    console.log("TravelCenter");
+                    console.log(this.tc);
+                });
+            }
+        }
+    }
+
+    loadFasta() {
+        this.fasta.load(this.station.number).then(data => {
+            this.station.fasta = data;
+            console.log("Fasta");
+            console.log(this.station.fasta);
+            this.data.aktStation = this.station;
+            console.log(this.station);
+            this.events.publish('station:changed', this.station);
+        });
+    }
+
+    ionViewWillEnter() {
+        this.station = this.data.aktStation;
+    }
+
+    openKarte() {
+        this.navCtrl.parent.select(0);
+    }
+
+    openFasta() {
+        this.navCtrl.push(FastaPage);
+    }
+
+    toggleDropdown(service) {
+        let id;
+        if (service == 'parking') {
+            id = 0;
+        } else if (service == 'travelCenter') {
+            id = 1;
+        } else if (service == 'availability') {
+            id = 2;
+        } else return null;
+
+        this.dropdowns[id] = !this.dropdowns[id];
+        if (this.dropdowns[id] == true) {
+            $('#' + service + 'Dropdown').css('max-height', '1000px');
+            $('#' + service + 'Dropdown').css('display', 'block');
+        } else {
+            $('#' + service + 'Dropdown').css('max-height', '0px'); // funktionier nicht. Warum?!
+            $('#' + service + 'Dropdown').css('display', 'none');
+        }
+    }
 
 }

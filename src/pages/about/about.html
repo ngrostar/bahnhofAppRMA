@@ -1,171 +1,189 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      <div *ngIf="station; else noStation">
-        {{station.name}}
-      </div>
-      <ng-template #noStation>Detailansicht</ng-template>
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>
+            <div *ngIf="station; else noStation">
+                {{station.name}}
+            </div>
+            <ng-template #noStation>Detailansicht</ng-template>
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <div *ngIf="!station; else stationSelected" class="noStationSelected">
-    <p>Bitte wählen Sie auf der Karte eine Station, deren Informationen Sie anzeigen lassen möchten.</p>
-    <button ion-button (click)="openKarte()">
-      <ion-icon name="map"></ion-icon>
-      Karte
-    </button>
-  </div>
+    <div *ngIf="!station; else stationSelected" class="noStationSelected">
+        <p>Bitte wählen Sie auf der Karte eine Station, deren Informationen Sie anzeigen lassen möchten.</p>
+        <button ion-button (click)="openKarte()">
+            <ion-icon name="map"></ion-icon>
+            Karte
+        </button>
+    </div>
 
-  <ng-template #stationSelected>
-    <div class="bfoto">
-      <img *ngIf="station.fotoURL" src="{{station.fotoURL}}" />
-      <div class="address">
-        <div class="addressInner">
-          <div class="street">{{station.mailingAddress.street}}</div>
-          <div class="city">{{station.mailingAddress.zipcode}}&nbsp;{{station.mailingAddress.city}}</div>
+    <ng-template #stationSelected>
+        <div class="bfoto">
+            <img *ngIf="station.fotoURL" src="{{station.fotoURL}}"/>
+            <div class="address">
+                <div class="addressInner">
+                    <div class="street">{{station.mailingAddress.street}}</div>
+                    <div class="city">{{station.mailingAddress.zipcode}}&nbsp;{{station.mailingAddress.city}}</div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="services">
-      <ion-list>
-        <ion-item *ngIf="station.DBinformation && station.DBinformation.availability" class="service">
-          <ion-icon *ngIf="!dropdowns[2]" (click)="openDropdown('availability')" name="arrow-down"></ion-icon>
-          <ion-icon *ngIf="dropdowns[2]" (click)="openDropdown('availability')" name="arrow-up"></ion-icon>
-          <span>Öffnungszeiten</span>
-          <div id="availabilityDropdown" *ngIf="tc && station.hasTravelCenter">
-            <div class="openingTimes">
-              <div class="weekday">Montag</div>
-              <div class="times">
-                {{station.DBinformation.availability.monday.fromTime}} - {{station.DBinformation.availability.monday.toTime}}
-              </div>
-              <div class="weekday">Dienstag</div>
-              <div class="times">
-                {{station.DBinformation.availability.tuesday.fromTime}} - {{station.DBinformation.availability.tuesday.toTime}}
-              </div>
-              <div class="weekday">Mittwoch</div>
-              <div class="times">
-                {{station.DBinformation.availability.wednesday.fromTime}} - {{station.DBinformation.availability.wednesday.toTime}}
-              </div>
-              <div class="weekday">Donnerstag</div>
-              <div class="times">
-                {{station.DBinformation.availability.thursday.fromTime}} - {{station.DBinformation.availability.thursday.toTime}}
-              </div>
-              <div class="weekday">Freitag</div>
-              <div class="times">
-                {{station.DBinformation.availability.friday.fromTime}} - {{station.DBinformation.availability.friday.toTime}}
-              </div>
-              <div class="weekday">Samstag</div>
-              <div class="times">
-                {{station.DBinformation.availability.saturday.fromTime}} - {{station.DBinformation.availability.saturday.toTime}}
-              </div>
-              <div class="weekday">Sonntag</div>
-              <div class="times">
-                {{station.DBinformation.availability.sunday.fromTime}} - {{station.DBinformation.availability.sunday.toTime}}
-              </div>
-              <div class="weekday">Feiertage</div>
-              <div class="times">
-                {{station.DBinformation.availability.holiday.fromTime}} - {{station.DBinformation.availability.holiday.toTime}}
-              </div>
-            </div>
-          </div>
-        </ion-item>
-        <ion-item class="service">
-          <span>ÖPNV</span>
-          <ion-icon *ngIf="station.hasLocalPublicTransport" name="checkmark-circle-outline"></ion-icon>
-          <ion-icon *ngIf="!station.hasLocalPublicTransport"  name="close-circle"></ion-icon>
-        </ion-item>
-        <ion-item class="service parkingService">
-          <ion-icon *ngIf="station.hasParking && !dropdowns[0]" (click)="openDropdown('parking')" name="arrow-down"></ion-icon>
-          <ion-icon *ngIf="station.hasParking && dropdowns[0]" (click)="openDropdown('parking')" name="arrow-up"></ion-icon>
-          <span>Parkplätze</span>
-          <ion-icon *ngIf="station.hasParking" name="checkmark-circle-outline"></ion-icon>
-          <ion-icon *ngIf="!station.hasParking"  name="close-circle"></ion-icon>
-          <div id="parkingDropdown" *ngIf="station.hasParking">
+        <div class="services">
+            <ion-list>
+                <ion-item *ngIf="station.DBinformation && station.DBinformation.availability" class="service">
+                    <ion-icon *ngIf="!dropdowns[2]" (click)="toggleDropdown('availability')"
+                              name="arrow-down"></ion-icon>
+                    <ion-icon *ngIf="dropdowns[2]" (click)="toggleDropdown('availability')" name="arrow-up"></ion-icon>
+                    <span (click)="toggleDropdown('availability')">Öffnungszeiten</span>
+                    <div id="availabilityDropdown" *ngIf="tc && station.hasTravelCenter">
+                        <div class="openingTimes">
+                            <div class="weekday">Montag</div>
+                            <div class="times">
+                                {{station.DBinformation.availability.monday.fromTime}} -
+                                {{station.DBinformation.availability.monday.toTime}}
+                            </div>
+                            <div class="weekday">Dienstag</div>
+                            <div class="times">
+                                {{station.DBinformation.availability.tuesday.fromTime}} -
+                                {{station.DBinformation.availability.tuesday.toTime}}
+                            </div>
+                            <div class="weekday">Mittwoch</div>
+                            <div class="times">
+                                {{station.DBinformation.availability.wednesday.fromTime}} -
+                                {{station.DBinformation.availability.wednesday.toTime}}
+                            </div>
+                            <div class="weekday">Donnerstag</div>
+                            <div class="times">
+                                {{station.DBinformation.availability.thursday.fromTime}} -
+                                {{station.DBinformation.availability.thursday.toTime}}
+                            </div>
+                            <div class="weekday">Freitag</div>
+                            <div class="times">
+                                {{station.DBinformation.availability.friday.fromTime}} -
+                                {{station.DBinformation.availability.friday.toTime}}
+                            </div>
+                            <div class="weekday">Samstag</div>
+                            <div class="times">
+                                {{station.DBinformation.availability.saturday.fromTime}} -
+                                {{station.DBinformation.availability.saturday.toTime}}
+                            </div>
+                            <div class="weekday">Sonntag</div>
+                            <div class="times">
+                                {{station.DBinformation.availability.sunday.fromTime}} -
+                                {{station.DBinformation.availability.sunday.toTime}}
+                            </div>
+                            <div class="weekday">Feiertage</div>
+                            <div class="times">
+                                {{station.DBinformation.availability.holiday.fromTime}} -
+                                {{station.DBinformation.availability.holiday.toTime}}
+                            </div>
+                        </div>
+                    </div>
+                </ion-item>
+                <ion-item class="service">
+                    <span>ÖPNV</span>
+                    <ion-icon *ngIf="station.hasLocalPublicTransport" name="checkmark-circle-outline"></ion-icon>
+                    <ion-icon *ngIf="!station.hasLocalPublicTransport" name="close-circle"></ion-icon>
+                </ion-item>
+                <ion-item class="service parkingService">
+                    <ion-icon *ngIf="station.hasParking && !dropdowns[0]" (click)="toggleDropdown('parking')"
+                              name="arrow-down"></ion-icon>
+                    <ion-icon *ngIf="station.hasParking && dropdowns[0]" (click)="toggleDropdown('parking')"
+                              name="arrow-up"></ion-icon>
+                    <span>Parkplätze</span>
+                    <ion-icon *ngIf="station.hasParking" name="checkmark-circle-outline"></ion-icon>
+                    <ion-icon *ngIf="!station.hasParking" name="close-circle"></ion-icon>
+                    <div id="parkingDropdown" *ngIf="station.hasParking">
 
-          </div>
-        </ion-item>
-        <ion-item class="service travelCenter">
-          <ion-icon *ngIf="tc && station.hasTravelCenter && !dropdowns[1]" (click)="openDropdown('travelCenter')" name="arrow-down"></ion-icon>
-          <ion-icon *ngIf="tc && station.hasTravelCenter && dropdowns[1]" (click)="openDropdown('travelCenter')" name="arrow-up"></ion-icon>
-          <span>Reisezentrum</span>
-          <ion-icon *ngIf="station.hasTravelCenter" name="checkmark-circle-outline"></ion-icon>
-          <ion-icon *ngIf="!station.hasTravelCenter"  name="close-circle"></ion-icon>
-          <div id="travelCenterDropdown" *ngIf="tc && station.hasTravelCenter">
-            <div class="tcOpeningTimes">
-              <h5>Öffnungszeiten</h5>
-              <div class="weekday">Montag</div>
-              <div class="times">
-                <div *ngFor="let time of tc.openingTimes['mon']">{{time}}</div>
-              </div>
-              <div class="weekday">Dienstag</div>
-              <div class="times">
-                <div *ngFor="let time of tc.openingTimes['tue']">{{time}}</div>
-              </div>
-              <div class="weekday">Mittwoch</div>
-                <div class="times">
-                  <div *ngFor="let time of tc.openingTimes['wed']">{{time}}</div>
-                </div>
-              <div class="weekday">Donnerstag</div>
-                <div class="times">
-                  <div *ngFor="let time of tc.openingTimes['thu']">{{time}}</div>
-                </div>
-              <div class="weekday">Freitag</div>
-                <div class="times">
-                  <div *ngFor="let time of tc.openingTimes['fri']">{{time}}</div>
-                </div>
-              <div class="weekday">Samstag</div>
-                <div class="times">
-                  <div *ngFor="let time of tc.openingTimes['sat']">{{time}}</div>
-                </div>
-              <div class="weekday">Sonntag</div>
-                <div class="times">
-                  <div *ngFor="let time of tc.openingTimes['sun']">{{time}}</div>
-                </div>
-            </div>
-          </div>
-        </ion-item>
-        <ion-item class="service">
-          <span>Toiletten</span>
-          <ion-icon *ngIf="station.hasPublicFacilities" name="checkmark-circle-outline"></ion-icon>
-          <ion-icon *ngIf="!station.hasPublicFacilities"  name="close-circle"></ion-icon>
-        </ion-item>
-        <ion-item class="service">
-          <span>Schließfächer</span>
-          <ion-icon *ngIf="station.hasLockerSystem" name="checkmark-circle-outline"></ion-icon>
-          <ion-icon *ngIf="!station.hasLockerSystem"  name="close-circle"></ion-icon>
-        </ion-item>
-        <ion-item class="service">
-          <span>Barrierefreiheit</span>
-          <ion-icon *ngIf="station.hasSteplessAccess == 'yes'" name="checkmark-circle-outline"></ion-icon>
-          <ion-icon *ngIf="station.hasSteplessAccess != 'yes'"  name="close-circle"></ion-icon>
-        </ion-item>
-        <ion-item class="service">
-          <span>Mobilitätsservice</span>
-          <span class="comment" *ngIf="station.hasMobilityService != 'no' && station.hasMobilityService != 'yes'">{{station.hasMobilityService}}</span>
-          <ion-icon *ngIf="station.hasMobilityService != 'no'" name="checkmark-circle-outline"></ion-icon>
-          <ion-icon *ngIf="station.hasMobilityService == 'no'"  name="close-circle"></ion-icon>
-        </ion-item>
-        <ion-item class="service">
-          <span>Fundbüro</span>
-          <ion-icon *ngIf="station.hasLostAndFound" name="checkmark-circle-outline"></ion-icon>
-          <ion-icon *ngIf="!station.hasLostAndFound"  name="close-circle"></ion-icon>
-        </ion-item>
-        <ion-item class="service">
-          <span>DB Lounge</span>
-          <ion-icon *ngIf="station.hasDBLounge" name="checkmark-circle-outline"></ion-icon>
-          <ion-icon *ngIf="!station.hasDBLounge"  name="close-circle"></ion-icon>
-        </ion-item>
-        <ion-item class="service">
-          <span>WLAN</span>
-          <ion-icon *ngIf="station.hasWifi" name="checkmark-circle-outline"></ion-icon>
-          <ion-icon *ngIf="!station.hasWifi"  name="close-circle"></ion-icon>
-        </ion-item>
-      </ion-list>
+                    </div>
+                </ion-item>
+                <ion-item class="service travelCenter">
+                    <ion-icon *ngIf="tc && station.hasTravelCenter && !dropdowns[1]"
+                              (click)="toggleDropdown('travelCenter')" name="arrow-down"></ion-icon>
+                    <ion-icon *ngIf="tc && station.hasTravelCenter && dropdowns[1]"
+                              (click)="toggleDropdown('travelCenter')" name="arrow-up"></ion-icon>
+                    <span *ngIf="tc && station.hasTravelCenter" (click)="toggleDropdown('travelCenter')">Reisezentrum</span>
+                    <span *ngIf="!(tc && station.hasTravelCenter)">Reisezentrum</span>
+                    <ion-icon *ngIf="station.hasTravelCenter" name="checkmark-circle-outline"></ion-icon>
+                    <ion-icon *ngIf="!station.hasTravelCenter" name="close-circle"></ion-icon>
+                    <div id="travelCenterDropdown" *ngIf="tc && station.hasTravelCenter">
+                        <div class="tcOpeningTimes">
+                            <h5>Öffnungszeiten</h5>
+                            <div class="weekday">Montag</div>
+                            <div class="times">
+                                <div *ngFor="let time of tc.openingTimes['mon']">{{time}}</div>
+                            </div>
+                            <div class="weekday">Dienstag</div>
+                            <div class="times">
+                                <div *ngFor="let time of tc.openingTimes['tue']">{{time}}</div>
+                            </div>
+                            <div class="weekday">Mittwoch</div>
+                            <div class="times">
+                                <div *ngFor="let time of tc.openingTimes['wed']">{{time}}</div>
+                            </div>
+                            <div class="weekday">Donnerstag</div>
+                            <div class="times">
+                                <div *ngFor="let time of tc.openingTimes['thu']">{{time}}</div>
+                            </div>
+                            <div class="weekday">Freitag</div>
+                            <div class="times">
+                                <div *ngFor="let time of tc.openingTimes['fri']">{{time}}</div>
+                            </div>
+                            <div class="weekday">Samstag</div>
+                            <div class="times">
+                                <div *ngFor="let time of tc.openingTimes['sat']">{{time}}</div>
+                            </div>
+                            <div class="weekday">Sonntag</div>
+                            <div class="times">
+                                <div *ngFor="let time of tc.openingTimes['sun']">{{time}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-item>
+                <ion-item *ngIf="station.fasta" class="service">
+                    <button ion-button (click)="openFasta()">Aufzüge & Rolltreppen</button>
+                </ion-item>
+                <ion-item class="service">
+                    <span>Toiletten</span>
+                    <ion-icon *ngIf="station.hasPublicFacilities" name="checkmark-circle-outline"></ion-icon>
+                    <ion-icon *ngIf="!station.hasPublicFacilities" name="close-circle"></ion-icon>
+                </ion-item>
+                <ion-item class="service">
+                    <span>Schließfächer</span>
+                    <ion-icon *ngIf="station.hasLockerSystem" name="checkmark-circle-outline"></ion-icon>
+                    <ion-icon *ngIf="!station.hasLockerSystem" name="close-circle"></ion-icon>
+                </ion-item>
+                <ion-item class="service">
+                    <span>Barrierefreiheit</span>
+                    <ion-icon *ngIf="station.hasSteplessAccess == 'yes'" name="checkmark-circle-outline"></ion-icon>
+                    <ion-icon *ngIf="station.hasSteplessAccess != 'yes'" name="close-circle"></ion-icon>
+                </ion-item>
+                <ion-item class="service">
+                    <span>Mobilitätsservice</span>
+                    <span class="comment"
+                          *ngIf="station.hasMobilityService != 'no' && station.hasMobilityService != 'yes'">{{station.hasMobilityService}}</span>
+                    <ion-icon *ngIf="station.hasMobilityService != 'no'" name="checkmark-circle-outline"></ion-icon>
+                    <ion-icon *ngIf="station.hasMobilityService == 'no'" name="close-circle"></ion-icon>
+                </ion-item>
+                <ion-item class="service">
+                    <span>Fundbüro</span>
+                    <ion-icon *ngIf="station.hasLostAndFound" name="checkmark-circle-outline"></ion-icon>
+                    <ion-icon *ngIf="!station.hasLostAndFound" name="close-circle"></ion-icon>
+                </ion-item>
+                <ion-item class="service">
+                    <span>DB Lounge</span>
+                    <ion-icon *ngIf="station.hasDBLounge" name="checkmark-circle-outline"></ion-icon>
+                    <ion-icon *ngIf="!station.hasDBLounge" name="close-circle"></ion-icon>
+                </ion-item>
+                <ion-item class="service">
+                    <span>WLAN</span>
+                    <ion-icon *ngIf="station.hasWifi" name="checkmark-circle-outline"></ion-icon>
+                    <ion-icon *ngIf="!station.hasWifi" name="close-circle"></ion-icon>
+                </ion-item>
+            </ion-list>
 
-    </div>
+        </div>
 
-  </ng-template>
+    </ng-template>
 
 </ion-content>

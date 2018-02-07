@@ -1,20 +1,4 @@
-home-page {
-    .alert-ios .alert-message {
-        overflow-y: auto;
-    }
-
-    .header-ios .toolbar-ios:last-child .toolbar-background-ios {
-        border: none;
-    }
-
-    .cancelSearch {
-        float: right;
-        width: 25%;
-        display: none;
-        padding: 12px 5px;
-        color: #00aaff;
-        cursor: pointer;
-    }
+page-fasta {
 
     .overflowHidden {
         overflow: hidden;
@@ -33,7 +17,7 @@ home-page {
     }
 
     .location {
-        z-index: 20;
+        z-index: 10;
         position: absolute;
         background: white;
         bottom: 10px;
@@ -49,44 +33,8 @@ home-page {
         }
     }
 
-    .favoriten {
-        z-index: 20;
-        position: absolute;
-        background: white;
-        top: 10px;
-        right: 10px;
-        padding: 5px 8px;
-        font: 400 11px Roboto, Arial, sans-serif;
-        border: 1px solid #eeeeee;
-        box-shadow: rgba(0, 0, 0, 0.3) 0 1px 4px -1px;
-        border-radius: 2px;
-        cursor: pointer;
-
-        ion-icon {
-            padding-right: 5px;
-            font-size: 1.1rem;
-        }
-    }
-
-    .filteredStations {
-        position: relative;
-        z-index: 100;
-
-        &.list-ios {
-            margin: 0;
-        }
-
-        ion-icon {
-            font-size: 0.8em;
-        }
-    }
-
-    .foundStation {
-        cursor: pointer;
-    }
-
-    #stationDetails {
-        z-index: 10;
+    #fastaDetails {
+        z-index: 15;
         position: absolute;
         bottom: 0;
         background: white;
@@ -130,5 +78,4 @@ home-page {
 
         }
     }
-
 }

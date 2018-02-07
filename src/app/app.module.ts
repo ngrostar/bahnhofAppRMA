@@ -7,6 +7,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { FastaPage } from "../pages/fasta/fasta";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,8 +16,9 @@ import { BfotosProvider } from '../providers/bfotos/bfotos';
 import { HttpClientModule } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation';
 import { DataProvider } from '../providers/data/data';
-import { TravelCenterProvider } from '../providers/travel-center/travel-center';  // https://ionicframework.com/docs/native/geolocation/
-import {ParkplatzProvider} from "../providers/parkplatz/parkplatz";  // https://ionicframework.com/docs/native/geolocation/
+import { TravelCenterProvider } from '../providers/travel-center/travel-center';
+import {ParkplatzProvider} from "../providers/parkplatz/parkplatz";
+import { FastaProvider } from '../providers/fasta/fasta';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import {ParkplatzProvider} from "../providers/parkplatz/parkplatz";  // https://
     AboutPage,
     ContactPage,
     HomePage,
+    FastaPage,
     TabsPage
   ],
   imports: [
@@ -37,6 +40,7 @@ import {ParkplatzProvider} from "../providers/parkplatz/parkplatz";  // https://
     AboutPage,
     ContactPage,
     HomePage,
+    FastaPage,
     TabsPage
   ],
   providers: [
@@ -48,7 +52,8 @@ import {ParkplatzProvider} from "../providers/parkplatz/parkplatz";  // https://
     Geolocation,
     DataProvider,
     TravelCenterProvider,
-    ParkplatzProvider
+    ParkplatzProvider,
+    FastaProvider
   ]
 })
 export class AppModule {}
