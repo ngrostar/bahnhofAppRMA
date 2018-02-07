@@ -1,0 +1,42 @@
+<!--
+  Generated template for the PushPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Tarife und Preisinfos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item class="service">
+    <span>Vergünstigungen mit einer BahnCard</span>
+    <ion-icon *ngIf="tariffInfo.isDiscountDbBahnCard" name="close-circle"></ion-icon>
+    <ion-icon *ngIf="!tariffInfo.isDiscountDbBahnCard" name="checkmark-circle-outline"></ion-icon>
+  </ion-item>
+    <ion-item class="service">
+      <span>Vergünstigungen für ParkandRail</span>
+      <ion-icon *ngIf="tariffInfo.isDiscountDbParkAndRail" name="checkmark-circle-outline"></ion-icon>
+      <ion-icon *ngIf="!tariffInfo.isDiscountDbParkAndRail" name="close-circle"></ion-icon>
+    </ion-item>
+    <ion-item class="service">
+      <span>Freie Parkzeit</span>
+      <div class="nummer">
+      {{tariffInfo.tariffFreeParkingTime}}
+      </div>
+    </ion-item>
+    <ion-item class="service">
+      <span>Bezahlmöglichkeiten</span>
+      <br>
+      <div class="kkinfos">
+      {{tariffInfo.tariffPaymentOptions}}
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

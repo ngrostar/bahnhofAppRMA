@@ -19,6 +19,7 @@ import { DataProvider } from '../providers/data/data';
 import { TravelCenterProvider } from '../providers/travel-center/travel-center';
 import {ParkplatzProvider} from "../providers/parkplatz/parkplatz";
 import { FastaProvider } from '../providers/fasta/fasta';
+import {PushPage} from "../pages/push/push";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FastaProvider } from '../providers/fasta/fasta';
     ContactPage,
     HomePage,
     FastaPage,
-    TabsPage
+    TabsPage,
+      PushPage
   ],
   imports: [
       HttpClientModule,
@@ -41,7 +43,7 @@ import { FastaProvider } from '../providers/fasta/fasta';
     ContactPage,
     HomePage,
     FastaPage,
-    TabsPage
+    TabsPage, PushPage
   ],
   providers: [
     StatusBar,
