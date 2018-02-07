@@ -1,5 +1,5 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {Events, IonicPage, NavController} from 'ionic-angular';
+import {AlertController, Events, IonicPage, NavController} from 'ionic-angular';
 import {DataProvider} from "../../providers/data/data";
 import {Geolocation} from '@ionic-native/geolocation';  // https://ionicframework.com/docs/native/geolocation/
 import 'rxjs/operator/map';
@@ -31,7 +31,7 @@ export class FastaPage {
     map: any;
     public markers: any = [];
 
-    constructor(public navCtrl: NavController, public geolocation: Geolocation, public data: DataProvider, public events: Events) {
+    constructor(public navCtrl: NavController, public geolocation: Geolocation, public alertCtrl: AlertController, public data: DataProvider, public events: Events) {
         this.station = this.data.aktStation;
 
         events.subscribe('station:changed', (station) => {
@@ -103,7 +103,9 @@ export class FastaPage {
             icon: markericon
         });
 
-        this.timer = setInterval(() => {this.updatePosition()}, 1000);
+        this.timer = setInterval(() => {
+            this.updatePosition()
+        }, 1000);
     }
 
     loadFastas() {
@@ -115,16 +117,12 @@ export class FastaPage {
     }
 
     addSpecificMarker(fasta) {
-        console.log("Trying to add marker for " + fasta.description);
-
         let latLng = new google.maps.LatLng(fasta.geocoordY, fasta.geocoordX);
-        console.log(fasta.geocoordX, fasta.geocoordX);
+
         let markericon = {
             url: '../../assets/imgs/' + fasta.type.toLowerCase() + ((fasta.working) ? '1' : '0') + '.png',
             scaledSize: new google.maps.Size(30, 30)
         };
-
-        console.log(markericon);
 
         let marker = new google.maps.Marker({
             map: this.map,
@@ -132,21 +130,15 @@ export class FastaPage {
             icon: markericon
         });
 
-        // this.map.setCenter(latLng);
-
-        this.markers.push(marker);
-        console.log(marker);
-
-        this.addContentWindow(fasta, marker);
-    }
-
-    addContentWindow(fasta, marker) {
-
         google.maps.event.addListener(marker, 'click', (data) => {
             this.toggleDetails(false);
             this.aktFasta = fasta;
             this.toggleDetails(true);
         });
+
+        this.markers.push(marker);
+        console.log(marker);
+
     }
 
     toggleDetails(preset = null) {
@@ -164,4 +156,43 @@ export class FastaPage {
         }
     }
 
+    promptAlert() {
+        let alert = this.alertCtrl.create({
+            title: 'Fehler melden',
+            inputs: [
+                {
+                    name: 'comment',
+                    placeholder: 'Fehlerbeschreibung',
+                }
+            ],
+            buttons: [
+                {
+                    text: 'Abbrechen',
+                    role: 'cancel'
+                },
+                {
+                    text: 'Senden',
+                    handler: (input) => {
+                        console.log(new Date(), input, this.aktFasta.description);
+                        let desc;
+                        desc += (this.aktFasta.type == 'ELEVATOR') ? 'Aufzug ' : '';
+                        desc += (this.aktFasta.type == 'ESCALATOR') ? 'Rolltreppe ' : '';
+                        desc += this.aktFasta.description;
+
+                        let currTime = new Date().toISOString();
+
+                        let alert = this.alertCtrl.create({
+                            title: 'Vielen Dank für Ihre Nachricht',
+                            subTitle: 'Folgende Nachricht wurde gesendet:',
+                            message: '<ion-datetime displayFormat="DD. MMM YYYY HH:mm" [(ngModel)]="currTime"></ion-datetime><br>' +
+                            desc + '<br>' + input.comment,
+                            buttons: ['OK']
+                        });
+                        alert.present();
+                    }
+                }
+            ]
+        });
+        alert.present();
+    }
 }

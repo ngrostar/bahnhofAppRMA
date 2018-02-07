@@ -154,7 +154,9 @@ export class HomePage {
                 icon: markericon
             });
 
-            this.timer = setInterval(() => {this.updatePosition()}, 1000);
+            this.timer = setInterval(() => {
+                this.updatePosition()
+            }, 1000);
 
             $('.scroll-content').addClass('overflowHidden');
 

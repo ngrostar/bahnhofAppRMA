@@ -34,8 +34,15 @@
             <div class="closeDetails" (click)="clearAktFasta()">
                 <ion-icon name="close-circle"></ion-icon>
             </div>
-            <h6>{{aktFasta.name}}</h6>
-            <button ion-button (click)="toggleFavorite()" color="danger">
+            <h6>
+                <span *ngIf="aktFasta.type == 'ESCALATOR'">Rolltreppe </span>
+                <span *ngIf="aktFasta.type == 'ELEVATOR'">Aufzug </span>
+                {{aktFasta.description}}
+            </h6>
+            <p *ngIf="aktFasta.stateExplanation != 'available' && aktFasta.stateExplanation != 'not available'"> <!--show special explanations-->
+                Kommentar: "{{aktFasta.stateExplanation}}"
+            </p>
+            <button ion-button (click)="promptAlert()" color="danger">
                 <ion-icon name="clipboard"></ion-icon>
                 Fehler melden
             </button>
