@@ -14,14 +14,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'push.html',
 })
 export class PushPage {
+  parkingspaces:any;
   tariffFlags:any;
   tariffInfo:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.tariffFlags=this.navParams.get('thing1');
+    this.parkingspaces=this.navParams.get('thing1');
+    console.log(this.parkingspaces);
+    /*this.tariffFlags=this.navParams.get('thing1');
     console.log("HIER DIE PUSH PAGE!!");
     console.log(this.tariffFlags);
     this.tariffInfo=this.navParams.get('thing2');
-    console.log(this.tariffInfo);
+    console.log(this.tariffInfo);*/
   }
 
   ionViewDidLoad() {

@@ -20,60 +20,61 @@
 
 
     <ng-template #stationSelected>
-        <div *ngIf="parkplatz==undefined; else spaceSelected" class ="keineDaten">
+        <div *ngIf="spaceID==0; else spaceSelected" class ="keineDaten">
             Für den ausgewählten Bahnhof stehen keine Daten zur Verfügung!
         </div>
         <ng-template #spaceSelected>
+            <div *ngFor="let parkingspace of parkingspaces">
             <ion-title class="mtitle">
-                {{parkplatz.name}}
+                {{parkingspace.name}}
             </ion-title>
-            <ion-list>
+            <ion-list >
                 <ion-item class="service">
                     <span>Ist in Betrieb</span>
-                    <ion-icon *ngIf="!parkplatz.isOutOfService" name="checkmark-circle-outline"></ion-icon>
-                    <ion-icon *ngIf="parkplatz.isOutOfService" name="close-circle"></ion-icon>
+                    <ion-icon *ngIf="!parkingspace.isOutOfService" name="checkmark-circle-outline"></ion-icon>
+                    <ion-icon *ngIf="parkingspace.isOutOfService" name="close-circle"></ion-icon>
                 </ion-item>
                 <ion-item class="service">
                     <span>Anzahl Behindertenparkplätze</span>
                     <div class="nummer">
-                    {{parkplatz.numberHandicapedPlaces}}
+                    {{parkingspace.numberHandicapedPlaces}}
                     </div>
                 </ion-item >
                 <ion-item class="service">
                     <span>Anzahl Parkplätze gesamt:</span>
                     <div class="nummer">
-                    {{parkplatz.numberParkingPlaces}}
+                    {{parkingspace.numberParkingPlaces}}
                     </div>
                 </ion-item>
                 <ion-item class="service">
                     <span>Wo steht das Auto?</span>
                     <div class="nummer">
-                    {{parkplatz.spaceType}}
+                    {{parkingspace.spaceType}}
                     </div>
                 </ion-item>
                 <ion-item class="service">
                     <span>Typ:</span>
                     <div class="nummer">
-                    {{parkplatz.spaceType}}
+                    {{parkingspace.spaceType}}
                     </div>
                 </ion-item>
                 <ion-item class="service">
                     <span>Öffnungszeiten:</span>
                     <div class="nummer">
-                    {{parkplatz.openingHours}}
+                    {{parkingspace.openingHours}}
                     </div>
                 </ion-item>
                 <ion-item class="service ">
                     <span>Betreiber:</span>
                     <div class="nummer Betreiber">
-                    {{parkplatz.operator}}
+                    {{parkingspace.operator}}
                     </div>
                 </ion-item>
             </ion-list>
+            </div>
             <button ion-button (click)="pushPage()">
                 Infos rund um den Tarif
             </button>
-
         </ng-template>
     </ng-template>
 </ion-content>
