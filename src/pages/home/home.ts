@@ -6,6 +6,7 @@ import {Geolocation} from '@ionic-native/geolocation';  // https://ionicframewor
 import 'rxjs/operator/map';
 import * as $ from 'jquery';
 import {DataProvider} from "../../providers/data/data";
+import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts';
 
 declare let google;
 
@@ -22,6 +23,7 @@ export class HomePage {
     public loaded: boolean = false;
     public stations: any = [];
     public favorites: any = [];
+    public contacts: any = [];
     public searchInput: any;
     public stationnames: any = []; // Array der Stationnamen, mit stations geht die Suche NICHT :( ecvtl station.name
     private geocoder = new google.maps.Geocoder();
@@ -30,7 +32,7 @@ export class HomePage {
     public timer: any;
     public loadingPopup: any;
 
-    constructor(public navCtrl: NavController, public events: Events, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public navParams: NavParams, public data: DataProvider, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider) {
+    constructor(public navCtrl: NavController, public Contacts: Contacts, public events: Events, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public navParams: NavParams, public data: DataProvider, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider) {
         this.loadStada('stations'); // stations/{id} oder szentralen/{id})
 
         this.loadingPopup = this.loadingCtrl.create({
@@ -145,6 +147,7 @@ export class HomePage {
     }
 
     loadMap() {
+        $('.scroll-content').removeClass('overflowHidden');
         this.geolocation.getCurrentPosition().then((position) => {
 
             let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -214,7 +217,7 @@ export class HomePage {
 
                 this.markers.push(marker);
 
-                if (center == true) {
+                if (center === true) {
                     this.map.setCenter(latLng);
                 }
 
@@ -262,7 +265,8 @@ export class HomePage {
             this.initializeStations();
             this.stationnames = this.stationnames.filter((station) => {
                 return (station.toLowerCase().indexOf(val.toLowerCase()) > -1);
-            })
+            });
+            this.findContacts(val);
         } else { // clear list
             this.stationnames = [];
             $('.scroll-content').addClass('overflowHidden');
@@ -304,6 +308,15 @@ export class HomePage {
                 this.toggleDetails(true);
             });
 
+        });
+    }
+
+    findContacts(searchInput) {
+        this.Contacts.find(['addresses', 'name', 'photos'],
+            {filter: searchInput, multiple: true, desiredFields: ['name', 'addresses', 'photos']})
+            .then((data) => {
+                console.log("Contacts", data);
+            this.contacts = data;
         });
     }
 

@@ -19,13 +19,18 @@
                 <ion-icon *ngIf="isFavorite(stationname)" name="heart"></ion-icon>
             </div>
         </ion-item>
+        <ion-item *ngFor="let contact of contacts">
+            <div class="foundStation" (click)="foundContact(contact)">
+                {{contact.name}}
+            </div>
+        </ion-item>
     </ion-list>
     <div #map id="map"></div>
     <div class="favoriten" *ngIf="loaded" (click)="showFavorites()">
         <ion-icon name="heart"></ion-icon>
         Favoriten
     </div>
-    <div class="location" (click)="updatePosition(true)">
+    <div class="location" *ngIf="loaded" (click)="updatePosition(true)">
         <ion-icon name="locate"></ion-icon>
     </div>
     <div id="stationDetails" *ngIf="aktStation != null">

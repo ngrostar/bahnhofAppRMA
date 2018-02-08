@@ -20,6 +20,7 @@ import { TravelCenterProvider } from '../providers/travel-center/travel-center';
 import {ParkplatzProvider} from "../providers/parkplatz/parkplatz";
 import { FastaProvider } from '../providers/fasta/fasta';
 import {PushPage} from "../pages/push/push";
+import { Contacts } from '@ionic-native/contacts';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import {PushPage} from "../pages/push/push";
     StadaProvider,
     BfotosProvider,
     Geolocation,
+    Contacts,
     DataProvider,
     TravelCenterProvider,
     ParkplatzProvider,
