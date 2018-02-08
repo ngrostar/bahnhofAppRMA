@@ -4,7 +4,7 @@ import {Events, NavController} from 'ionic-angular';
 import {DataProvider} from "../../providers/data/data";
 import {PushPage} from "../push/push";
 import {LoadingController} from "ionic-angular";
-import {delay} from "rxjs/operator/delay";
+
 
 @Component({
     selector: 'page-contact',
@@ -20,27 +20,13 @@ export class ContactPage {
     public loaded: boolean = false;
 
     constructor(public navCtrl: NavController, public data: DataProvider, public events: Events, public Parkplatz: ParkplatzProvider,public loadingCtrl: LoadingController) {
-        /*this.loadingPopup = this.loadingCtrl.create({
-            spinner: 'dots',
-            // content: '<div class="custom-spinner-container"><div class="custom-spinner-box"></div></div>'
-            content: 'Parkplatzdaten werden geladen...'
-        });
-
-        this.loadingPopup.present();
-        this.loadParkplatz('spaces/pit');*/
-        this.parkingspaces=new Array();
+        this.parkingspaces = new Array();
         this.station = this.data.aktStation;
-
-            this.loadingPopup = this.loadingCtrl.create({
-                spinner: 'dots',
-                // content: '<div class="custom-spinner-container"><div class="custom-spinner-box"></div></div>'
-                content: 'Parkplatzdaten werden geladen...'
-            });
-
-            this.loadingPopup.present();
-            if(this.loadParkplatz('spaces/pit')&&this.station)
-                    this.gibID();
-            events.subscribe('station:changed', (station) => {
+        this.pps = this.data.pps;
+        console.log("HOMEPAGE"+this.pps);
+        if(this.station)
+            this.gibID();
+        events.subscribe('station:changed', (station) => {
                 this.parkingspaces=new Array();
                 console.log("STATION" + station.name);
                 if (this.pps) {
@@ -53,9 +39,11 @@ export class ContactPage {
 
     }
     pushPage(){
-        this.navCtrl.push(PushPage, {
+        /*this.navCtrl.push(PushPage, {
             thing1:this.parkingspaces
-        })
+        })*/
+        this.data.parkingspaces=this.parkingspaces;
+        this.navCtrl.push(PushPage);
     }
     /*ionViewWillEnter(){
         this.loadParkplatz('spaces/pit');

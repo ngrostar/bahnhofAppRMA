@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {DataProvider} from "../../providers/data/data";
 
 /**
  * Generated class for the PushPage page.
@@ -17,8 +18,8 @@ export class PushPage {
   parkingspaces:any;
   tariffFlags:any;
   tariffInfo:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.parkingspaces=this.navParams.get('thing1');
+  constructor(public navCtrl: NavController, public navParams: NavParams, public data:DataProvider) {
+    this.parkingspaces=this.data.parkingspaces;
     console.log(this.parkingspaces);
     /*this.tariffFlags=this.navParams.get('thing1');
     console.log("HIER DIE PUSH PAGE!!");
