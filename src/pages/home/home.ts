@@ -1,5 +1,5 @@
 import {Component, ViewChild, ElementRef} from '@angular/core';
-import {NavController, NavParams, AlertController, Events, LoadingController} from 'ionic-angular';
+import {NavController, AlertController, Events, LoadingController} from 'ionic-angular';
 import {StadaProvider} from "../../providers/stada/stada";
 import {BfotosProvider} from "../../providers/bfotos/bfotos";
 import {Geolocation} from '@ionic-native/geolocation';  // https://ionicframework.com/docs/native/geolocation/
@@ -7,6 +7,7 @@ import 'rxjs/operator/map';
 import * as $ from 'jquery';
 import {DataProvider} from "../../providers/data/data";
 import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts';
+import {ParkplatzProvider} from "../../providers/parkplatz/parkplatz";
 
 declare let google;
 
@@ -31,8 +32,10 @@ export class HomePage {
     public locMarker: any;
     public timer: any;
     public loadingPopup: any;
+    public pps:any;
+    public loadingPopup2: any;
 
-    constructor(public navCtrl: NavController, public Contacts: Contacts, public events: Events, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public navParams: NavParams, public data: DataProvider, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider) {
+    constructor(public navCtrl: NavController, public events: Events, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public data: DataProvider, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider, public Parkplatz:ParkplatzProvider, public Contacts: Contacts) {
         this.loadStada('stations'); // stations/{id} oder szentralen/{id})
 
         this.loadingPopup = this.loadingCtrl.create({
@@ -44,6 +47,15 @@ export class HomePage {
         this.loadingPopup.present();
 
         this.loadMap();
+        this.loadingPopup2 = this.loadingCtrl.create({
+            spinner: 'dots',
+            // content: '<div class="custom-spinner-container"><div class="custom-spinner-box"></div></div>'
+            content: 'Parkplätze werden geladen...'
+        });
+
+        this.loadingPopup2.present();
+
+        this.loadParkplatz("spaces/pit");
 
         if (localStorage.getItem('favoriteStations')) {
             this.favorites = (localStorage.getItem('favoriteStations')).split(',');
@@ -52,6 +64,18 @@ export class HomePage {
         events.subscribe('station:changed', (station) => {
             this.aktStation = station;
         });
+    }
+    public loadParkplatz(param) {
+        this.Parkplatz.load(param).then(data => {
+            this.pps = data['items'];
+            console.log("Parkplätze ohne Belegungen");
+            console.log(this.pps);
+            this.loaded = true;
+            this.loadingPopup2.dismiss();
+            this.data.pps=this.pps;
+            return true;
+        });
+        return false;
     }
 
     toggleDetails(preset = null) {
