@@ -21,7 +21,7 @@
 
     <ng-template #stationSelected>
         <div *ngIf="spaceID==0; else spaceSelected" class ="keineDaten">
-            Für den ausgewählten Bahnhof stehen keine Daten zur Verfügung!
+            Für den ausgewählten Bahnhof stehen leider keine detaillierten Daten zur Verfügung!
         </div>
         <ng-template #spaceSelected>
             <div *ngFor="let parkingspace of parkingspaces">

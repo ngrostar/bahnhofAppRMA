@@ -27,14 +27,12 @@ export class ContactPage {
         if(this.station)
             this.gibID();
         events.subscribe('station:changed', (station) => {
-                this.parkingspaces=new Array();
-                console.log("STATION" + station.name);
+                this.parkingspaces=new Array(); // ???
+                this.station = station;
                 if (this.pps) {
-                    this.station = station;
                     console.log('Hallo aus der if this.pps');
                    this.gibID();
                 }
-
             });
 
     }
@@ -70,7 +68,6 @@ export class ContactPage {
     gibID() {
 
             for (let pp of this.pps) {
-                /* console.log("Parkplatz Station ID"+pp.station.id);*/
                 if (this.station.number == pp.station.id) {
                     console.log(pp.title);
                     this.parkingspaces.push(pp);

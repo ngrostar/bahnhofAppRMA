@@ -70,6 +70,7 @@ export class AboutPage {
     }
 
     // @todo nach dem laden: falls parking XOR fasta: add class singleButton
+    // falls einer oder beide: top für inner address 40% statt 50%
 
     ionViewWillEnter() {
     }
