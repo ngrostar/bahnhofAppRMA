@@ -45,13 +45,13 @@ export class HomePage {
         this.loadingPopup.present();
 
         this.loadMap();
-        this.loadingPopup2 = this.loadingCtrl.create({
+       /* this.loadingPopup2 = this.loadingCtrl.create({
             spinner: 'dots',
             // content: '<div class="custom-spinner-container"><div class="custom-spinner-box"></div></div>'
             content: 'Parkplätze werden geladen...'
         });
 
-        this.loadingPopup2.present();
+        this.loadingPopup2.present();*/
 
         this.loadParkplatz("spaces/pit");
 
@@ -68,8 +68,8 @@ export class HomePage {
             this.pps = data['items'];
             console.log("Parkplätze ohne Belegungen");
             console.log(this.pps);
-            this.loaded = true;
-            this.loadingPopup2.dismiss();
+            /*this.loaded = true;
+            this.loadingPopup2.dismiss();*/
             this.data.pps=this.pps;
             return true;
         });
