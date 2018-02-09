@@ -6,7 +6,7 @@ import {Geolocation} from '@ionic-native/geolocation';  // https://ionicframewor
 import 'rxjs/operator/map';
 import * as $ from 'jquery';
 import {DataProvider} from "../../providers/data/data";
-import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts';
+import {Contacts, Contact, ContactField, ContactName} from '@ionic-native/contacts';
 import {ParkplatzProvider} from "../../providers/parkplatz/parkplatz";
 
 declare let google;
@@ -33,10 +33,10 @@ export class HomePage {
     public locMarker: any;
     public timer: any;
     public loadingPopup: any;
-    public pps:any;
+    public pps: any;
     public loadingPopup2: any;
 
-    constructor(public navCtrl: NavController, public events: Events, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public data: DataProvider, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider, public Parkplatz:ParkplatzProvider, public Contacts: Contacts) {
+    constructor(public navCtrl: NavController, public events: Events, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public data: DataProvider, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider, public Parkplatz: ParkplatzProvider, public Contacts: Contacts) {
         this.loadStada('stations'); // stations/{id} oder szentralen/{id})
 
         this.loadingPopup = this.loadingCtrl.create({
@@ -48,13 +48,13 @@ export class HomePage {
         this.loadingPopup.present();
 
         this.loadMap();
-       /* this.loadingPopup2 = this.loadingCtrl.create({
-            spinner: 'dots',
-            // content: '<div class="custom-spinner-container"><div class="custom-spinner-box"></div></div>'
-            content: 'Parkplätze werden geladen...'
-        });
+        /* this.loadingPopup2 = this.loadingCtrl.create({
+             spinner: 'dots',
+             // content: '<div class="custom-spinner-container"><div class="custom-spinner-box"></div></div>'
+             content: 'Parkplätze werden geladen...'
+         });
 
-        this.loadingPopup2.present();*/
+         this.loadingPopup2.present();*/
 
         this.loadParkplatz("spaces/pit");
 
@@ -73,10 +73,10 @@ export class HomePage {
             console.log("Parkplätze ohne Belegungen");
             console.log(this.pps);
             this.loadedPPs = true;
-            if(this.loadedStada) {
+            if (this.loadedStada) {
                 this.loadingPopup.dismiss();
             }
-            this.data.pps=this.pps;
+            this.data.pps = this.pps;
             return true;
         });
         return false;
@@ -99,8 +99,7 @@ export class HomePage {
 
     clearAktStation() {
         this.aktStation = null;
-        // this.events.publish('station:changed', this.aktStation);
-        this.data.aktStation = this.aktStation;
+        this.updateAktStation();
     }
 
     ionViewDidLoad() {
@@ -170,10 +169,28 @@ export class HomePage {
             console.log("STATIONEN");
             console.log(this.stations);
             this.loadedStada = true;
-            if(this.loadedPPs) {
+            if (this.loadedPPs) {
                 this.loadingPopup.dismiss();
             }
+            this.loadAllFotos();
         });
+    }
+
+    loadAllFotos() {
+        this.Bfotos.load('stations?hasPhoto=true').then((data) => {
+            let fotos = [];
+            fotos = data; // beschwert sich, ist aber array und funktioniert auch
+            console.log("Fotos", fotos);
+
+            for(let foto of fotos) {
+
+                let currStation = this.stations.find(station => station.number == foto.id);
+                if(currStation) {
+                    currStation.fotoURL = foto.photoUrl;
+                }
+            }
+        });
+        console.log('loaded all fotos');
     }
 
     loadMap() {
@@ -183,9 +200,15 @@ export class HomePage {
             let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
             let mapOptions = {
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControl: false,
+                zoomControl: true,
+                zoomControlOptions: {
+                    position: google.maps.ControlPosition.RIGHT_BOTTOM
+                },
+                streetViewControl: false,
                 center: latLng,
-                zoom: 14,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
+                zoom: 14
             };
 
             this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
@@ -231,8 +254,8 @@ export class HomePage {
         });
     }
 
-    addSpecificMarker(station, center) {
-        console.log("Trying to add marker for " + station.name);
+    addSpecificMarker(station, center = false) {
+        console.log("Adding marker for " + station.name);
 
         for (let eN of station.evaNumbers) {
             if (eN.isMain) {
@@ -251,7 +274,14 @@ export class HomePage {
                     this.map.setCenter(latLng);
                 }
 
-                this.addContentWindow(station, marker);
+                google.maps.event.addListener(marker, 'click', (data) => {
+                    this.toggleDetails(false);
+                    this.aktStation = station;
+                    this.updateAktStation();
+                    this.toggleDetails(true);
+                });
+
+                // this.addContentWindow(station, marker);
             }
         }
 
@@ -303,12 +333,52 @@ export class HomePage {
         }
     }
 
+    findNearby() {
+        this.clearMarkers();
+        let bounds = this.map.getBounds();
+        let ne = bounds.getNorthEast(); // LatLng of the north-east corner
+        let sw = bounds.getSouthWest();
+
+        let nearbyStations = [];
+        for (let station of this.stations) {
+            for (let eN of station.evaNumbers) {
+                if (eN.isMain) {
+                    let coords = eN.geographicCoordinates.coordinates;
+
+                    if (coords[1] < ne.lat() && coords[1] > sw.lat() &&
+                        coords[0] < ne.lng() && coords[0] > sw.lng()) {
+                        nearbyStations.push(station);
+                    }
+                }
+            }
+        }
+
+        console.log("nearby stations" , nearbyStations);
+
+        for(let nStation of nearbyStations) {
+            this.addSpecificMarker(nStation);
+        }
+
+        if(nearbyStations.length === 0) {
+            let alert = this.alertCtrl.create({
+                title: 'Keine Stationen im aktuellen Bildausschnitt gefunden.',
+                buttons: ['OK']
+            });
+            alert.present();
+        }
+
+        this.aktStation = null;
+        this.updateAktStation();
+    }
+
     foundStation(stationname) {
         this.cancelSearch();
         let aktStation = this.stations.find(station => station.name == stationname);
         console.log("aktStation ", aktStation);
 
         this.addSpecificMarker(aktStation, true);
+        this.aktStation = aktStation;
+        this.updateAktStation();
 
         this.toggleDetails(true);
         $('.filteredStations').hide();
@@ -316,42 +386,34 @@ export class HomePage {
         $('.scroll-content').addClass('overflowHidden');
     }
 
-    addContentWindow(station, marker) {
-        this.aktStation = station;
-        this.events.publish('station:changed', this.aktStation);
-        this.data.aktStation = this.aktStation;
-
-        this.Bfotos.load('stations/' + station.number).then(data => {
-            console.log("Foto-URL geladen:", data["photoUrl"]);
-
-            let fotoURL = data["photoUrl"];
-            this.aktStation.fotoURL = fotoURL;
-            this.events.publish('station:changed', this.aktStation);
-            this.data.aktStation = this.aktStation;
-
-            google.maps.event.addListener(marker, 'click', (data) => {
-                this.toggleDetails(false);
-                this.aktStation = station;
-                this.aktStation.fotoURL = fotoURL;
-                this.data.aktStation = this.aktStation;
-                this.events.publish('station:changed', this.aktStation);
-                this.toggleDetails(true);
-            });
-
-        });
-    }
+    // addContentWindow(station, marker) {
+    //     this.aktStation = station;
+    //     this.updateAktStation();
+    // }
 
     findContacts(searchInput) {
         this.Contacts.find(['addresses', 'name', 'photos'],
-            {filter: searchInput, multiple: true, desiredFields: ['name', 'addresses', 'photos']})
+            { filter: searchInput, multiple: true, desiredFields: ['name', 'addresses', 'photos'] })
             .then((data) => {
                 console.log("Contacts", data);
-            this.contacts = data;
+                this.contacts = data;
         });
     }
 
     openDetails() {
         this.data.aktStation = this.aktStation;
         this.navCtrl.parent.select(1, { 'aktStation': this.aktStation });
+    }
+
+    updateAktStation() {
+        this.events.publish('station:changed', this.aktStation);
+        this.data.aktStation = this.aktStation;
+    }
+
+    clearMarkers() {
+        for (let marker of this.markers) {
+            marker.setMap(null);
+        }
+        this.markers = [];
     }
 }

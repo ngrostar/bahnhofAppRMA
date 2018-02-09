@@ -18,6 +18,7 @@ export class AboutPage {
 
     constructor(public navCtrl: NavController, public events: Events, public TC: TravelCenterProvider, public fasta: FastaProvider, public navParams: NavParams, public data: DataProvider) {
         this.station = this.data.aktStation;
+        this.station.fasta = false;
 
         if (this.station) {
             this.loadStationParking();
@@ -27,13 +28,15 @@ export class AboutPage {
 
         events.subscribe('station:changed', (station) => {
             console.log("Detailansicht empfängt: Bahnhof aktualisiert");
-            this.loadStationParking();
             this.station = station;
+            this.loadStationParking();
         });
     }
 
     ionViewWillEnter() {
         this.station = this.data.aktStation;
+        this.station.fasta = false;
+
         if(this.station) {
             this.loadStationParking();
             this.loadTC();
@@ -57,8 +60,9 @@ export class AboutPage {
 
     loadFasta() {
         console.log('Fasta loading');
-        this.fasta.load(this.station.number).then(data => {
-            this.station.fasta = data;
+        this.fasta.load(this.station.number).then((data) => {
+            let fasta = data;
+            this.station.fasta = fasta.facilities;
             if(this.station.fasta.length === 0) {
                 this.station.fasta = false;
             }
@@ -75,14 +79,16 @@ export class AboutPage {
     }
 
     loadStationParking() {
-        this.stationParking = false;
-        let pps = this.data.pps;
-        for (let pp of pps) {
-            if (this.station.number == pp.station.id) {
-                this.stationParking = true;
-                return;
+        if(this.station){
+            let pps = this.data.pps;
+            for (let pp of pps) {
+                if (this.station.number == pp.station.id) {
+                    this.stationParking = true;
+                    return;
+                }
             }
         }
+        this.stationParking = false;
     }
 
     openKarte() {
@@ -125,6 +131,14 @@ export class AboutPage {
             $('div.bfoto').css('min-height', '15rem');
         } else {
             $('.addressInner').css('top', '50%');
+            $('div.bfoto').css('min-height', '6rem');
+        }
+
+        if(this.station.fasta && !this.stationParking) {
+            $('.fastaButton').addClass('singleButton');
+        }
+        if(!this.station.fasta && this.stationParking) {
+            $('.parkingButton').addClass('singleButton');
         }
     }
 

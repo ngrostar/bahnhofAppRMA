@@ -113,8 +113,8 @@ export class FastaPage {
     }
 
     loadFastas() {
-        console.log('fasta loading', this.station.fasta.facilities);
-        for (let fasta of this.station.fasta.facilities) {
+        console.log('fasta loading', this.station.fasta);
+        for (let fasta of this.station.fasta) {
             fasta.running = (fasta.state == ('ACTIVE'));
             this.addSpecificMarker(fasta);
         }

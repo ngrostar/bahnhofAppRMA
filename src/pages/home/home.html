@@ -20,27 +20,30 @@
             </div>
         </ion-item>
         <ion-item *ngFor="let contact of contacts">
-            <div class="foundStation" (click)="foundContact(contact)">
+            <div class="foundStation" (click)="foundContact(contact)"> <!--@todo-->
                 {{contact.name}}
             </div>
         </ion-item>
     </ion-list>
     <div #map id="map"></div>
-    <div class="favoriten" *ngIf="loadedStada" (click)="showFavorites()">
+    <div class="mapButton favoriten" *ngIf="loadedStada" (click)="showFavorites()">
         <ion-icon name="heart"></ion-icon>
         Favoriten
     </div>
-    <div class="location" *ngIf="loadedStada" (click)="updatePosition(true)">
+    <div class="mapButton location" *ngIf="loadedStada" (click)="updatePosition(true)">
         <ion-icon name="locate"></ion-icon>
+    </div>
+    <div class="mapButton nearby" *ngIf="loadedStada" (click)="findNearby()">
+        <ion-icon name="pin"></ion-icon>Stationen suchen
     </div>
     <div id="stationDetails" *ngIf="aktStation != null">
         <div *ngIf="!detailsHidden; else sliderUp">
-            <div class="detailSlider" id="sliderDown" (click)="toggleDetails()">
+            <div class="detailSlider" id="sliderDown" (pan)="toggleDetails()" (click)="toggleDetails()">
                 <ion-icon name="arrow-down"></ion-icon>
             </div>
         </div>
         <ng-template #sliderUp>
-            <div class="detailSlider" id="sliderUp" (click)="toggleDetails()">
+            <div class="detailSlider" id="sliderUp" (pan)="toggleDetails()" (click)="toggleDetails()">
                 <ion-icon name="arrow-up"></ion-icon>
             </div>
         </ng-template>
