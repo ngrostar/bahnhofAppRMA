@@ -4,7 +4,7 @@ import {Events, NavController} from 'ionic-angular';
 import {DataProvider} from "../../providers/data/data";
 import {PushPage} from "../push/push";
 import {LoadingController} from "ionic-angular";
-
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @Component({
     selector: 'page-contact',
@@ -19,7 +19,7 @@ export class ContactPage {
     public loadingPopup2: any;
     public loaded: boolean = false;
 
-    constructor(public navCtrl: NavController, public data: DataProvider, public events: Events, public Parkplatz: ParkplatzProvider, public loadingCtrl: LoadingController) {
+    constructor(public navCtrl: NavController, public data: DataProvider, public events: Events, public Parkplatz: ParkplatzProvider, public loadingCtrl: LoadingController, public iab:InAppBrowser) {
         this.station = this.data.aktStation;
         this.pps = this.data.pps;
         console.log("Parkplätze ", this.pps);
@@ -34,7 +34,9 @@ export class ContactPage {
             }
         });
     }
-
+    openIAB(){
+        this.iab.create(this.parkingspaces.operatorURL);
+    }
     pushPage() {
         /*this.navCtrl.push(PushPage, {
             thing1:this.parkingspaces
