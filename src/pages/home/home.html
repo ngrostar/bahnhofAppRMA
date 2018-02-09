@@ -26,11 +26,11 @@
         </ion-item>
     </ion-list>
     <div #map id="map"></div>
-    <div class="favoriten" *ngIf="loaded" (click)="showFavorites()">
+    <div class="favoriten" *ngIf="loadedStada" (click)="showFavorites()">
         <ion-icon name="heart"></ion-icon>
         Favoriten
     </div>
-    <div class="location" *ngIf="loaded" (click)="updatePosition(true)">
+    <div class="location" *ngIf="loadedStada" (click)="updatePosition(true)">
         <ion-icon name="locate"></ion-icon>
     </div>
     <div id="stationDetails" *ngIf="aktStation != null">

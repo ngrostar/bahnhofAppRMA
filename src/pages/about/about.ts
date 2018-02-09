@@ -14,27 +14,28 @@ export class AboutPage {
     public station: any;
     public dropdowns: boolean[] = [false, false, false]; //@todo dropdowns ordnen
     public tc: any;
+    public stationParking: boolean = false;
 
     constructor(public navCtrl: NavController, public events: Events, public TC: TravelCenterProvider, public fasta: FastaProvider, public navParams: NavParams, public data: DataProvider) {
-        this.dropdowns[0] = false;
-        this.dropdowns[1] = false;
-        this.dropdowns[2] = false;
-
-        this.station = data.aktStation;
+        this.station = this.data.aktStation;
 
         if (this.station) {
+            this.loadStationParking();
             this.loadTC();
             this.loadFasta();
         }
 
         events.subscribe('station:changed', (station) => {
             console.log("Detailansicht empfängt: Bahnhof aktualisiert");
+            this.loadStationParking();
             this.station = station;
         });
     }
 
-    ionViewWillLoad() {
-        if (this.station) {
+    ionViewWillEnter() {
+        this.station = this.data.aktStation;
+        if(this.station) {
+            this.loadStationParking();
             this.loadTC();
             this.loadFasta();
         }
@@ -58,21 +59,30 @@ export class AboutPage {
         console.log('Fasta loading');
         this.fasta.load(this.station.number).then(data => {
             this.station.fasta = data;
+            if(this.station.fasta.length === 0) {
+                this.station.fasta = false;
+            }
             console.log("Fasta");
             console.log(this.station.fasta);
             this.data.aktStation = this.station;
-            console.log(this.station);
-            if(this.station.fasta) {
-                $('div.bfoto').css('min-height', '15rem');
-            }
             this.events.publish('station:changed', this.station);
+            console.log(this.station);
+            this.settleCss();
+        },(reason) => {
+            console.log("Fasta laden fehlgeschlagen: ", reason);
+            this.settleCss();
         });
     }
 
-    // @todo nach dem laden: falls parking XOR fasta: add class singleButton
-    // falls einer oder beide: top für inner address 40% statt 50%
-
-    ionViewWillEnter() {
+    loadStationParking() {
+        this.stationParking = false;
+        let pps = this.data.pps;
+        for (let pp of pps) {
+            if (this.station.number == pp.station.id) {
+                this.stationParking = true;
+                return;
+            }
+        }
     }
 
     openKarte() {
@@ -81,6 +91,10 @@ export class AboutPage {
 
     openFasta() {
         this.navCtrl.push(FastaPage);
+    }
+
+    openParking() {
+        this.navCtrl.parent.select(2);
     }
 
     toggleDropdown(service) {
@@ -94,12 +108,23 @@ export class AboutPage {
         } else return null;
 
         this.dropdowns[id] = !this.dropdowns[id];
-        if (this.dropdowns[id] == true) {
-            $('#' + service + 'Dropdown').css('max-height', '1000px');
-            $('#' + service + 'Dropdown').css('display', 'block');
+
+        let $dropdown = $('#' + service + 'Dropdown');
+        if (this.dropdowns[id] === true) {
+            $dropdown.css('max-height', '1000px');
+            $dropdown.css('display', 'block');
         } else {
-            $('#' + service + 'Dropdown').css('max-height', '0px'); // funktionier nicht. Warum?!
-            $('#' + service + 'Dropdown').css('display', 'none');
+            $dropdown.css('max-height', '0px'); // funktionier nicht. Warum?!
+            $dropdown.css('display', 'none');
+        }
+    }
+
+    settleCss() {
+        if(this.stationParking || this.station.fasta) {
+            $('.addressInner').css('top', '40%');
+            $('div.bfoto').css('min-height', '15rem');
+        } else {
+            $('.addressInner').css('top', '50%');
         }
     }
 

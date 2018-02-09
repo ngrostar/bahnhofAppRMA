@@ -1,6 +1,7 @@
 page-contact {
-
-
+    ion-title.title {
+        padding: 0 10px;
+    }
 
     div.noStationSelected {
         padding: 50px 20px;
@@ -14,27 +15,34 @@ page-contact {
             }
         }
     }
-   .mtitle{
-       padding-bottom:15px;
-   }
-    div.nummer{
-        margin-left: 164px;
-        font-size: 1.5rem;
-    }
-    div.nummer.Betreiber{
-        font-size:0.7rem;
-    }
-    ion-icon{
-        margin-left: 165px;
-    }
-    span{
-        font-size: 1.3rem;
-    }
 
+    .parkingSpace {
 
+        h2 {
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .ion-item,
+        .item-ios {
+            padding: 0;
+            font-size: 1.5rem;
+        }
+
+        .infoType {
+
+        }
+
+        .shortInfo {
+            position: absolute;
+            right: 15px;
+        }
+
+        ion-icon[name="close-circle"],
+        ion-icon[name="checkmark-circle-outline"] {
+            position: absolute;
+            right: 15px;
+            font-size: 2rem;
+        }
+    }
 }
-
-
-
-
-

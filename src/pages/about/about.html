@@ -26,11 +26,25 @@
                     <div class="street">{{station.mailingAddress.street}}</div>
                     <div class="city">{{station.mailingAddress.zipcode}}&nbsp;{{station.mailingAddress.city}}</div>
                 </div>
+                <!--<div class="pictureButtons">-->
+                    <!--<button ion-button outline *ngIf="station.fasta" class="fastaButton" (click)="openFasta()">-->
+                        <!--Aufzüge & Rolltreppen-->
+                    <!--</button>-->
+                    <!--<button ion-button outline *ngIf="stationParking" class="parkingButton" (click)="openParking()">-->
+                        <!--<ion-icon name="car"></ion-icon>Parkplätze-->
+                    <!--</button>-->
+                <!--</div>-->
                 <div class="pictureButtons">
-                    <button ion-button outline *ngIf="station.fasta" class="fastaButton" (click)="openFasta()">
+                    <button ion-button outline *ngIf="stationParking && station.fasta" class="fastaButton" (click)="openFasta()">
                         Aufzüge & Rolltreppen
                     </button>
-                    <button ion-button outline *ngIf="station.parking" class="parkingButton" (click)="openParking()">
+                    <button ion-button outline *ngIf="station.fasta && !stationParking" class="singleButton" (click)="openFasta()">
+                        Aufzüge & Rolltreppen
+                    </button>
+                    <button ion-button outline *ngIf="stationParking && station.fasta" class="parkingButton" (click)="openParking()">
+                        <ion-icon name="car"></ion-icon>Parkplätze
+                    </button>
+                    <button ion-button outline *ngIf="!station.fasta && stationParking" class="singleButton" (click)="openParking()">
                         <ion-icon name="car"></ion-icon>Parkplätze
                     </button>
                 </div>
@@ -93,7 +107,7 @@
                     <ion-icon *ngIf="station.hasLocalPublicTransport" name="checkmark-circle-outline"></ion-icon>
                     <ion-icon *ngIf="!station.hasLocalPublicTransport" name="close-circle"></ion-icon>
                 </ion-item>
-                <ion-item *ngIf="!station.parking" class="service parkingService">
+                <ion-item *ngIf="!stationParking" class="service parkingService">
                     <span>Parkplätze</span>
                     <ion-icon *ngIf="station.hasParking" name="checkmark-circle-outline"></ion-icon>
                     <ion-icon *ngIf="!station.hasParking" name="close-circle"></ion-icon>

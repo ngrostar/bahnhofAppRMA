@@ -20,61 +20,56 @@
 
 
     <ng-template #stationSelected>
-        <div *ngIf="spaceID==0; else spaceSelected" class ="keineDaten">
-            Für den ausgewählten Bahnhof stehen leider keine detaillierten Daten zur Verfügung!
+        <div *ngIf="numberOfParkingSpaces==0; else spaceSelected" class="noStationSelected">
+            <p>Für den ausgewählten Bahnhof stehen leider keine detaillierten Daten zur Verfügung!</p>
+
+            <div *ngIf="station.hasParking">
+                <p>Es sind jedoch Parkplätze in der Nähe des ausgewählten Bahnhofs verzeichnet.</p>
+            </div>
         </div>
         <ng-template #spaceSelected>
-            <div *ngFor="let parkingspace of parkingspaces">
-            <ion-title class="mtitle">
-                {{parkingspace.name}}
-            </ion-title>
-            <ion-list >
-                <ion-item class="service">
-                    <span>Ist in Betrieb</span>
-                    <ion-icon *ngIf="!parkingspace.isOutOfService" name="checkmark-circle-outline"></ion-icon>
-                    <ion-icon *ngIf="parkingspace.isOutOfService" name="close-circle"></ion-icon>
-                </ion-item>
-                <ion-item class="service">
-                    <span>Anzahl Behindertenparkplätze</span>
-                    <div class="nummer">
-                    {{parkingspace.numberHandicapedPlaces}}
-                    </div>
-                </ion-item >
-                <ion-item class="service">
-                    <span>Anzahl Parkplätze gesamt:</span>
-                    <div class="nummer">
-                    {{parkingspace.numberParkingPlaces}}
-                    </div>
-                </ion-item>
-                <ion-item class="service">
-                    <span>Wo steht das Auto?</span>
-                    <div class="nummer">
-                    {{parkingspace.spaceType}}
-                    </div>
-                </ion-item>
-                <ion-item class="service">
-                    <span>Typ:</span>
-                    <div class="nummer">
-                    {{parkingspace.spaceType}}
-                    </div>
-                </ion-item>
-                <ion-item class="service">
-                    <span>Öffnungszeiten:</span>
-                    <div class="nummer">
-                    {{parkingspace.openingHours}}
-                    </div>
-                </ion-item>
-                <ion-item class="service ">
-                    <span>Betreiber:</span>
-                    <div class="nummer Betreiber">
-                    {{parkingspace.operator}}
-                    </div>
-                </ion-item>
-            </ion-list>
-            </div>
-            <button ion-button (click)="pushPage()">
-                Infos rund um den Tarif
-            </button>
+            <ion-slides pager>
+                <ion-slide *ngFor="let parkingspace of parkingspaces" class="parkingSpace">
+                    <h2>
+                        {{parkingspace.name}}
+                    </h2>
+                    <ion-list>
+                        <ion-item class="service">
+                            <span class="infoType">In Betrieb</span>
+                            <ion-icon *ngIf="!parkingspace.isOutOfService" name="checkmark-circle-outline"></ion-icon>
+                            <ion-icon *ngIf="parkingspace.isOutOfService" name="close-circle"></ion-icon>
+                        </ion-item>
+                        <ion-item class="service">
+                            <span class="infoType">Anzahl Parkplätze gesamt:</span>
+                            <span class="info shortInfo">{{parkingspace.numberParkingPlaces}}</span>
+                        </ion-item>
+                        <ion-item class="service">
+                            <span class="infoType">Anzahl Behindertenparkplätze</span>
+                            <span class="info shortInfo">{{parkingspace.numberHandicapedPlaces}}</span>
+                        </ion-item>
+                        <ion-item class="service">
+                            <span class="infoType">Ladestation</span>
+                            <ion-icon *ngIf="!parkingspace.spaceInfo.chargingStation" name="checkmark-circle-outline"></ion-icon>
+                            <ion-icon *ngIf="parkingspace.spaceInfo.chargingStation" name="close-circle"></ion-icon>
+                        </ion-item>
+                        <ion-item class="service">
+                            <span class="infoType">Typ:</span>
+                            <span class="info shortInfo">{{parkingspace.spaceType}}</span>
+                        </ion-item>
+                        <ion-item class="service">
+                            <span class="infoType">Öffnungszeiten:</span>
+                            <span class="info shortInfo">{{parkingspace.openingHours}}</span>
+                        </ion-item>
+                        <ion-item class="service">
+                            <span class="infoType">Betreiber:</span>
+                            <div class="info longerInfo"><a href="#" (click)="openLink(parkingspace.operatorURL)">{{parkingspace.operator}}</a></div>
+                        </ion-item>
+                    </ion-list>
+                    <button ion-button (click)="pushPage()">
+                        Infos rund um den Tarif
+                    </button>
+                </ion-slide>
+            </ion-slides>
         </ng-template>
     </ng-template>
 </ion-content>

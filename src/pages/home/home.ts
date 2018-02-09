@@ -21,7 +21,8 @@ export class HomePage {
     map: any;
     public aktStation: any = null;
     public markers: any = [];
-    public loaded: boolean = false;
+    public loadedStada: boolean = false;
+    public loadedPPs: boolean = false;
     public stations: any = [];
     public favorites: any = [];
     public contacts: any = [];
@@ -65,13 +66,16 @@ export class HomePage {
             this.aktStation = station;
         });
     }
+
     public loadParkplatz(param) {
         this.Parkplatz.load(param).then(data => {
             this.pps = data['items'];
             console.log("Parkplätze ohne Belegungen");
             console.log(this.pps);
-            /*this.loaded = true;
-            this.loadingPopup2.dismiss();*/
+            this.loadedPPs = true;
+            if(this.loadedStada) {
+                this.loadingPopup.dismiss();
+            }
             this.data.pps=this.pps;
             return true;
         });
@@ -165,8 +169,10 @@ export class HomePage {
             this.stations = data['result'];
             console.log("STATIONEN");
             console.log(this.stations);
-            this.loaded = true;
-            this.loadingPopup.dismiss();
+            this.loadedStada = true;
+            if(this.loadedPPs) {
+                this.loadingPopup.dismiss();
+            }
         });
     }
 
@@ -290,7 +296,7 @@ export class HomePage {
             this.stationnames = this.stationnames.filter((station) => {
                 return (station.toLowerCase().indexOf(val.toLowerCase()) > -1);
             });
-            this.findContacts(val);
+            // this.findContacts(val); auskommentiert, da sonst fehler: cordova.js wird nicht richtig eingebunden
         } else { // clear list
             this.stationnames = [];
             $('.scroll-content').addClass('overflowHidden');
