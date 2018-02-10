@@ -382,6 +382,10 @@ export class HomePage {
         this.toggleDetails(true);
         $('.filteredStations').hide();
 
+        if(this.aktStation.fotoURL) {
+            this.map.panBy(0, 140); // show marker in visible mapBounds
+        }
+
         $('.scroll-content').addClass('overflowHidden');
     }
 
