@@ -5,6 +5,7 @@ import {DataProvider} from "../../providers/data/data";
 import {PushPage} from "../push/push";
 import {LoadingController} from "ionic-angular";
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import {FastaPage} from '../fasta/fasta';
 
 @Component({
     selector: 'page-contact',
@@ -56,6 +57,11 @@ export class ContactPage {
         window.open(url, '_blank', 'location=yes');
     }
 
+    showInMaps(pp) {
+        let data = {'pp': pp};
+        this.navCtrl.push(FastaPage, data);
+    }
+
     public loadParkplatz(param) {
         this.Parkplatz.load(param).then(data => {
 
@@ -80,5 +86,17 @@ export class ContactPage {
             }
         }
         this.numberOfParkingSpaces = this.parkingspaces.length;
+
+        // check for occupancies of station's parkingspaces
+        for(let pp of this.parkingspaces) {
+            this.Parkplatz.load('spaces/' + pp.id + '/occupancies').then(data => {
+                let detailedPP;
+                detailedPP = data;
+                pp.capacity = detailedPP.allocation.capacity;
+                pp.timestamp = detailedPP.allocation.timestamp;
+                pp.timestamp.replace("T", "\ ");
+                pp.timestamp += ' Uhr';
+            });
+        }
     }
 }

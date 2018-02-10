@@ -7,7 +7,8 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>Aufzüge & Rolltreppen</ion-title>
+        <ion-title *ngIf="!pp">Aufzüge & Rolltreppen</ion-title>
+        <ion-title *ngIf="pp">{{pp.name}}</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -42,16 +43,15 @@
             <p class="notWorking" *ngIf="!aktFasta.running">
                 <ion-icon name="close-circle" color="danger"></ion-icon>Zur Zeit außer Betrieb
             </p>
+            <p class="notWorking" *ngIf="aktFasta.running">
+                <ion-icon name="checkmark-circle" color="secondary"></ion-icon>In Betrieb
+            </p>
             <p *ngIf="aktFasta.stateExplanation != 'available' && aktFasta.stateExplanation != 'not available'"> <!--show special explanations-->
                 Kommentar: "{{aktFasta.stateExplanation}}"
             </p>
-            <button ion-button (click)="promptAlert()" color="danger">
+            <button ion-button full (click)="promptAlert()">
                 <ion-icon name="clipboard"></ion-icon>
                 Fehler melden
-            </button>
-            <button ion-button class="details" (click)="openDetails()">
-                <ion-icon name="arrow-forward"></ion-icon>
-                Details <!--@todo ändern!!! was wird hier angezeigt?-->
             </button>
         </div>
     </div>

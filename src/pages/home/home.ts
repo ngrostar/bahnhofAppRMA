@@ -178,7 +178,7 @@ export class HomePage {
 
     loadAllFotos() {
         this.Bfotos.load('stations?hasPhoto=true').then((data) => {
-            let fotos = [];
+            let fotos;
             fotos = data; // beschwert sich, ist aber array und funktioniert auch
             console.log("Fotos", fotos);
 
@@ -289,7 +289,6 @@ export class HomePage {
 
     //Brauchen wir das noch?
     geocode(station) {
-
         let address = station.mailingAddress.street + " " + station.mailingAddress.zipcode + " " + station.mailingAddress.city;
         console.log('trying to get coords for ' + address);
         this.geocoder.geocode({ 'address': address }, function (results, status) {

@@ -18,9 +18,9 @@ export class AboutPage {
 
     constructor(public navCtrl: NavController, public events: Events, public TC: TravelCenterProvider, public fasta: FastaProvider, public navParams: NavParams, public data: DataProvider) {
         this.station = this.data.aktStation;
-        this.station.fasta = false;
 
         if (this.station) {
+            this.station.fasta = false;
             this.loadStationParking();
             this.loadTC();
             this.loadFasta();
@@ -35,9 +35,9 @@ export class AboutPage {
 
     ionViewWillEnter() {
         this.station = this.data.aktStation;
-        this.station.fasta = false;
 
         if(this.station) {
+            this.station.fasta = false;
             this.loadStationParking();
             this.loadTC();
             this.loadFasta();
@@ -61,7 +61,9 @@ export class AboutPage {
     loadFasta() {
         console.log('Fasta loading');
         this.fasta.load(this.station.number).then((data) => {
-            let fasta = data;
+            console.log("Fastaa", data);
+            let fasta;
+            fasta = data;
             this.station.fasta = fasta.facilities;
             if(this.station.fasta.length === 0) {
                 this.station.fasta = false;

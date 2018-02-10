@@ -4,6 +4,12 @@
     overflow-y: auto;
 }
 
+.alert-ios .alert-wrapper {
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%) !important;
+}
+
 page-fasta {
     .scroll-content {
         overflow: hidden;
@@ -14,7 +20,7 @@ page-fasta {
     }
 
     ion-title.title {
-         padding: 0 20px;
+        padding: 0 0 0 50px;
     }
 
     #map {
@@ -82,8 +88,6 @@ page-fasta {
             }
 
             button {
-                width: 48%;
-
                 ion-icon {
                     padding-right: 10px;
                 }

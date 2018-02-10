@@ -1,5 +1,5 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {AlertController, Events, IonicPage, NavController} from 'ionic-angular';
+import {AlertController, Events, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {DataProvider} from "../../providers/data/data";
 import {Geolocation} from '@ionic-native/geolocation';  // https://ionicframework.com/docs/native/geolocation/
 import 'rxjs/operator/map';
@@ -31,12 +31,13 @@ export class FastaPage {
     public detailsHidden: boolean = false;
     public locMarker: any;
     public timer: any;
+    public pp: any;
 
     @ViewChild('map') mapElement: ElementRef;
     map: any;
     public markers: any = [];
 
-    constructor(public navCtrl: NavController, public geolocation: Geolocation, public alertCtrl: AlertController, public data: DataProvider, public events: Events) {
+    constructor(public navCtrl: NavController, public geolocation: Geolocation, public navParams: NavParams, public alertCtrl: AlertController, public data: DataProvider, public events: Events) {
         this.station = this.data.aktStation;
 
         events.subscribe('station:changed', (station) => {
@@ -49,9 +50,15 @@ export class FastaPage {
     }
 
     ionViewWillEnter() {
+        console.log("navParams", this.navParams.get('pp'));
+        this.pp = this.navParams.get('pp');
         this.station = this.data.aktStation;
         this.loadMap();
-        this.loadFastas();
+        if(this.pp) {
+            this.addMarkerForParkplatz();
+        } else {
+            this.loadFastas();
+        }
     }
 
     clearAktFasta() {
@@ -112,6 +119,23 @@ export class FastaPage {
         }, 1000);
     }
 
+    addMarkerForParkplatz() {
+        let latLng = new google.maps.LatLng(this.pp.geoLocation.latitude, this.pp.geoLocation.longitude);
+
+        let markericon = {
+            url: '../../assets/imgs/parking.png',
+            scaledSize: new google.maps.Size(40, 40)
+        };
+
+        let marker = new google.maps.Marker({
+            map: this.map,
+            position: latLng,
+            icon: markericon
+        });
+
+        this.map.setCenter(latLng);
+    }
+
     loadFastas() {
         console.log('fasta loading', this.station.fasta);
         for (let fasta of this.station.fasta) {
@@ -122,7 +146,7 @@ export class FastaPage {
 
     addSpecificMarker(fasta) {
         let latLng = new google.maps.LatLng(fasta.geocoordY, fasta.geocoordX);
-console.log('working? ', fasta.working);
+        console.log('working? ', fasta.working);
         let markericon = {
             url: '../../assets/imgs/' + fasta.type.toLowerCase() + ((fasta.running) ? '1' : '0') + '.png',
             scaledSize: new google.maps.Size(30, 30)
