@@ -1,7 +1,12 @@
+ion-label {
+    white-space: normal;
+}
+
 page-contact {
     ion-title.title {
         padding: 0 10px;
     }
+
 
     div.noStationSelected {
         padding: 50px 20px;
@@ -21,10 +26,6 @@ page-contact {
     }
 
     .parkingSpace {
-        ion-label {
-            white-space: normal;
-        }
-
         .slide-zoom {
             width: inherit;
             height: inherit;

@@ -54,7 +54,7 @@ export class FastaPage {
         this.pp = this.navParams.get('pp');
         this.station = this.data.aktStation;
         this.loadMap();
-        if(this.pp) {
+        if(this.navParams.get('ppView')) {
             this.addMarkerForParkplatz();
         } else {
             this.loadFastas();

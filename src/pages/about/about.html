@@ -94,8 +94,8 @@
                                 {{station.DBinformation.availability.sunday.fromTime}} -
                                 {{station.DBinformation.availability.sunday.toTime}}
                             </div>
-                            <div class="weekday">Feiertage</div>
-                            <div class="times">
+                            <div class="weekday" *ngIf="station.DBinformation.availability.holiday">Feiertage</div>
+                            <div class="times" *ngIf="station.DBinformation.availability.holiday">
                                 {{station.DBinformation.availability.holiday.fromTime}} -
                                 {{station.DBinformation.availability.holiday.toTime}}
                             </div>

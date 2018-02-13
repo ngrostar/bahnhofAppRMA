@@ -262,6 +262,12 @@ export class HomePage {
                 let coords = eN.geographicCoordinates.coordinates;
                 let latLng = new google.maps.LatLng(coords[1], coords[0]);
 
+                for(let marker of this.markers) { // remove duplicate markers
+                    if(marker.getPosition().equals(latLng)) {
+                        marker.setMap(null);
+                    }
+                }
+
                 let marker = new google.maps.Marker({
                     map: this.map,
                     animation: google.maps.Animation.DROP,
@@ -280,8 +286,6 @@ export class HomePage {
                     this.updateAktStation();
                     this.toggleDetails(true);
                 });
-
-                // this.addContentWindow(station, marker);
             }
         }
 
@@ -388,11 +392,6 @@ export class HomePage {
 
         $('.scroll-content').addClass('overflowHidden');
     }
-
-    // addContentWindow(station, marker) {
-    //     this.aktStation = station;
-    //     this.updateAktStation();
-    // }
 
     findContacts(searchInput) {
         this.Contacts.find(['addresses', 'name', 'photos'],

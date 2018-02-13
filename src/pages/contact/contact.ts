@@ -6,6 +6,7 @@ import {PushPage} from "../push/push";
 import {LoadingController} from "ionic-angular";
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import {FastaPage} from '../fasta/fasta';
+import {DatePipe} from '@angular/common';
 
 @Component({
     selector: 'page-contact',
@@ -58,7 +59,7 @@ export class ContactPage {
     }
 
     showInMaps(pp) {
-        let data = {'pp': pp};
+        let data = {'pp': pp, 'ppView': true};
         this.navCtrl.push(FastaPage, data);
     }
 
@@ -94,7 +95,12 @@ export class ContactPage {
                 detailedPP = data;
                 pp.capacity = detailedPP.allocation.capacity;
                 pp.timestamp = detailedPP.allocation.timestamp;
-                pp.timestamp.replace("T", "\ ");
+
+
+                let datePipe = new DatePipe('de');
+                let test = datePipe.transform(new Date(detailedPP.allocation.timestamp), 'dd. MMMM y HH:mm');
+                console.log("DATUM:", test);
+                pp.timestamp.replace('T', '\ '); // @todo
                 pp.timestamp += ' Uhr';
             });
         }
