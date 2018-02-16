@@ -36,6 +36,10 @@ export class AboutPage {
     ionViewWillEnter() {
         this.station = this.data.aktStation;
 
+        for (let dropdown of this.dropdowns) { // damit bei neu laden die Pfeile richtig orientiert sind
+            dropdown = false;
+        }
+
         if(this.station) {
             this.station.fasta = false;
             this.loadStationParking();

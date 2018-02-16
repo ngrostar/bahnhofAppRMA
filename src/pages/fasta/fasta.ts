@@ -56,9 +56,13 @@ export class FastaPage {
         this.loadMap();
         if(this.navParams.get('ppView')) {
             this.addMarkerForParkplatz();
-        } else {
+        } else if (this.station.fasta) {
             this.loadFastas();
         }
+    }
+
+    ionViewWillLeave() {
+        this.navCtrl.popToRoot();
     }
 
     clearAktFasta() {

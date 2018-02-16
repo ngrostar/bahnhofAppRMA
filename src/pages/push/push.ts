@@ -32,4 +32,7 @@ export class PushPage {
     console.log('ionViewDidLoad PushPage');
   }
 
+  ionViewWillLeave() {
+   this.navCtrl.popToRoot();
+  }
 }
