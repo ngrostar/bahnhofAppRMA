@@ -27,12 +27,12 @@
                     <div class="city">{{station.mailingAddress.zipcode}}&nbsp;{{station.mailingAddress.city}}</div>
                 </div>
                 <!--<div class="pictureButtons">-->
-                    <!--<button ion-button outline *ngIf="station.fasta" class="fastaButton" (click)="openFasta()">-->
-                        <!--Aufzüge & Rolltreppen-->
-                    <!--</button>-->
-                    <!--<button ion-button outline *ngIf="stationParking" class="parkingButton" (click)="openParking()">-->
-                        <!--<ion-icon name="car"></ion-icon>Parkplätze-->
-                    <!--</button>-->
+                <!--<button ion-button outline *ngIf="station.fasta" class="fastaButton" (click)="openFasta()">-->
+                <!--Aufzüge & Rolltreppen-->
+                <!--</button>-->
+                <!--<button ion-button outline *ngIf="stationParking" class="parkingButton" (click)="openParking()">-->
+                <!--<ion-icon name="car"></ion-icon>Parkplätze-->
+                <!--</button>-->
                 <!--</div>-->
                 <div class="pictureButtons">
                     <button ion-button outline *ngIf="stationParking && station.fasta" class="fastaButton" (click)="openFasta()">
@@ -42,10 +42,12 @@
                         Aufzüge & Rolltreppen
                     </button>
                     <button ion-button outline *ngIf="stationParking && station.fasta" class="parkingButton" (click)="openParking()">
-                        <ion-icon name="car"></ion-icon>Parkplätze
+                        <ion-icon name="car"></ion-icon>
+                        Parkplätze
                     </button>
                     <button ion-button outline *ngIf="!station.fasta && stationParking" class="singleButton" (click)="openParking()">
-                        <ion-icon name="car"></ion-icon>Parkplätze
+                        <ion-icon name="car"></ion-icon>
+                        Parkplätze
                     </button>
                 </div>
             </div>
@@ -53,51 +55,67 @@
         <div class="services">
             <ion-list>
                 <ion-item *ngIf="station.DBinformation && station.DBinformation.availability" class="service">
-                    <ion-icon *ngIf="!dropdowns[2]" (click)="toggleDropdown('availability')"
+                    <ion-icon *ngIf="!dropdowns[0]" (click)="toggleDropdown('availability')"
                               name="arrow-down"></ion-icon>
-                    <ion-icon *ngIf="dropdowns[2]" (click)="toggleDropdown('availability')" name="arrow-up"></ion-icon>
+                    <ion-icon *ngIf="dropdowns[0]" (click)="toggleDropdown('availability')" name="arrow-up"></ion-icon>
                     <span (click)="toggleDropdown('availability')">Öffnungszeiten</span>
                     <div id="availabilityDropdown" *ngIf="tc && station.hasTravelCenter">
                         <div class="openingTimes">
-                            <div class="weekday" *ngIf="station.DBinformation.availability.monday">Montag</div>
-                            <div class="times">
-                                {{station.DBinformation.availability.monday.fromTime}} -
-                                {{station.DBinformation.availability.monday.toTime}}
+                            <div class="weekdayCombo">
+                                <div class="weekday" *ngIf="station.DBinformation.availability.monday">Montag</div>
+                                <div class="times">
+                                    {{station.DBinformation.availability.monday.fromTime}} -
+                                    {{station.DBinformation.availability.monday.toTime}}
+                                </div>
                             </div>
-                            <div class="weekday" *ngIf="station.DBinformation.availability.tuesday">Dienstag</div>
-                            <div class="times">
-                                {{station.DBinformation.availability.tuesday.fromTime}} -
-                                {{station.DBinformation.availability.tuesday.toTime}}
+                            <div class="weekdayCombo">
+                                <div class="weekday" *ngIf="station.DBinformation.availability.tuesday">Dienstag</div>
+                                <div class="times">
+                                    {{station.DBinformation.availability.tuesday.fromTime}} -
+                                    {{station.DBinformation.availability.tuesday.toTime}}
+                                </div>
                             </div>
-                            <div class="weekday" *ngIf="station.DBinformation.availability.wednesday">Mittwoch</div>
-                            <div class="times">
-                                {{station.DBinformation.availability.wednesday.fromTime}} -
-                                {{station.DBinformation.availability.wednesday.toTime}}
+                            <div class="weekdayCombo">
+                                <div class="weekday" *ngIf="station.DBinformation.availability.wednesday">Mittwoch</div>
+                                <div class="times">
+                                    {{station.DBinformation.availability.wednesday.fromTime}} -
+                                    {{station.DBinformation.availability.wednesday.toTime}}
+                                </div>
                             </div>
-                            <div class="weekday" *ngIf="station.DBinformation.availability.thursday">Donnerstag</div>
-                            <div class="times">
-                                {{station.DBinformation.availability.thursday.fromTime}} -
-                                {{station.DBinformation.availability.thursday.toTime}}
+                            <div class="weekdayCombo">
+                                <div class="weekday" *ngIf="station.DBinformation.availability.thursday">Donnerstag</div>
+                                <div class="times">
+                                    {{station.DBinformation.availability.thursday.fromTime}} -
+                                    {{station.DBinformation.availability.thursday.toTime}}
+                                </div>
                             </div>
-                            <div class="weekday" *ngIf="station.DBinformation.availability.friday">Freitag</div>
-                            <div class="times">
-                                {{station.DBinformation.availability.friday.fromTime}} -
-                                {{station.DBinformation.availability.friday.toTime}}
+                            <div class="weekdayCombo">
+                                <div class="weekday" *ngIf="station.DBinformation.availability.friday">Freitag</div>
+                                <div class="times">
+                                    {{station.DBinformation.availability.friday.fromTime}} -
+                                    {{station.DBinformation.availability.friday.toTime}}
+                                </div>
                             </div>
-                            <div class="weekday" *ngIf="station.DBinformation.availability.saturday">Samstag</div>
-                            <div class="times">
-                                {{station.DBinformation.availability.saturday.fromTime}} -
-                                {{station.DBinformation.availability.saturday.toTime}}
+                            <div class="weekdayCombo">
+                                <div class="weekday" *ngIf="station.DBinformation.availability.saturday">Samstag</div>
+                                <div class="times">
+                                    {{station.DBinformation.availability.saturday.fromTime}} -
+                                    {{station.DBinformation.availability.saturday.toTime}}
+                                </div>
                             </div>
-                            <div class="weekday" *ngIf="station.DBinformation.availability.sunday">Sonntag</div>
-                            <div class="times">
-                                {{station.DBinformation.availability.sunday.fromTime}} -
-                                {{station.DBinformation.availability.sunday.toTime}}
+                            <div class="weekdayCombo">
+                                <div class="weekday" *ngIf="station.DBinformation.availability.sunday">Sonntag</div>
+                                <div class="times">
+                                    {{station.DBinformation.availability.sunday.fromTime}} -
+                                    {{station.DBinformation.availability.sunday.toTime}}
+                                </div>
                             </div>
-                            <div class="weekday" *ngIf="station.DBinformation.availability.holiday">Feiertage</div>
-                            <div class="times" *ngIf="station.DBinformation.availability.holiday">
-                                {{station.DBinformation.availability.holiday.fromTime}} -
-                                {{station.DBinformation.availability.holiday.toTime}}
+                            <div class="weekdayCombo">
+                                <div class="weekday" *ngIf="station.DBinformation.availability.holiday">Feiertage</div>
+                                <div class="times" *ngIf="station.DBinformation.availability.holiday">
+                                    {{station.DBinformation.availability.holiday.fromTime}} -
+                                    {{station.DBinformation.availability.holiday.toTime}}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -124,41 +142,55 @@
                     <div id="travelCenterDropdown" *ngIf="tc && station.hasTravelCenter">
                         <div class="tcOpeningTimes">
                             <h5>Öffnungszeiten</h5>
-                            <div class="weekday">Montag</div>
-                            <div class="times">
-                                <div *ngFor="let time of tc.openingTimes['mon']">{{time}}</div>
-                                <div *ngIf="!tc.openingTimes['mon'] || tc.openingTimes['mon'].length == 0">geschlossen</div>
+                            <div class="weekdayCombo">
+                                <div class="weekday">Montag</div>
+                                <div class="times">
+                                    <div *ngFor="let time of tc.openingTimes['mon']">{{time}}</div>
+                                    <div *ngIf="!tc.openingTimes['mon'] || tc.openingTimes['mon'].length == 0">geschlossen</div>
+                                </div>
                             </div>
-                            <div class="weekday">Dienstag</div>
-                            <div class="times">
-                                <div *ngFor="let time of tc.openingTimes['tue']">{{time}}</div>
-                                <div *ngIf="!tc.openingTimes['tue'] || tc.openingTimes['tue'].length == 0">geschlossen</div>
+                            <div class="weekdayCombo">
+                                <div class="weekday">Dienstag</div>
+                                <div class="times">
+                                    <div *ngFor="let time of tc.openingTimes['tue']">{{time}}</div>
+                                    <div *ngIf="!tc.openingTimes['tue'] || tc.openingTimes['tue'].length == 0">geschlossen</div>
+                                </div>
                             </div>
-                            <div class="weekday">Mittwoch</div>
-                            <div class="times">
-                                <div *ngFor="let time of tc.openingTimes['wed']">{{time}}</div>
-                                <div *ngIf="!tc.openingTimes['wed'] || tc.openingTimes['wed'].length == 0">geschlossen</div>
+                            <div class="weekdayCombo">
+                                <div class="weekday">Mittwoch</div>
+                                <div class="times">
+                                    <div *ngFor="let time of tc.openingTimes['wed']">{{time}}</div>
+                                    <div *ngIf="!tc.openingTimes['wed'] || tc.openingTimes['wed'].length == 0">geschlossen</div>
+                                </div>
                             </div>
-                            <div class="weekday">Donnerstag</div>
-                            <div class="times">
-                                <div *ngFor="let time of tc.openingTimes['thu']">{{time}}</div>
-                                <div *ngIf="!tc.openingTimes['thu'] || tc.openingTimes['thu'].length == 0">geschlossen</div>
+                            <div class="weekdayCombo">
+                                <div class="weekday">Donnerstag</div>
+                                <div class="times">
+                                    <div *ngFor="let time of tc.openingTimes['thu']">{{time}}</div>
+                                    <div *ngIf="!tc.openingTimes['thu'] || tc.openingTimes['thu'].length == 0">geschlossen</div>
+                                </div>
                             </div>
-                            <div class="weekday">Freitag</div>
-                            <div class="times">
-                                <div *ngFor="let time of tc.openingTimes['fri']">{{time}}</div>
-                                <div *ngIf="!tc.openingTimes['fri'] || tc.openingTimes['fri'].length == 0">geschlossen</div>
+                            <div class="weekdayCombo">
+                                <div class="weekday">Freitag</div>
+                                <div class="times">
+                                    <div *ngFor="let time of tc.openingTimes['fri']">{{time}}</div>
+                                    <div *ngIf="!tc.openingTimes['fri'] || tc.openingTimes['fri'].length == 0">geschlossen</div>
+                                </div>
                             </div>
-                            <div class="weekday">Samstag</div>
-                            <div class="times">
-                                <div *ngFor="let time of tc.openingTimes['sat']">{{time}}</div>
-                                <div *ngIf="!tc.openingTimes['sat'] || tc.openingTimes['sat'].length == 0">geschlossen</div>
+                            <div class="weekdayCombo">
+                                <div class="weekday">Samstag</div>
+                                <div class="times">
+                                    <div *ngFor="let time of tc.openingTimes['sat']">{{time}}</div>
+                                    <div *ngIf="!tc.openingTimes['sat'] || tc.openingTimes['sat'].length == 0">geschlossen</div>
+                                </div>
                             </div>
-                            <div class="weekday">Sonntag</div>
-                            <div class="times">
-                                <div *ngFor="let time of tc.openingTimes['sun']">{{time}}</div>
-                                <div *ngIf="!tc.openingTimes['sun'] || tc.openingTimes['sun'].length == 0">geschlossen</div>
-                            </div> //@todo ACHTUNG!! FORMATIERUNG FALSCH, beispiel dingolfing!
+                            <div class="weekdayCombo">
+                                <div class="weekday">Sonntag</div>
+                                <div class="times">
+                                    <div *ngFor="let time of tc.openingTimes['sun']">{{time}}</div>
+                                    <div *ngIf="!tc.openingTimes['sun'] || tc.openingTimes['sun'].length == 0">geschlossen</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </ion-item>

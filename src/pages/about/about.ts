@@ -12,12 +12,15 @@ import {FastaPage} from "../fasta/fasta";
 })
 export class AboutPage {
     public station: any;
-    public dropdowns: boolean[] = [false, false, false]; //@todo dropdowns ordnen
+    public dropdowns: boolean[] = [false, false];
     public tc: any;
     public stationParking: boolean = false;
 
     constructor(public navCtrl: NavController, public events: Events, public TC: TravelCenterProvider, public fasta: FastaProvider, public navParams: NavParams, public data: DataProvider) {
         this.station = this.data.aktStation;
+
+        this.dropdowns[0] = false;
+        this.dropdowns[1] = false;
 
         if (this.station) {
             this.station.fasta = false;
@@ -35,10 +38,6 @@ export class AboutPage {
 
     ionViewWillEnter() {
         this.station = this.data.aktStation;
-
-        for (let dropdown of this.dropdowns) { // damit bei neu laden die Pfeile richtig orientiert sind
-            dropdown = false;
-        }
 
         if(this.station) {
             this.station.fasta = false;
@@ -111,12 +110,10 @@ export class AboutPage {
 
     toggleDropdown(service) {
         let id;
-        if (service == 'parking') {
-            id = 0;
-        } else if (service == 'travelCenter') {
+        if (service == 'travelCenter') {
             id = 1;
         } else if (service == 'availability') {
-            id = 2;
+            id = 0;
         } else return null;
 
         this.dropdowns[id] = !this.dropdowns[id];

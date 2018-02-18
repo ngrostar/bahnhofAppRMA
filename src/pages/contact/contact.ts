@@ -98,9 +98,8 @@ export class ContactPage {
 
 
                 let datePipe = new DatePipe('de');
-                let test = datePipe.transform(new Date(detailedPP.allocation.timestamp), 'dd. MMMM y HH:mm');
-                console.log("DATUM:", test);
-                pp.timestamp.replace('T', '\ '); // @todo
+                pp.timestamp = 'Stand: ';
+                pp.timestamp += datePipe.transform(new Date(detailedPP.allocation.timestamp), 'dd. MMMM y HH:mm');
                 pp.timestamp += ' Uhr';
             });
         }
