@@ -37,24 +37,16 @@ export class HomePage {
     public loadingPopup2: any;
 
     constructor(public navCtrl: NavController, public events: Events, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public data: DataProvider, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider, public Parkplatz: ParkplatzProvider, public Contacts: Contacts) {
-        this.loadStada('stations'); // stations/{id} oder szentralen/{id})
+        this.loadStada('stations'); // mögl. Parameter: stations/{id} oder szentralen/{id})
 
         this.loadingPopup = this.loadingCtrl.create({
             spinner: 'dots',
-            // content: '<div class="custom-spinner-container"><div class="custom-spinner-box"></div></div>'
             content: 'Stationsdaten werden geladen...'
         });
 
         this.loadingPopup.present();
 
         this.loadMap();
-        /* this.loadingPopup2 = this.loadingCtrl.create({
-             spinner: 'dots',
-             // content: '<div class="custom-spinner-container"><div class="custom-spinner-box"></div></div>'
-             content: 'Parkplätze werden geladen...'
-         });
-
-         this.loadingPopup2.present();*/
 
         this.loadParkplatz("spaces/pit");
 
@@ -100,10 +92,6 @@ export class HomePage {
     clearAktStation() {
         this.aktStation = null;
         this.updateAktStation();
-    }
-
-    ionViewDidLoad() {
-        // this.loadMap();
     }
 
     isAktFavorite(): boolean {
@@ -355,8 +343,6 @@ export class HomePage {
                 }
             }
         }
-
-        console.log("nearby stations" , nearbyStations);
 
         for(let nStation of nearbyStations) {
             this.addSpecificMarker(nStation);
