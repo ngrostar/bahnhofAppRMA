@@ -6,6 +6,7 @@ import {Geolocation} from '@ionic-native/geolocation';  // https://ionicframewor
 import 'rxjs/operator/map';
 import * as $ from 'jquery';
 import {DataProvider} from "../../providers/data/data";
+import {Contacts, Contact, ContactField, ContactName} from '@ionic-native/contacts';
 import {ParkplatzProvider} from "../../providers/parkplatz/parkplatz";
 
 declare let google;
@@ -27,13 +28,15 @@ export class HomePage {
     public contacts: any = [];
     public searchInput: any;
     public stationnames: any = []; // Array der Stationnamen, mit stations geht die Suche NICHT :( ecvtl station.name
+    private geocoder = new google.maps.Geocoder();
     public detailsHidden: boolean = false;
     public locMarker: any;
     public timer: any;
     public loadingPopup: any;
     public pps: any;
+    public loadingPopup2: any;
 
-    constructor(public navCtrl: NavController, public events: Events, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public data: DataProvider, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider, public Parkplatz: ParkplatzProvider) {
+    constructor(public navCtrl: NavController, public events: Events, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public data: DataProvider, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider, public Parkplatz: ParkplatzProvider, public Contacts: Contacts) {
         this.loadStada('stations'); // mögl. Parameter: stations/{id} oder szentralen/{id})
 
         this.loadingPopup = this.loadingCtrl.create({
@@ -268,6 +271,22 @@ export class HomePage {
 
     }
 
+    //Brauchen wir das noch?
+    geocode(station) {
+        let address = station.mailingAddress.street + " " + station.mailingAddress.zipcode + " " + station.mailingAddress.city;
+        console.log('trying to get coords for ' + address);
+        this.geocoder.geocode({ 'address': address }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+
+                let ll = new google.maps.LatLng(50, 8);
+                this.map.setCenter(ll);
+            } else {
+                console.log('Geocode for ' + station.name + ' was not successful for the following reason: ' + status);
+            }
+        });
+
+    }
+
     initializeStations() {
         this.stationnames = [];
         for (let station of this.stations) {
@@ -290,6 +309,7 @@ export class HomePage {
             this.stationnames = this.stationnames.filter((station) => {
                 return (station.toLowerCase().indexOf(val.toLowerCase()) > -1);
             });
+            // this.findContacts(val); auskommentiert, da sonst fehler: cordova.js wird nicht richtig eingebunden
         } else { // clear list
             this.stationnames = [];
             $('.scroll-content').addClass('overflowHidden');
@@ -349,6 +369,15 @@ export class HomePage {
         }
 
         $('.scroll-content').addClass('overflowHidden');
+    }
+
+    findContacts(searchInput) {
+        this.Contacts.find(['addresses', 'name', 'photos'],
+            { filter: searchInput, multiple: true, desiredFields: ['name', 'addresses', 'photos'] })
+            .then((data) => {
+                console.log("Contacts", data);
+                this.contacts = data;
+        });
     }
 
     openDetails() {
