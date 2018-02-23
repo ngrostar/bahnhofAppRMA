@@ -6,7 +6,6 @@ import {Geolocation} from '@ionic-native/geolocation';  // https://ionicframewor
 import 'rxjs/operator/map';
 import * as $ from 'jquery';
 import {DataProvider} from "../../providers/data/data";
-import {Contacts, Contact, ContactField, ContactName} from '@ionic-native/contacts';
 import {ParkplatzProvider} from "../../providers/parkplatz/parkplatz";
 
 declare let google;
@@ -28,15 +27,13 @@ export class HomePage {
     public contacts: any = [];
     public searchInput: any;
     public stationnames: any = []; // Array der Stationnamen, mit stations geht die Suche NICHT :( ecvtl station.name
-    private geocoder = new google.maps.Geocoder();
     public detailsHidden: boolean = false;
     public locMarker: any;
     public timer: any;
     public loadingPopup: any;
     public pps: any;
-    public loadingPopup2: any;
 
-    constructor(public navCtrl: NavController, public events: Events, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public data: DataProvider, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider, public Parkplatz: ParkplatzProvider, public Contacts: Contacts) {
+    constructor(public navCtrl: NavController, public events: Events, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public data: DataProvider, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider, public Parkplatz: ParkplatzProvider) {
         this.loadStada('stations'); // mögl. Parameter: stations/{id} oder szentralen/{id})
 
         this.loadingPopup = this.loadingCtrl.create({
@@ -48,7 +45,7 @@ export class HomePage {
 
         this.loadMap();
 
-        this.loadParkplatz("spaces/pit");
+        this.loadParkplatz("spaces");
 
         if (localStorage.getItem('favoriteStations')) {
             this.favorites = (localStorage.getItem('favoriteStations')).split(',');
@@ -62,8 +59,7 @@ export class HomePage {
     public loadParkplatz(param) {
         this.Parkplatz.load(param).then(data => {
             this.pps = data['items'];
-            console.log("Parkplätze ohne Belegungen");
-            console.log(this.pps);
+            console.log('Parkplätze', this.pps);
             this.loadedPPs = true;
             if (this.loadedStada) {
                 this.loadingPopup.dismiss();
@@ -134,8 +130,6 @@ export class HomePage {
             $('.cancelSearch').show();
             $('.scroll-content').removeClass('overflowHidden');
         }
-
-        console.log(this.stationnames);
     }
 
     cancelSearch() {
@@ -152,8 +146,7 @@ export class HomePage {
     loadStada(param) {
         this.Stada.load(param).then(data => {
             this.stations = data['result'];
-            console.log("STATIONEN");
-            console.log(this.stations);
+            console.log('Stationen', this.stations);
             this.loadedStada = true;
             if (this.loadedPPs) {
                 this.loadingPopup.dismiss();
@@ -165,18 +158,16 @@ export class HomePage {
     loadAllFotos() {
         this.Bfotos.load('stations?hasPhoto=true').then((data) => {
             let fotos;
-            fotos = data; // beschwert sich, ist aber array und funktioniert auch
-            console.log("Fotos", fotos);
+            fotos = data;
 
-            for(let foto of fotos) {
-
+            for(let foto of fotos) { // add photo to all stations that have one
                 let currStation = this.stations.find(station => station.number == foto.id);
                 if(currStation) {
                     currStation.fotoURL = foto.photoUrl;
                 }
             }
         });
-        console.log('loaded all fotos');
+        console.log('Loaded all photos');
     }
 
     loadMap() {
@@ -219,7 +210,7 @@ export class HomePage {
             $('.scroll-content').addClass('overflowHidden');
 
         }, (err) => {
-            console.log(err);
+            console.log('Fehler beim Laden der Map:', err);
         });
     }
 
@@ -277,22 +268,6 @@ export class HomePage {
 
     }
 
-    //Brauchen wir das noch?
-    geocode(station) {
-        let address = station.mailingAddress.street + " " + station.mailingAddress.zipcode + " " + station.mailingAddress.city;
-        console.log('trying to get coords for ' + address);
-        this.geocoder.geocode({ 'address': address }, function (results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-
-                let ll = new google.maps.LatLng(50, 8);
-                this.map.setCenter(ll);
-            } else {
-                console.log('Geocode for ' + station.name + ' was not successful for the following reason: ' + status);
-            }
-        });
-
-    }
-
     initializeStations() {
         this.stationnames = [];
         for (let station of this.stations) {
@@ -315,7 +290,6 @@ export class HomePage {
             this.stationnames = this.stationnames.filter((station) => {
                 return (station.toLowerCase().indexOf(val.toLowerCase()) > -1);
             });
-            // this.findContacts(val); auskommentiert, da sonst fehler: cordova.js wird nicht richtig eingebunden
         } else { // clear list
             this.stationnames = [];
             $('.scroll-content').addClass('overflowHidden');
@@ -370,20 +344,11 @@ export class HomePage {
         this.toggleDetails(true);
         $('.filteredStations').hide();
 
-        if(this.aktStation.fotoURL) {
-            this.map.panBy(0, 140); // show marker in visible mapBounds
+        if(this.aktStation.fotoURL) { // detail window incl. Photo hides marker
+            this.map.panBy(0, 140);   // => show marker in visible mapBounds
         }
 
         $('.scroll-content').addClass('overflowHidden');
-    }
-
-    findContacts(searchInput) {
-        this.Contacts.find(['addresses', 'name', 'photos'],
-            { filter: searchInput, multiple: true, desiredFields: ['name', 'addresses', 'photos'] })
-            .then((data) => {
-                console.log("Contacts", data);
-                this.contacts = data;
-        });
     }
 
     openDetails() {

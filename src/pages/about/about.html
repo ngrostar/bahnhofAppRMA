@@ -211,8 +211,7 @@
                 </ion-item>
                 <ion-item class="service">
                     <span>Mobilitätsservice</span>
-                    <span class="comment"
-                          *ngIf="station.hasMobilityService != 'no' && station.hasMobilityService != 'yes'">{{station.hasMobilityService}}</span>
+                    <div class="comment" *ngIf="station.hasMobilityService != 'no' && station.hasMobilityService != 'yes'">{{station.hasMobilityService}}</div>
                     <ion-icon *ngIf="station.hasMobilityService != 'no'" name="checkmark-circle-outline"></ion-icon>
                     <ion-icon *ngIf="station.hasMobilityService == 'no'" name="close-circle"></ion-icon>
                 </ion-item>

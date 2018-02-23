@@ -37,7 +37,7 @@ export class ContactPage {
         });
     }
     openIAB(){
-        this.iab.create(this.parkingspaces.operatorURL);
+        this.iab.create(this.parkingspaces.operatorURL); // @TODO!!!
     }
     pushPage() {
         /*this.navCtrl.push(PushPage, {
@@ -61,22 +61,6 @@ export class ContactPage {
     showInMaps(pp) {
         let data = {'pp': pp, 'ppView': true};
         this.navCtrl.push(FastaPage, data);
-    }
-
-    public loadParkplatz(param) {
-        this.Parkplatz.load(param).then(data => {
-
-            this.pps = data['items'];
-            console.log("Parkplätze ohne Belegungen");
-            console.log(this.pps);
-            this.loaded = true;
-            if (this.station) {
-                this.loadStationParking();
-            }
-            this.loadingPopup.dismiss();
-            return true;
-        });
-        return false;
     }
 
     loadStationParking() {
