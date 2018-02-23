@@ -105,7 +105,7 @@ export class HomePage {
     toggleFavorite() {
         if (this.isAktFavorite()) {
             const index: number = this.favorites.indexOf(this.aktStation.name);
-            if (index !== -1) {
+            if (index !== -1) { // remove current station from favorites
                 this.favorites.splice(index, 1);
             }
             localStorage.setItem('favoriteStations', this.favorites);
@@ -122,10 +122,8 @@ export class HomePage {
         }
 
         if (this.favorites.length === 0) {
-            // alert("Keine Favoriten");
             let alert = this.alertCtrl.create({
                 title: 'Keine Favoriten',
-                subTitle: '<ion-icon name="heart-outline"></ion-icon>',
                 buttons: ['OK']
             });
             alert.present();

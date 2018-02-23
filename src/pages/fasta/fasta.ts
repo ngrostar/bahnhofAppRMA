@@ -96,10 +96,6 @@ export class FastaPage {
             }
         }
 
-        if (latLng === null) {
-            // Koordinaten ersetzen
-        }
-
         let mapOptions = {
             center: latLng,
             zoom: 17,
