@@ -119,6 +119,16 @@ home-page {
                 margin-top: 10px;
             }
 
+            img {
+                display: block;
+                margin: auto;
+                max-height: 250px;
+            }
+
+            .contactAddress {
+                font-size: 1.5rem;
+            }
+
             button {
                 width: 48%;
 
@@ -130,7 +140,6 @@ home-page {
             button.details {
                 float: right;
             }
-
         }
     }
 

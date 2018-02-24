@@ -31,7 +31,6 @@ export class ContactPage {
             this.parkingspaces = [];
             this.station = station;
             if (this.pps && this.station) {
-                console.log('Hallo aus der if this.pps');
                 this.loadStationParking();
             }
         });

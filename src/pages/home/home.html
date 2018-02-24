@@ -20,8 +20,8 @@
             </div>
         </ion-item>
         <ion-item *ngFor="let contact of contacts">
-            <div class="foundStation" (click)="foundContact(contact)"> <!--@todo-->
-                {{contact.name}}
+            <div class="foundStation" *ngIf="contact.addresses.length() > 0" (click)="foundContact(contact)"> <!--@todo-->
+                {{contact.displayName}}
             </div>
         </ion-item>
     </ion-list>
@@ -53,6 +53,7 @@
             </div>
             <h6>{{aktStation.name}}</h6>
             <img *ngIf="aktStation.fotoURL" class="bfoto" src="{{aktStation.fotoURL}}"/>
+            <div *ngIf="!aktStation.isContact; else contactAddress">
             <button ion-button (click)="toggleFavorite()" color="secondary">
                 <ion-icon *ngIf="isAktFavorite(); else notFave" name="heart"></ion-icon>
                 <ng-template #notFave>
@@ -64,6 +65,12 @@
                 <ion-icon name="arrow-forward"></ion-icon>
                 Details
             </button>
+            </div>
+            <ng-template #contactAddress>
+                <p class="contactAddress">
+                    {{aktStation.address}}
+                </p>
+            </ng-template>
         </div>
     </div>
 </ion-content>

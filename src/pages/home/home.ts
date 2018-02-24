@@ -6,7 +6,7 @@ import {Geolocation} from '@ionic-native/geolocation';  // https://ionicframewor
 import 'rxjs/operator/map';
 import * as $ from 'jquery';
 import {DataProvider} from "../../providers/data/data";
-import {Contacts, Contact, ContactField, ContactName} from '@ionic-native/contacts';
+import {Contacts} from '@ionic-native/contacts';
 import {ParkplatzProvider} from "../../providers/parkplatz/parkplatz";
 
 declare let google;
@@ -34,7 +34,6 @@ export class HomePage {
     public timer: any;
     public loadingPopup: any;
     public pps: any;
-    public loadingPopup2: any;
 
     constructor(public navCtrl: NavController, public events: Events, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public data: DataProvider, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider, public Parkplatz: ParkplatzProvider, public Contacts: Contacts) {
         this.loadStada('stations'); // mögl. Parameter: stations/{id} oder szentralen/{id})
@@ -85,6 +84,11 @@ export class HomePage {
         } else {
             $('.detailBox').css('max-height', '500px');
             $('#stationDetails').css('max-height', '600px'); //unschöner Workaround
+            $('.detailBox img').css('max-height', '201px'); //unschöner Workaround
+
+            // @Todo will iwie nicht
+            console.log('max-height ' + Math.floor(window.innerHeight/3) + 'px');
+            // $('.bfoto').css('max-height', Math.floor(window.innerHeight/3) + 'px');
         }
     }
 
@@ -163,9 +167,9 @@ export class HomePage {
             let fotos;
             fotos = data;
 
-            for(let foto of fotos) { // add photo to all stations that have one
+            for (let foto of fotos) { // add photo to all stations that have one
                 let currStation = this.stations.find(station => station.number == foto.id);
-                if(currStation) {
+                if (currStation) {
                     currStation.fotoURL = foto.photoUrl;
                 }
             }
@@ -242,8 +246,8 @@ export class HomePage {
                 let coords = eN.geographicCoordinates.coordinates;
                 let latLng = new google.maps.LatLng(coords[1], coords[0]);
 
-                for(let marker of this.markers) { // remove duplicate markers
-                    if(marker.getPosition().equals(latLng)) {
+                for (let marker of this.markers) { // remove duplicate markers
+                    if (marker.getPosition().equals(latLng)) {
                         marker.setMap(null);
                     }
                 }
@@ -271,17 +275,19 @@ export class HomePage {
 
     }
 
-    //Brauchen wir das noch?
-    geocode(station) {
-        let address = station.mailingAddress.street + " " + station.mailingAddress.zipcode + " " + station.mailingAddress.city;
-        console.log('trying to get coords for ' + address);
-        this.geocoder.geocode({ 'address': address }, function (results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
+    geocode(address) {
+        // let formattedAddress = address.streetAddress + " " + address.postalCode + " " + address.locality;
+        let formattedAddress = 'Albrechtstraße 30  Osnabrück';
 
-                let ll = new google.maps.LatLng(50, 8);
-                this.map.setCenter(ll);
+        console.log('trying to get coords for ' + formattedAddress);
+        this.geocoder.geocode({ 'address': formattedAddress }, (results, status) => {
+            if (status == google.maps.GeocoderStatus.OK) {
+                console.log('geocoding results ', results);
+
+                return results[0];
             } else {
-                console.log('Geocode for ' + station.name + ' was not successful for the following reason: ' + status);
+                console.log('Geocode for ' + formattedAddress + ' was not successful for the following reason: ' + status);
+                return false;
             }
         });
 
@@ -309,7 +315,7 @@ export class HomePage {
             this.stationnames = this.stationnames.filter((station) => {
                 return (station.toLowerCase().indexOf(val.toLowerCase()) > -1);
             });
-            // this.findContacts(val); auskommentiert, da sonst fehler: cordova.js wird nicht richtig eingebunden
+            this.findContacts(val); // auskommentiert, da sonst fehler: cordova.js wird nicht richtig eingebunden
         } else { // clear list
             this.stationnames = [];
             $('.scroll-content').addClass('overflowHidden');
@@ -336,11 +342,11 @@ export class HomePage {
             }
         }
 
-        for(let nStation of nearbyStations) {
+        for (let nStation of nearbyStations) {
             this.addSpecificMarker(nStation);
         }
 
-        if(nearbyStations.length === 0) {
+        if (nearbyStations.length === 0) {
             let alert = this.alertCtrl.create({
                 title: 'Keine Stationen im aktuellen Bildausschnitt gefunden.',
                 buttons: ['OK']
@@ -361,10 +367,11 @@ export class HomePage {
         this.aktStation = aktStation;
         this.updateAktStation();
 
+
         this.toggleDetails(true);
         $('.filteredStations').hide();
 
-        if(this.aktStation.fotoURL) { // detail window incl. Photo hides marker
+        if (this.aktStation.fotoURL) { // detail window incl. Photo hides marker
             this.map.panBy(0, 140);   // => show marker in visible mapBounds
         }
 
@@ -372,12 +379,68 @@ export class HomePage {
     }
 
     findContacts(searchInput) {
-        this.Contacts.find(['addresses', 'name', 'photos'],
-            { filter: searchInput, multiple: true, desiredFields: ['name', 'addresses', 'photos'] })
+        this.Contacts.find(['addresses', 'name'],
+            { filter: searchInput, multiple: true, desiredFields: ['name', 'addresses']})
             .then((data) => {
                 console.log("Contacts", data);
                 this.contacts = data;
-        });
+            });
+    }
+
+    foundContact(contact) {
+        this.cancelSearch();
+        let aktContact;
+        aktContact = {
+            name: contact.displayName,
+            isContact: true
+        };
+
+        let atLeastOneAddressWorking: boolean = false;
+
+        for (let address of contact.addresses) {
+            let result;
+            result = this.geocode(address);
+
+            atLeastOneAddressWorking = atLeastOneAddressWorking || result;
+
+            if (result) {
+                aktContact.address = result.formatted_address.Replace(",","\n");
+                let latLng = result.geometry.location;
+
+                for (let marker of this.markers) { // remove duplicate markers
+                    if (marker.getPosition().equals(latLng)) {
+                        marker.setMap(null);
+                    }
+                }
+
+                this.map.setCenter(latLng);
+
+                let marker = new google.maps.Marker({
+                    map: this.map,
+                    animation: google.maps.Animation.DROP,
+                    position: latLng
+                });
+
+                this.markers.push(marker);
+
+                google.maps.event.addListener(marker, 'click', (data) => {
+                    this.toggleDetails(false);
+                    this.aktStation = aktContact;
+                    this.updateAktStation();
+                    this.toggleDetails(true);
+                });
+            }
+        }
+        if(atLeastOneAddressWorking) {
+            this.aktStation = aktContact;
+            this.updateAktStation();
+            console.log("aktStation ist ein Contact", aktContact);
+
+            this.toggleDetails(true);
+            $('.filteredStations').hide();
+
+            $('.scroll-content').addClass('overflowHidden');
+        }
     }
 
     openDetails() {
