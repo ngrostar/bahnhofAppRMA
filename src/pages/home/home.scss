@@ -86,6 +86,11 @@ home-page {
 
     .foundStation {
         cursor: pointer;
+
+        span.addressType {
+            font-size: 1.5rem;
+            font-style: italic;
+        }
     }
 
     #stationDetails {
@@ -121,7 +126,7 @@ home-page {
 
             img {
                 display: block;
-                margin: auto;
+                margin: 5px auto;
                 max-height: 250px;
             }
 
@@ -130,15 +135,17 @@ home-page {
             }
 
             button {
-                width: 48%;
+                &.half{
+                    width: 48%;
+                }
+
+                &.details {
+                    float: right;
+                }
 
                 ion-icon {
                     padding-right: 10px;
                 }
-            }
-
-            button.details {
-                float: right;
             }
         }
     }

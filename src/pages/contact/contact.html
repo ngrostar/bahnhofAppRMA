@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content padding>
-    <div *ngIf="!station; else stationSelected" class="noStationSelected">
+    <div *ngIf="(!station || station.isContact); else stationSelected" class="noStationSelected">
         <p>Bitte wählen Sie auf der Karte eine Station, deren Details Sie anzeigen lassen möchten.</p>
         <button ion-button (click)="openKarte()">
             <ion-icon name="map"></ion-icon>
@@ -48,10 +48,10 @@
                             <span class="infoType">Anzahl Behindertenparkplätze</span>
                             <span class="info shortInfo">{{parkingspace.numberHandicapedPlaces}}</span>
                         </ion-item>
-                        <ion-item>
+                        <ion-item *ngIf="parkingspace.capacity">
                             <span class="infoType">Freie Plätze</span>
                             <span class="info shortInfo">{{parkingspace.capacity}}</span>
-                            <div class="info longerInfo">({{parkingspace.timestamp}})</div>
+                            <div class="info longerInfo" *ngIf="parkingspace.timestamp">({{parkingspace.timestamp}})</div>
                         </ion-item>
                         <ion-item>
                             <span class="infoType">Ladestation</span>
@@ -68,7 +68,8 @@
                         </ion-item>
                         <ion-item>
                             <span class="infoType">Betreiber:</span>
-                            <div class="info longerInfo"><a href="#" (click)="openLink(parkingspace.operatorURL)">{{parkingspace.operator}}</a></div>
+                            <div class="info longerInfo" *ngIf="parkingspace.operatorUrl"><a href="#" (click)="openLink(parkingspace.operatorUrl)">{{parkingspace.operator}}</a></div>
+                            <div class="info longerInfo" *ngIf="!parkingspace.operatorUrl">{{parkingspace.operator}}</div>
                         </ion-item>
                     </ion-list>
                     <button ion-button class="tarif" (click)="pushPage()">

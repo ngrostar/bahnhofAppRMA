@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content>
-    <div *ngIf="!station; else stationSelected" class="noStationSelected">
+    <div *ngIf="(!station || station.isContact); else stationSelected" class="noStationSelected">
         <p>Bitte wählen Sie auf der Karte eine Station, deren Informationen Sie anzeigen lassen möchten.</p>
         <button ion-button (click)="openKarte()">
             <ion-icon name="map"></ion-icon>
@@ -235,5 +235,9 @@
         </div>
 
     </ng-template>
+
+    <div class="legalDisclaimer">
+        <p (click)="openLegalPopup()">Rechtliche Hinweise</p>
+    </div>
 
 </ion-content>

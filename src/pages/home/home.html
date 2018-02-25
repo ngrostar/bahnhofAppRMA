@@ -20,8 +20,8 @@
             </div>
         </ion-item>
         <ion-item *ngFor="let contact of contacts">
-            <div class="foundStation" *ngIf="contact.addresses.length() > 0" (click)="foundContact(contact)"> <!--@todo-->
-                {{contact.displayName}}
+            <div class="foundStation" *ngFor="let address of contact.addresses" (click)="foundContact(contact, address)">
+                {{contact.displayName}} <span class="addressType" *ngIf="address.type">{{address.type}}</span>
             </div>
         </ion-item>
     </ion-list>
@@ -54,14 +54,14 @@
             <h6>{{aktStation.name}}</h6>
             <img *ngIf="aktStation.fotoURL" class="bfoto" src="{{aktStation.fotoURL}}"/>
             <div *ngIf="!aktStation.isContact; else contactAddress">
-            <button ion-button (click)="toggleFavorite()" color="secondary">
+            <button class="half" ion-button (click)="toggleFavorite()" color="secondary">
                 <ion-icon *ngIf="isAktFavorite(); else notFave" name="heart"></ion-icon>
                 <ng-template #notFave>
                     <ion-icon name="heart-outline"></ion-icon>
                 </ng-template>
                 Favoriten
             </button>
-            <button ion-button class="details" (click)="openDetails()">
+            <button class="half details" ion-button (click)="openDetails()">
                 <ion-icon name="arrow-forward"></ion-icon>
                 Details
             </button>
@@ -70,6 +70,10 @@
                 <p class="contactAddress">
                     {{aktStation.address}}
                 </p>
+                <button ion-button full (click)="findNearContact()">
+                    <ion-icon name="pin"></ion-icon>
+                    Stationen in der Nähe
+                </button>
             </ng-template>
         </div>
     </div>

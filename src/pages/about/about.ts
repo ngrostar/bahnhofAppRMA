@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {DataProvider} from "../../providers/data/data";
 import {TravelCenterProvider} from "../../providers/travel-center/travel-center";
-import {NavController, Events, NavParams} from 'ionic-angular';
+import {NavController, Events, AlertController} from 'ionic-angular';
 import {FastaProvider} from "../../providers/fasta/fasta";
 import * as $ from "jquery";
 import {FastaPage} from "../fasta/fasta";
@@ -16,7 +16,7 @@ export class AboutPage {
     public tc: any;
     public stationParking: boolean = false;
 
-    constructor(public navCtrl: NavController, public events: Events, public TC: TravelCenterProvider, public fasta: FastaProvider, public navParams: NavParams, public data: DataProvider) {
+    constructor(public navCtrl: NavController, public events: Events, public TC: TravelCenterProvider, public fasta: FastaProvider, public alertCtrl: AlertController, public data: DataProvider) {
         this.station = this.data.aktStation;
 
         this.dropdowns[0] = false;
@@ -145,4 +145,14 @@ export class AboutPage {
         }
     }
 
+    openLegalPopup() {
+        let alert = this.alertCtrl.create({
+            title: 'Rechliche Hinweise',
+            message: 'Die App verwendet Daten der Deutschen Bahn, die unter der Lizenz Creative Commons Attribution 4.0 International (CC BY 4.0) zur Verfügung gestellt werden.<br>' +
+                     'Weitere Informationen: http://data.deutschebahn.com/<br><br>' +
+                     'Erstellt wurde diese App mit dem Framework Ionic. Dessen Lizenzbedingen finden Sie hier: https://ionicframework.com/docs/v1/overview/#license',
+            buttons: ['Schließen']
+        });
+        alert.present();
+    }
 }

@@ -54,7 +54,9 @@ export class ContactPage {
     }
 
     openLink(url) {
-        window.open(url, '_blank', 'location=yes');
+        console.log(url);
+        // window.open(url, '_blank', 'location=yes');
+        this.iab.create('http://' + url);
     }
 
     showInMaps(pp) {

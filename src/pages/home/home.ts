@@ -80,15 +80,10 @@ export class HomePage {
         }
         if (this.detailsHidden === true) {
             $('.detailBox').css('max-height', '0px');
-            $('#stationDetails').css('max-height', '28px'); //unschöner Workaround
+            $('#stationDetails').css('max-height', '28px');
         } else {
             $('.detailBox').css('max-height', '500px');
-            $('#stationDetails').css('max-height', '600px'); //unschöner Workaround
-            $('.detailBox img').css('max-height', '201px'); //unschöner Workaround
-
-            // @Todo will iwie nicht
-            console.log('max-height ' + Math.floor(window.innerHeight/3) + 'px');
-            // $('.bfoto').css('max-height', Math.floor(window.innerHeight/3) + 'px');
+            $('#stationDetails').css('max-height', '600px');
         }
     }
 
@@ -315,15 +310,17 @@ export class HomePage {
             this.stationnames = this.stationnames.filter((station) => {
                 return (station.toLowerCase().indexOf(val.toLowerCase()) > -1);
             });
-            this.findContacts(val); // auskommentiert, da sonst fehler: cordova.js wird nicht richtig eingebunden
+            this.findContacts(val);
         } else { // clear list
             this.stationnames = [];
             $('.scroll-content').addClass('overflowHidden');
         }
     }
 
-    findNearby() {
-        this.clearMarkers();
+    findNearby(givenContact = false) {
+        if(!givenContact) {
+            this.clearMarkers();
+        }
         let bounds = this.map.getBounds();
         let ne = bounds.getNorthEast(); // LatLng of the north-east corner
         let sw = bounds.getSouthWest();
@@ -347,15 +344,34 @@ export class HomePage {
         }
 
         if (nearbyStations.length === 0) {
-            let alert = this.alertCtrl.create({
-                title: 'Keine Stationen im aktuellen Bildausschnitt gefunden.',
-                buttons: ['OK']
-            });
+            let alert;
+            if (givenContact) {
+                alert = this.alertCtrl.create({
+                    title: 'Keine Stationen in der Nähe gefunden.',
+                    message: 'Sie können jedoch den Kartenausschnitt vergrößern und mit "Stationen suchen" nach weiter entfernten Bahnhöfen suchen.',
+                    buttons: ['OK']
+                });
+            } else {
+                alert = this.alertCtrl.create({
+                    title: 'Keine Stationen im aktuellen Bildausschnitt gefunden.',
+                    buttons: ['OK']
+                });
+            }
             alert.present();
         }
 
         this.aktStation = null;
         this.updateAktStation();
+    }
+
+    findNearContact() {
+        if (this.aktStation.location) {
+            this.map.setCenter(this.aktStation.location);
+        }
+
+        this.map.setZoom(12);
+
+        this.findNearby(true);
     }
 
     foundStation(stationname) {
@@ -380,14 +396,16 @@ export class HomePage {
 
     findContacts(searchInput) {
         this.Contacts.find(['addresses', 'name'],
-            { filter: searchInput, multiple: true, desiredFields: ['name', 'addresses']})
+            { filter: searchInput, multiple: true, desiredFields: ['name', 'displayName', 'addresses'] })
             .then((data) => {
                 console.log("Contacts", data);
                 this.contacts = data;
             });
+
+
     }
 
-    foundContact(contact) {
+    foundContact(contact, address) {
         this.cancelSearch();
         let aktContact;
         aktContact = {
@@ -395,43 +413,38 @@ export class HomePage {
             isContact: true
         };
 
-        let atLeastOneAddressWorking: boolean = false;
+        let result;
+        result = this.geocode(address);
 
-        for (let address of contact.addresses) {
-            let result;
-            result = this.geocode(address);
+        if (result) {
+            aktContact.address = result.formatted_address.Replace(",", "\n");
+            let latLng = result.geometry.location;
 
-            atLeastOneAddressWorking = atLeastOneAddressWorking || result;
+            aktContact.location = latLng;
 
-            if (result) {
-                aktContact.address = result.formatted_address.Replace(",","\n");
-                let latLng = result.geometry.location;
-
-                for (let marker of this.markers) { // remove duplicate markers
-                    if (marker.getPosition().equals(latLng)) {
-                        marker.setMap(null);
-                    }
+            for (let marker of this.markers) { // remove duplicate markers
+                if (marker.getPosition().equals(latLng)) {
+                    marker.setMap(null);
                 }
-
-                this.map.setCenter(latLng);
-
-                let marker = new google.maps.Marker({
-                    map: this.map,
-                    animation: google.maps.Animation.DROP,
-                    position: latLng
-                });
-
-                this.markers.push(marker);
-
-                google.maps.event.addListener(marker, 'click', (data) => {
-                    this.toggleDetails(false);
-                    this.aktStation = aktContact;
-                    this.updateAktStation();
-                    this.toggleDetails(true);
-                });
             }
-        }
-        if(atLeastOneAddressWorking) {
+
+            this.map.setCenter(latLng);
+
+            let marker = new google.maps.Marker({
+                map: this.map,
+                animation: google.maps.Animation.DROP,
+                position: latLng
+            });
+
+            this.markers.push(marker);
+
+            google.maps.event.addListener(marker, 'click', (data) => {
+                this.toggleDetails(false);
+                this.aktStation = aktContact;
+                this.updateAktStation();
+                this.toggleDetails(true);
+            });
+
             this.aktStation = aktContact;
             this.updateAktStation();
             console.log("aktStation ist ein Contact", aktContact);
