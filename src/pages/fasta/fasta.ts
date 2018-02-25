@@ -105,7 +105,7 @@ export class FastaPage {
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
         let markericon = {
-            url: '../../assets/imgs/locb.png',
+            url: 'assets/imgs/locb.png',
             scaledSize: new google.maps.Size(30, 30)
         };
 
@@ -123,7 +123,7 @@ export class FastaPage {
         let latLng = new google.maps.LatLng(this.pp.geoLocation.latitude, this.pp.geoLocation.longitude);
 
         let markericon = {
-            url: '../../assets/imgs/parking.png',
+            url: 'assets/imgs/parking.png',
             scaledSize: new google.maps.Size(40, 40)
         };
 
@@ -148,7 +148,7 @@ export class FastaPage {
         let latLng = new google.maps.LatLng(fasta.geocoordY, fasta.geocoordX);
         console.log('working? ', fasta.working);
         let markericon = {
-            url: '../../assets/imgs/' + fasta.type.toLowerCase() + ((fasta.running) ? '1' : '0') + '.png',
+            url: 'assets/imgs/' + fasta.type.toLowerCase() + ((fasta.running) ? '1' : '0') + '.png',
             scaledSize: new google.maps.Size(30, 30)
         };
 
