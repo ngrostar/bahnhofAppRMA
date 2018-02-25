@@ -20,7 +20,7 @@
             </div>
         </ion-item>
         <ion-item *ngFor="let contact of contacts">
-            <div class="foundStation" *ngIf="contact.addresses.length() > 0" (click)="foundContact(contact)"> <!--@todo-->
+            <div class="foundStation" *ngIf="contact.addresses.length > 0" (click)="foundContact(contact)"> <!--@todo-->
                 {{contact.displayName}}
             </div>
         </ion-item>

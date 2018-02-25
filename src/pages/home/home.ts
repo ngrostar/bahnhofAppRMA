@@ -200,7 +200,7 @@ export class HomePage {
             this.map.setCenter(latLng);
 
             let markericon = {
-                url: '../../assets/imgs/locb.png',
+                url: 'assets/imgs/locb.png',
                 scaledSize: new google.maps.Size(30, 30)
             };
 
@@ -276,8 +276,8 @@ export class HomePage {
     }
 
     geocode(address) {
-        // let formattedAddress = address.streetAddress + " " + address.postalCode + " " + address.locality;
-        let formattedAddress = 'Albrechtstraße 30  Osnabrück';
+         let formattedAddress = address.streetAddress + " " + address.postalCode + " " + address.locality;
+        //let formattedAddress = 'Albrechtstraße 30  Osnabrück';
 
         console.log('trying to get coords for ' + formattedAddress);
         this.geocoder.geocode({ 'address': formattedAddress }, (results, status) => {
