@@ -9,6 +9,7 @@ import localeDE from '@angular/common/locales/de';
 // the second parameter 'fr' is optional
 registerLocaleData(localeDE, 'de');
 import * as $ from "jquery";
+import {EmailComposer} from '@ionic-native/email-composer';
 
 declare let google;
 
@@ -37,7 +38,7 @@ export class FastaPage {
     map: any;
     public markers: any = [];
 
-    constructor(public navCtrl: NavController, public geolocation: Geolocation, public navParams: NavParams, public alertCtrl: AlertController, public data: DataProvider, public events: Events) {
+    constructor(public navCtrl: NavController, public geolocation: Geolocation, public navParams: NavParams, public emailComposer: EmailComposer, public alertCtrl: AlertController, public data: DataProvider, public events: Events) {
         this.station = this.data.aktStation;
 
         events.subscribe('station:changed', (station) => {
@@ -215,6 +216,18 @@ export class FastaPage {
                             title = 'Keine Nachricht gesendet';
                             subtitle = '';
                             message = 'Fehlerbeschreibung nicht ausgefüllt';
+                        } else {
+                            this.emailComposer.isAvailable().then((available: boolean) =>{
+                                if(available) {
+                                    let email = {
+                                        to: 'ramona.plogmann@gmail.com',
+                                        subject: 'Fasta Fehlermeldung',
+                                        body: message,
+                                    };
+
+                                    this.emailComposer.open(email);
+                                }
+                            });
                         }
 
                         let alert = this.alertCtrl.create({

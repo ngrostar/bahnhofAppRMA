@@ -22,6 +22,7 @@ import {ParkplatzProvider} from "../providers/parkplatz/parkplatz";
 import {FastaProvider} from '../providers/fasta/fasta';
 import {PushPage} from "../pages/push/push";
 import {Contacts} from '@ionic-native/contacts';
+import {EmailComposer} from '@ionic-native/email-composer';
 import {ContactsMock} from '@ionic-native-mocks/contacts';
 
 @NgModule({
@@ -59,6 +60,7 @@ import {ContactsMock} from '@ionic-native-mocks/contacts';
         Geolocation,
          Contacts,
         DataProvider,
+        EmailComposer,
         TravelCenterProvider,
         ParkplatzProvider,
         FastaProvider

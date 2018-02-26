@@ -271,8 +271,9 @@ export class HomePage {
     }
 
     geocode(address) {
-         let formattedAddress = address.streetAddress + " " + address.postalCode + " " + address.locality;
-        //let formattedAddress = 'Albrechtstraße 30  Osnabrück';
+         let formattedAddress = address.streetAddress + " ";
+         if (address.postalCode) formattedAddress += address.postalCode + " ";
+         if (address.locality)   formattedAddress += address.locality;
 
         console.log('trying to get coords for ' + formattedAddress);
         this.geocoder.geocode({ 'address': formattedAddress }, (results, status) => {
@@ -408,6 +409,7 @@ export class HomePage {
     foundContact(contact, address) {
         this.cancelSearch();
         let aktContact;
+
         aktContact = {
             name: contact.displayName,
             isContact: true
