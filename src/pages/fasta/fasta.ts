@@ -216,18 +216,6 @@ export class FastaPage {
                             title = 'Keine Nachricht gesendet';
                             subtitle = '';
                             message = 'Fehlerbeschreibung nicht ausgefüllt';
-                        } else {
-                            this.emailComposer.isAvailable().then((available: boolean) =>{
-                                if(available) {
-                                    let email = {
-                                        to: 'ramona.plogmann@gmail.com',
-                                        subject: 'Fasta Fehlermeldung',
-                                        body: message,
-                                    };
-
-                                    this.emailComposer.open(email).then(() => {console.log('Email gesendet')},() => {console.log('fehler beim senden')});
-                                }
-                            });
                         }
 
                         let alert = this.alertCtrl.create({
