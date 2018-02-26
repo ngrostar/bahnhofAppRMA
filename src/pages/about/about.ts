@@ -22,7 +22,7 @@ export class AboutPage {
         this.dropdowns[0] = false;
         this.dropdowns[1] = false;
 
-        if (this.station) {
+        if (this.station && !this.station.isContact) {
             this.station.fasta = false;
             this.loadStationParking();
             this.loadTC();
@@ -39,7 +39,7 @@ export class AboutPage {
     ionViewWillEnter() {
         this.station = this.data.aktStation;
 
-        if(this.station) {
+        if(this.station && !this.station.isContact) {
             this.station.fasta = false;
             this.loadStationParking();
             this.loadTC();
