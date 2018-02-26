@@ -270,16 +270,16 @@ export class HomePage {
 
     }
 
-    geocode(address) {
-         let formattedAddress = address.streetAddress + " " + address.postalCode + " " + address.locality;
+    geocode(address, callback) {
+        let formattedAddress = address.streetAddress + " " + address.postalCode + " " + address.locality;
         //let formattedAddress = 'Albrechtstraße 30  Osnabrück';
 
         console.log('trying to get coords for ' + formattedAddress);
-        this.geocoder.geocode({ 'address': formattedAddress }, (results, status) => {
+        this.geocoder.geocode({'address': formattedAddress}, (results, status) => {
             if (status == google.maps.GeocoderStatus.OK) {
                 console.log('geocoding results ', results);
-
-                return results[0];
+                callback(results[0]);
+                // return results;
             } else {
                 console.log('Geocode for ' + formattedAddress + ' was not successful for the following reason: ' + status);
                 return false;
@@ -318,7 +318,7 @@ export class HomePage {
     }
 
     findNearby(givenContact = false) {
-        if(!givenContact) {
+        if (!givenContact) {
             this.clearMarkers();
         }
         let bounds = this.map.getBounds();
@@ -396,7 +396,7 @@ export class HomePage {
 
     findContacts(searchInput) {
         this.Contacts.find(['addresses', 'name'],
-            { filter: searchInput, multiple: true, desiredFields: ['name', 'displayName', 'addresses'] })
+            {filter: searchInput, multiple: true, desiredFields: ['name', 'displayName', 'addresses']})
             .then((data) => {
                 console.log("Contacts", data);
                 this.contacts = data;
@@ -413,52 +413,55 @@ export class HomePage {
             isContact: true
         };
 
-        let result;
-        result = this.geocode(address);
+        this.geocode(address, (result) => {
+            console.log("result", result);
 
-        if (result) {
-            aktContact.address = result.formatted_address.Replace(",", "\n");
-            let latLng = result.geometry.location;
+            if (result) {
+                aktContact.address = result.formatted_address.replace(",", "\n");
 
-            aktContact.location = latLng;
+                let latLng = result.geometry.location;
+                console.log(aktContact.address, latLng);
 
-            for (let marker of this.markers) { // remove duplicate markers
-                if (marker.getPosition().equals(latLng)) {
-                    marker.setMap(null);
+                aktContact.location = latLng;
+
+                for (let marker of this.markers) { // remove duplicate markers
+                    if (marker.getPosition().equals(latLng)) {
+                        marker.setMap(null);
+                    }
                 }
-            }
 
-            this.map.setCenter(latLng);
+                this.map.setCenter(latLng);
 
-            let marker = new google.maps.Marker({
-                map: this.map,
-                animation: google.maps.Animation.DROP,
-                position: latLng
-            });
+                let marker = new google.maps.Marker({
+                    map: this.map,
+                    animation: google.maps.Animation.DROP,
+                    position: latLng
+                });
 
-            this.markers.push(marker);
+                this.markers.push(marker);
 
-            google.maps.event.addListener(marker, 'click', (data) => {
-                this.toggleDetails(false);
+                google.maps.event.addListener(marker, 'click', (data) => {
+                    this.toggleDetails(false);
+                    this.aktStation = aktContact;
+                    this.updateAktStation();
+                    this.toggleDetails(true);
+                });
+
                 this.aktStation = aktContact;
                 this.updateAktStation();
+                console.log("aktStation ist ein Contact", aktContact);
+
                 this.toggleDetails(true);
-            });
+                $('.filteredStations').hide();
 
-            this.aktStation = aktContact;
-            this.updateAktStation();
-            console.log("aktStation ist ein Contact", aktContact);
-
-            this.toggleDetails(true);
-            $('.filteredStations').hide();
-
-            $('.scroll-content').addClass('overflowHidden');
-        }
+                $('.scroll-content').addClass('overflowHidden');
+            }
+        });
     }
 
     openDetails() {
         this.data.aktStation = this.aktStation;
-        this.navCtrl.parent.select(1, { 'aktStation': this.aktStation });
+        this.navCtrl.parent.select(1, {'aktStation': this.aktStation});
     }
 
     updateAktStation() {
