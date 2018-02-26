@@ -225,7 +225,7 @@ export class FastaPage {
                                         body: message,
                                     };
 
-                                    this.emailComposer.open(email);
+                                    this.emailComposer.open(email).then(() => {console.log('Email gesendet')},() => {console.log('fehler beim senden')});
                                 }
                             });
                         }

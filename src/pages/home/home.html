@@ -19,11 +19,11 @@
                 <ion-icon *ngIf="isFavorite(stationname)" name="heart"></ion-icon>
             </div>
         </ion-item>
-        <ion-item *ngFor="let contact of contacts">
-            <div class="foundStation" *ngFor="let address of contact.addresses" (click)="foundContact(contact, address)">
+        <div *ngFor="let contact of contacts">
+            <ion-item class="foundStation" *ngFor="let address of contact.addresses" (click)="foundContact(contact, address)">
                 {{contact.displayName}} <span class="addressType" *ngIf="address.type">{{address.type}}</span>
-            </div>
-        </ion-item>
+            </ion-item>
+        </div>
     </ion-list>
     <div #map id="map"></div>
     <div class="mapButton favoriten" *ngIf="loadedStada" (click)="showFavorites()">
