@@ -9,7 +9,6 @@ import localeDE from '@angular/common/locales/de';
 // the second parameter 'fr' is optional
 registerLocaleData(localeDE, 'de');
 import * as $ from "jquery";
-import {EmailComposer} from '@ionic-native/email-composer';
 
 declare let google;
 
@@ -38,7 +37,7 @@ export class FastaPage {
     map: any;
     public markers: any = [];
 
-    constructor(public navCtrl: NavController, public geolocation: Geolocation, public navParams: NavParams, public emailComposer: EmailComposer, public alertCtrl: AlertController, public data: DataProvider, public events: Events) {
+    constructor(public navCtrl: NavController, public geolocation: Geolocation, public navParams: NavParams, public alertCtrl: AlertController, public data: DataProvider, public events: Events) {
         this.station = this.data.aktStation;
 
         events.subscribe('station:changed', (station) => {
@@ -51,7 +50,6 @@ export class FastaPage {
     }
 
     ionViewWillEnter() {
-        console.log("navParams", this.navParams.get('pp'));
         this.pp = this.navParams.get('pp');
         this.station = this.data.aktStation;
         this.loadMap();
@@ -128,7 +126,7 @@ export class FastaPage {
             scaledSize: new google.maps.Size(40, 40)
         };
 
-        let marker = new google.maps.Marker({
+        new google.maps.Marker({
             map: this.map,
             position: latLng,
             icon: markericon
@@ -147,7 +145,7 @@ export class FastaPage {
 
     addSpecificMarker(fasta) {
         let latLng = new google.maps.LatLng(fasta.geocoordY, fasta.geocoordX);
-        console.log('working? ', fasta.working);
+
         let markericon = {
             url: 'assets/imgs/' + fasta.type.toLowerCase() + ((fasta.running) ? '1' : '0') + '.png',
             scaledSize: new google.maps.Size(30, 30)

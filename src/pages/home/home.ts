@@ -271,7 +271,8 @@ export class HomePage {
     }
 
     geocode(address, callback) {
-        let formattedAddress = address.streetAddress + " ";
+        let formattedAddress = "";
+        if (address.streetAddress) formattedAddress += address.streetAddress + " ";
         if (address.postalCode) formattedAddress += address.postalCode + " ";
         if (address.locality) formattedAddress += address.locality;
 
@@ -280,10 +281,8 @@ export class HomePage {
             if (status == google.maps.GeocoderStatus.OK) {
                 console.log('geocoding results ', results);
                 callback(results[0]);
-                // return results;
             } else {
                 console.log('Geocode for ' + formattedAddress + ' was not successful for the following reason: ' + status);
-                return false;
             }
         });
 

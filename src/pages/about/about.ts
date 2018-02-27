@@ -151,7 +151,7 @@ export class AboutPage {
             message: 'Die App verwendet Daten der Deutschen Bahn, die unter der Lizenz Creative Commons Attribution 4.0 International (CC BY 4.0) zur Verfügung gestellt werden.<br>' +
                      'Weitere Informationen: http://data.deutschebahn.com/<br><br>' +
                      'Erstellt wurde diese App mit dem Framework Ionic. Dessen Lizenzbedingen finden Sie hier: https://ionicframework.com/docs/v1/overview/#license<br><br>' +
-                     '<a href="https://www.freepik.com/free-photos-vectors/vintage" target="_self">Vintage vector created by Ajipebriana - Freepik.com</a>',
+                     '<a href="https://www.freepik.com/free-photos-vectors/vintage" target="_blank">Vintage vector created by Ajipebriana - Freepik.com</a>',
             buttons: ['Schließen']
         });
         alert.present();
