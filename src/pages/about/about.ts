@@ -148,9 +148,9 @@ export class AboutPage {
     openLegalPopup() {
         let alert = this.alertCtrl.create({
             title: 'Rechliche Hinweise',
-            message: 'Die App verwendet Daten der Deutschen Bahn, die unter der Lizenz Creative Commons Attribution 4.0 International (CC BY 4.0) zur Verfügung gestellt werden.<br>' +
-                     'Weitere Informationen: http://data.deutschebahn.com/<br><br>' +
-                     'Erstellt wurde diese App mit dem Framework Ionic. Dessen Lizenzbedingen finden Sie hier: https://ionicframework.com/docs/v1/overview/#license<br><br>' +
+            message: 'Die App verwendet Daten der Deutschen Bahn, die unter der Lizenz <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International (CC BY 4.0)</a> zur Verfügung gestellt werden.<br>' +
+                     'Weitere Informationen: <a href="http://data.deutschebahn.com/" target="_blank">http://data.deutschebahn.com/</a><br><br>' +
+                     'Erstellt wurde diese App mit dem Framework Ionic. Dessen Lizenzbedingen finden Sie <a href="https://ionicframework.com/docs/v1/overview/#license" target="_blank">hier</a>.<br><br>' +
                      '<a href="https://www.freepik.com/free-photos-vectors/vintage" target="_blank">Vintage vector created by Ajipebriana - Freepik.com</a>',
             buttons: ['Schließen']
         });

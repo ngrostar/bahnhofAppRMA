@@ -119,10 +119,15 @@ page-about {
                     }
                 }
 
+                span {
+                    float: left;
+                }
+
                 .comment {
                     font-size: 1rem;
                     display: block;
                     float: left;
+                    clear: left;
                 }
                 ion-icon[name="arrow-down"],
                 ion-icon[name="arrow-up"] {
@@ -138,7 +143,6 @@ page-about {
                     right: 15px;
                     font-size: 2rem;
                 }
-
             }
         }
     }
