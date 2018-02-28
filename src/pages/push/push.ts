@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {DataProvider} from "../../providers/data/data";
 
 /**
@@ -11,28 +11,24 @@ import {DataProvider} from "../../providers/data/data";
 
 @IonicPage()
 @Component({
-  selector: 'page-push',
-  templateUrl: 'push.html',
+    selector: 'page-push',
+    templateUrl: 'push.html',
 })
 export class PushPage {
-  parkingspaces:any;
-  tariffFlags:any;
-  tariffInfo:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public data:DataProvider) {
-    this.parkingspaces=this.data.parkingspaces;
-    console.log(this.parkingspaces);
-    /*this.tariffFlags=this.navParams.get('thing1');
-    console.log("HIER DIE PUSH PAGE!!");
-    console.log(this.tariffFlags);
-    this.tariffInfo=this.navParams.get('thing2');
-    console.log(this.tariffInfo);*/
-  }
+    parkingspaces: any;
+    tariffFlags: any;
+    tariffInfo: any;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PushPage');
-  }
+    constructor(public navCtrl: NavController, public navParams: NavParams, public data: DataProvider) {
+        this.parkingspaces = this.data.parkingspaces;
+        console.log(this.parkingspaces);
+    }
 
-  ionViewWillLeave() {
-   this.navCtrl.popToRoot();
-  }
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad PushPage');
+    }
+
+    ionViewWillLeave() {
+        this.navCtrl.popToRoot();
+    }
 }

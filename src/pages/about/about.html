@@ -26,14 +26,6 @@
                     <div class="street">{{station.mailingAddress.street}}</div>
                     <div class="city">{{station.mailingAddress.zipcode}}&nbsp;{{station.mailingAddress.city}}</div>
                 </div>
-                <!--<div class="pictureButtons">-->
-                <!--<button ion-button outline *ngIf="station.fasta" class="fastaButton" (click)="openFasta()">-->
-                <!--Aufzüge & Rolltreppen-->
-                <!--</button>-->
-                <!--<button ion-button outline *ngIf="stationParking" class="parkingButton" (click)="openParking()">-->
-                <!--<ion-icon name="car"></ion-icon>Parkplätze-->
-                <!--</button>-->
-                <!--</div>-->
                 <div class="pictureButtons">
                     <button ion-button outline *ngIf="stationParking && station.fasta" class="fastaButton" (click)="openFasta()">
                         Aufzüge & Rolltreppen

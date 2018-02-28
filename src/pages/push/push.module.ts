@@ -1,13 +1,14 @@
-import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
-import { PushPage } from './push';
+import {NgModule} from '@angular/core';
+import {IonicPageModule} from 'ionic-angular';
+import {PushPage} from './push';
 
 @NgModule({
-  declarations: [
-    PushPage,
-  ],
-  imports: [
-    IonicPageModule.forChild(PushPage),
-  ],
+    declarations: [
+        PushPage,
+    ],
+    imports: [
+        IonicPageModule.forChild(PushPage),
+    ],
 })
-export class PushPageModule {}
+export class PushPageModule {
+}

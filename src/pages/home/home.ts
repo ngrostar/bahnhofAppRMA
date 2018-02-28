@@ -27,7 +27,7 @@ export class HomePage {
     public favorites: any = [];
     public contacts: any = [];
     public searchInput: any;
-    public stationnames: any = []; // Array der Stationnamen, mit stations geht die Suche NICHT :( ecvtl station.name
+    public stationnames: any = [];
     private geocoder = new google.maps.Geocoder();
     public detailsHidden: boolean = false;
     public locMarker: any;

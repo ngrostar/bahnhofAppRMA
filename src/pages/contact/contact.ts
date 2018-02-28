@@ -17,8 +17,6 @@ export class ContactPage {
     pps: any;
     public numberOfParkingSpaces: any;
     public parkingspaces: any = [];
-    public loadingPopup: any;
-    public loadingPopup2: any;
     public loaded: boolean = false;
 
     constructor(public navCtrl: NavController, public data: DataProvider, public events: Events, public Parkplatz: ParkplatzProvider, public loadingCtrl: LoadingController, public iab:InAppBrowser) {
@@ -36,19 +34,13 @@ export class ContactPage {
         });
     }
     openIAB(){
-        this.iab.create(this.parkingspaces.operatorURL); // @TODO!!!
+        this.iab.create(this.parkingspaces.operatorURL);
     }
     pushPage() {
-        /*this.navCtrl.push(PushPage, {
-            thing1:this.parkingspaces
-        })*/
         this.data.parkingspaces = this.parkingspaces;
         this.navCtrl.push(PushPage);
     }
 
-    /*ionViewWillEnter(){
-        this.loadParkplatz('spaces/pit');
-    }*/
     openKarte() {
         this.navCtrl.parent.select(0);
     }

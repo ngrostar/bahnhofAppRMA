@@ -123,7 +123,7 @@ export class AboutPage {
             $dropdown.css('max-height', '1000px');
             $dropdown.css('display', 'block');
         } else {
-            $dropdown.css('max-height', '0px'); // funktionier nicht. Warum?!
+            $dropdown.css('max-height', '0px');
             $dropdown.css('display', 'none');
         }
     }

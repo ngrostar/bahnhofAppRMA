@@ -6,18 +6,10 @@ import 'rxjs/operator/map';
 import { DatePipe } from '@angular/common';import { registerLocaleData } from '@angular/common';
 import localeDE from '@angular/common/locales/de';
 
-// the second parameter 'fr' is optional
 registerLocaleData(localeDE, 'de');
 import * as $ from "jquery";
 
 declare let google;
-
-/**
- * Generated class for the FastaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -174,10 +166,10 @@ export class FastaPage {
         }
         if (this.detailsHidden === true) {
             $('.detailBox').css('max-height', '0px');
-            $('#fastaDetails').css('max-height', '28px'); //unschöner Workaround
+            $('#fastaDetails').css('max-height', '28px');
         } else {
             $('.detailBox').css('max-height', '500px');
-            $('#fastaDetails').css('max-height', '600px'); //unschöner Workaround
+            $('#fastaDetails').css('max-height', '600px');
         }
     }
 
