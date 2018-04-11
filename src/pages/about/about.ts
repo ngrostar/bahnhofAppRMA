@@ -116,6 +116,7 @@ export class AboutPage {
             id = 0;
         } else return null;
 
+        console.log("versuche zu toggeln" + id, service, this.tc, this.station.hasTravelCenter);
         this.dropdowns[id] = !this.dropdowns[id];
 
         let $dropdown = $('#' + service + 'Dropdown');

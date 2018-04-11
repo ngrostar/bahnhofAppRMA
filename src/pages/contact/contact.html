@@ -72,7 +72,7 @@
                             <div class="info longerInfo" *ngIf="!parkingspace.operatorUrl">{{parkingspace.operator}}</div>
                         </ion-item>
                     </ion-list>
-                    <button ion-button class="tarif" (click)="pushPage()">
+                    <button ion-button class="tarif" (click)="pushPage(parkingspace.id)">
                         Infos rund um den Tarif
                     </button>
                 </ion-slide>

@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {DataProvider} from "../../providers/data/data";
+import * as $ from 'jquery';
 
 /**
  * Generated class for the PushPage page.
@@ -22,10 +23,13 @@ export class PushPage {
     constructor(public navCtrl: NavController, public navParams: NavParams, public data: DataProvider) {
         this.parkingspaces = this.data.parkingspaces;
         console.log(this.parkingspaces);
+        // $('html,body').animate({scrollTop: $("#" + this.data.pid).offset().top}, 1000);
     }
 
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad PushPage');
+    ionViewDidEnter() {
+        // console.log("scrolle gerade", '#'+this.data.pid);
+        // let element = document.getElementById(this.data.pid);
+        // element.scrollIntoView();
     }
 
     ionViewWillLeave() {

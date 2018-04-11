@@ -10,7 +10,7 @@
 <ion-content padding>
 
     <ion-list *ngFor="let parkingspace of parkingspaces">
-        <ion-title>{{parkingspace.name}}</ion-title>
+        <ion-title id="{{parkingspace.id}}">{{parkingspace.name}}</ion-title>
         <ion-item class="service">
             <span>Vergünstigungen mit einer BahnCard</span>
             <ion-icon *ngIf="parkingspace.tariffInfo.isDiscountDbBahnCard" name="close-circle"></ion-icon>

@@ -36,8 +36,10 @@ export class ContactPage {
     openIAB(){
         this.iab.create(this.parkingspaces.operatorURL);
     }
-    pushPage() {
+    pushPage(id) {
         this.data.parkingspaces = this.parkingspaces;
+        this.data.pid = id;
+        console.log("pid gesetzt", this.data.pid);
         this.navCtrl.push(PushPage);
     }
 

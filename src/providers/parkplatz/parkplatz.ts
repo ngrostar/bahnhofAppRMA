@@ -17,12 +17,6 @@ export class ParkplatzProvider {
                 resolve(data);
             }, err => {
                 console.log(err);
-                this.http.get('data/DBRNI-Uebersicht_Bahnhoefe-Stand2016-01.csv').subscribe(data => {
-                    resolve(data);
-                }, err => {
-                    console.log(err);
-                    return 0;
-                })
             });
         });
     }

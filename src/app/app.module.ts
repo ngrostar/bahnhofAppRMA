@@ -22,7 +22,6 @@ import {ParkplatzProvider} from "../providers/parkplatz/parkplatz";
 import {FastaProvider} from '../providers/fasta/fasta';
 import {PushPage} from "../pages/push/push";
 import {Contacts} from '@ionic-native/contacts';
-import {EmailComposer} from '@ionic-native/email-composer';
 import {ContactsMock} from '@ionic-native-mocks/contacts';
 
 @NgModule({
@@ -53,14 +52,13 @@ import {ContactsMock} from '@ionic-native-mocks/contacts';
         StatusBar,
         SplashScreen,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
-        //{ provide: Contacts, useClass: ContactsMock },
+        { provide: Contacts, useClass: ContactsMock },
         StadaProvider,
         InAppBrowser,
         BfotosProvider,
         Geolocation,
-         Contacts,
+         // Contacts,
         DataProvider,
-        EmailComposer,
         TravelCenterProvider,
         ParkplatzProvider,
         FastaProvider

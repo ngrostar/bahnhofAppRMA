@@ -51,7 +51,7 @@
                               name="arrow-down"></ion-icon>
                     <ion-icon *ngIf="dropdowns[0]" (click)="toggleDropdown('availability')" name="arrow-up"></ion-icon>
                     <span (click)="toggleDropdown('availability')">Öffnungszeiten</span>
-                    <div id="availabilityDropdown" *ngIf="tc && station.hasTravelCenter">
+                    <div id="availabilityDropdown">
                         <div class="openingTimes">
                             <div class="weekdayCombo">
                                 <div class="weekday" *ngIf="station.DBinformation.availability.monday">Montag</div>
