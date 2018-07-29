@@ -45,11 +45,13 @@ home-page {
     }
 
     .location {
-        bottom: 10px;
-        left: 10px;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 2px 5px;
 
         ion-icon {
-            font-size: 2.4rem;
+            font-size: 2.2rem;
         }
     }
 

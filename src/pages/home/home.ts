@@ -194,6 +194,19 @@ export class HomePage {
 
             this.map.setCenter(latLng);
 
+            this.map.addListener('zoom_changed', () => {
+                // toggle nearby button
+                let zoom = this.map.getZoom();
+                console.log("Zoom", zoom);
+
+                if(zoom < 9) {
+                    $('.nearby').css('visibility', 'hidden');
+                } else {
+                    $('.nearby').css('visibility', 'visible');
+                }
+            });
+
+
             let markericon = {
                 url: 'assets/imgs/locb.png',
                 scaledSize: new google.maps.Size(30, 30)

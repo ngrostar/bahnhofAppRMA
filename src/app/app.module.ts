@@ -23,6 +23,7 @@ import {FastaProvider} from '../providers/fasta/fasta';
 import {PushPage} from "../pages/push/push";
 import {Contacts} from '@ionic-native/contacts';
 import {ContactsMock} from '@ionic-native-mocks/contacts';
+import {SettingsPage} from '../pages/settings/settings';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,9 @@ import {ContactsMock} from '@ionic-native-mocks/contacts';
         ContactPage,
         HomePage,
         FastaPage,
-        TabsPage, PushPage
+        TabsPage,
+        PushPage,
+        SettingsPage
     ],
     providers: [
         StatusBar,
