@@ -33,7 +33,8 @@ import {SettingsPage} from '../pages/settings/settings';
         HomePage,
         FastaPage,
         TabsPage,
-        PushPage
+        PushPage,
+        SettingsPage
     ],
     imports: [
         HttpClientModule,

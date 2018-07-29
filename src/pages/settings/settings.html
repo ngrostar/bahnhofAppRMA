@@ -14,5 +14,7 @@
 
 
 <ion-content padding>
-
+    <ion-list reorder="true" (ionItemReorder)="reorderItems($event)">
+        <ion-item *ngFor="let setting of settings">{{ setting.key }}</ion-item>
+    </ion-list>
 </ion-content>

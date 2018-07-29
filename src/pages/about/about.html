@@ -117,6 +117,16 @@
                     <ion-icon *ngIf="station.hasLocalPublicTransport" name="checkmark-circle-outline"></ion-icon>
                     <ion-icon *ngIf="!station.hasLocalPublicTransport" name="close-circle"></ion-icon>
                 </ion-item>
+                <ion-item class="service">
+                    <span>Taxistand</span>
+                    <ion-icon *ngIf="station.hasTaxiRank" name="checkmark-circle-outline"></ion-icon>
+                    <ion-icon *ngIf="!station.hasTaxiRank" name="close-circle"></ion-icon>
+                </ion-item>
+                <ion-item class="service">
+                    <span>Autoverleih</span>
+                    <ion-icon *ngIf="station.hasCarRental" name="checkmark-circle-outline"></ion-icon>
+                    <ion-icon *ngIf="!station.hasCarRental" name="close-circle"></ion-icon>
+                </ion-item>
                 <ion-item *ngIf="!stationParking" class="service parkingService">
                     <span>Parkplätze</span>
                     <ion-icon *ngIf="station.hasParking" name="checkmark-circle-outline"></ion-icon>
@@ -221,6 +231,11 @@
                     <span>WLAN</span>
                     <ion-icon *ngIf="station.hasWifi" name="checkmark-circle-outline"></ion-icon>
                     <ion-icon *ngIf="!station.hasWifi" name="close-circle"></ion-icon>
+                </ion-item>
+                <ion-item class="service">
+                    <span>Bahnhofsmission</span>
+                    <ion-icon *ngIf="station.hasRailwayMission" name="checkmark-circle-outline"></ion-icon>
+                    <ion-icon *ngIf="!station.hasRailwayMission" name="close-circle"></ion-icon>
                 </ion-item>
             </ion-list>
 
