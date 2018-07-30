@@ -79,6 +79,15 @@ page-about {
         }
     }
 
+
+    .list-ios .item-block .item-inner {
+        border-bottom: none;
+    }
+
+    .noMargin .label-ios {
+        margin: 0;
+    }
+
     div.services {
 
         ion-list {
@@ -88,11 +97,16 @@ page-about {
                 padding: 0;
                 font-size: 1.3rem;
                 line-height: 2rem; // für das alignment mit den Icons
+                border-bottom: 0.55px solid #c8c7cc;
+
+                .dropdownPadding input-wrapper {
+                    padding: 12px 0;
+                }
 
                 ion-label {
                     #travelCenterDropdown,
                     #availabilityDropdown {
-                        margin: 5px 30px 5px 15px;
+                        margin: 5px 30px 5px 15px !important;
                         max-height: 0;
                         display: none;
                         transition: max-height 0.25s ease-in;
@@ -125,10 +139,12 @@ page-about {
 
                 .comment {
                     font-size: 1rem;
+                    line-height: 1.1rem;
                     display: block;
                     float: left;
                     clear: left;
                 }
+
                 ion-icon[name="arrow-down"],
                 ion-icon[name="arrow-up"] {
                     font-size: 1.2rem;

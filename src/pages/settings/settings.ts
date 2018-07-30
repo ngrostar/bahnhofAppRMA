@@ -30,4 +30,13 @@ export class SettingsPage {
         this.settings.splice(indexes.from, 1);
         this.settings.splice(indexes.to, 0, element);
     }
+
+    switch(k) {
+        console.log("switch", k);
+        for(let s of this.settings) {
+            if(s.key == k) {
+                s.show = !s.show;
+            }
+        }
+    }
 }

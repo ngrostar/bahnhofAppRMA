@@ -15,6 +15,10 @@
 
 <ion-content padding>
     <ion-list reorder="true" (ionItemReorder)="reorderItems($event)">
-        <ion-item *ngFor="let setting of settings">{{ setting.key }}</ion-item>
+        <ion-item *ngFor="let setting of settings">
+            <ion-icon *ngIf="setting.show" name="checkmark" (click)="switch(setting.key)"></ion-icon>
+            <ion-icon *ngIf="!setting.show" name="close" (click)="switch(setting.key)"></ion-icon>
+            {{ setting.name }}
+        </ion-item>
     </ion-list>
 </ion-content>

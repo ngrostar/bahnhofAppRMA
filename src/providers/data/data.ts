@@ -11,29 +11,29 @@ export class DataProvider {
 
 
     public keys = [
-        "DBinformation",
-        "hasLocalPublicTransport",
-        "hasTaxiRank",
-        "hasCarRental",
-        "hasParking",
-        "hasTravelCenter",
-        "hasPublicFacilities",
-        "hasLockerSystem",
-        "hasSteplessAccess",
-        "hasMobilityService",
-        "hasLostAndFound",
-        "hasDBLounge",
-        "hasWifi",
-        "hasRailwayMission"
+        ["DBinformation","Öffnungszeiten"],
+        ["hasLocalPublicTransport","ÖPNV"],
+        ["hasTaxiRank","Taxistand"],
+        ["hasCarRental","Autovermietung"],
+        ["hasParking","Parkplätze"],
+        ["hasTravelCenter","Reisezentrum"],
+        ["hasPublicFacilities","Toiletten"],
+        ["hasLockerSystem","Schließfächer"],
+        ["hasSteplessAccess","Barrierefreiheit"],
+        ["hasMobilityService","Mobilitätsservice"],
+        ["hasLostAndFound","Fundbüro"],
+        ["hasDBLounge","DBLounge"],
+        ["hasWifi","WLAN"],
+        ["hasRailwayMission","Bahnhofsmission"]
     ];
 
     constructor() {
         console.log('Hello DataProvider Provider');
-        type Setting = { key: string; show: boolean };
+        type Setting = { key: string; name: string; show: boolean };
         let settings: Setting[] = [];
 
         for(let k of this.keys) {
-            settings.push({key : k , show : true})
+            settings.push({key : k[0] , name : k[1], show : true})
         }
 
         this.settings = settings;

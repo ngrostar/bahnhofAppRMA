@@ -15,9 +15,11 @@ export class AboutPage {
     public dropdowns: boolean[] = [false, false];
     public tc: any;
     public stationParking: boolean = false;
+    public settings: any;
 
     constructor(public navCtrl: NavController, public events: Events, public TC: TravelCenterProvider, public fasta: FastaProvider, public alertCtrl: AlertController, public data: DataProvider) {
         this.station = this.data.aktStation;
+        this.settings = this.data.settings;
 
         this.dropdowns[0] = false;
         this.dropdowns[1] = false;
@@ -38,6 +40,7 @@ export class AboutPage {
 
     ionViewWillEnter() {
         this.station = this.data.aktStation;
+        this.settings = this.data.settings;
 
         if(this.station && !this.station.isContact) {
             this.station.fasta = false;
