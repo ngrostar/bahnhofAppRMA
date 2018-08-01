@@ -80,12 +80,28 @@ page-about {
     }
 
 
-    .list-ios .item-block .item-inner {
+    .item-ios.item-block .item-inner,
+    .item-wp.item-block .item-inner,
+    .item-md.item-block .item-inner {
+        padding-right: 0;
         border-bottom: none;
     }
 
     .noMargin .label-ios {
         margin: 0;
+    }
+
+    .label-md, .label-wp {
+        margin: 0;
+    }
+
+    .noShow, .noMargin {
+        min-height: 0;
+        border-bottom: none;
+    }
+
+    .item-ios, .item-wp, .item-md {
+        padding-left: 3px;
     }
 
     div.services {
@@ -99,8 +115,8 @@ page-about {
                 line-height: 2rem; // für das alignment mit den Icons
                 border-bottom: 0.55px solid #c8c7cc;
 
-                .dropdownPadding input-wrapper {
-                    padding: 12px 0;
+                .input-wrapper {
+                    padding: 1.2rem 0;
                 }
 
                 ion-label {

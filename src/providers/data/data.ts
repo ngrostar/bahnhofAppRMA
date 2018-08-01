@@ -7,7 +7,7 @@ export class DataProvider {
     public parkingspaces;
     public pid: any;
     public settings;
-    // public settings = new Map<string, boolean>();
+    public settingsBackup;
 
 
     public keys = [
@@ -31,25 +31,37 @@ export class DataProvider {
         console.log('Hello DataProvider Provider');
         type Setting = { key: string; name: string; show: boolean };
         let settings: Setting[] = [];
+        let backup: Setting[] = [];
 
-        for(let k of this.keys) {
-            settings.push({key : k[0] , name : k[1], show : true})
+
+        if (localStorage.getItem('settings')) {
+            let storedSettingsString = localStorage.getItem('settings').slice(0,-1);
+            console.log('storedSettingsVor SPlit', storedSettingsString);
+            let storedSettings = storedSettingsString.split("#");
+            console.log('storedSettings', storedSettings);
+            for(let s of storedSettings) {
+                let y = JSON.parse(s);
+                console.log('stor y', y);
+                settings.push(y);
+            }
+            this.settings = settings;
+            console.log("settings aus storage", this.settings)
+        } else {
+            for(let k of this.keys) {
+                settings.push({key : k[0] , name : k[1], show : true})
+            }
+
+            this.settings = settings;
+            let settingsString = "";
+            for(let s of settings) {
+                settingsString += JSON.stringify(s) + ";";
+            }
+            localStorage.setItem('settings', settingsString);
         }
 
-        this.settings = settings;
-        //
-        // this.settings.push(["DBinformation"] = true);
-        // this.settings["hasLocalPublicTransport"] = true;
-        // this.settings["hasTaxiRank"] = true;
-        // // this.settings["DBinformation"] = true;
-        // // this.settings.set("hasLocalPublicTransport", true);
-        // // this.settings.set("hasTaxiRank", true);
-        // // this.settings.set("DBinformation", true);
-        // // this.settings.set("DBinformation", true);
-        // // this.settings.set("DBinformation", true);
-        // // this.settings.set("DBinformation", true);
-        // // this.settings.set("DBinformation", true);
-        // // this.settings.set("DBinformation", true);
-        // // this.settings.set("DBinformation", true);
+        for(let k of this.keys) {
+            backup.push({key : k[0] , name : k[1], show : true})
+        }
+        this.settingsBackup = backup;
     }
 }

@@ -7,13 +7,14 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Settings</ion-title>
+    <ion-title>Einstellungen</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+    <h6>Personalisieren Sie hier die angezeigten Informationen</h6>
     <ion-list reorder="true" (ionItemReorder)="reorderItems($event)">
         <ion-item *ngFor="let setting of settings">
             <ion-icon *ngIf="setting.show" name="checkmark" (click)="switch(setting.key)"></ion-icon>

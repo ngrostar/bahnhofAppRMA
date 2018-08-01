@@ -41,6 +41,16 @@ export class AboutPage {
     ionViewWillEnter() {
         this.station = this.data.aktStation;
         this.settings = this.data.settings;
+        if(!this.settings[0].name) {
+            this.settings = this.data.settingsBackup;
+            this.data.settings = this.data.settingsBackup;
+            let settingsString = "";
+            for(let s of this.settings) {
+                settingsString += JSON.stringify(s) + "#";
+            }
+            localStorage.setItem('settings', settingsString);
+            console.log('Settings aus Backup wiederhergestellt');
+        }
 
         if(this.station && !this.station.isContact) {
             this.station.fasta = false;

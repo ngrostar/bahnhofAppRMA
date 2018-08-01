@@ -23,12 +23,28 @@ export class SettingsPage {
 
     ionViewWillEnter() {
         this.settings = this.data.settings;
+        if(!this.settings[0].name) {
+            this.settings = this.data.settingsBackup;
+            this.data.settings = this.data.settingsBackup;
+            let settingsString = "";
+            for(let s of settings) {
+                settingsString += JSON.stringify(s) + "#";
+            }
+            localStorage.setItem('settings', settingsString);
+            console.log('Settings aus Backup wiederhergestellt');
+        }
     }
     
     reorderItems(indexes) {
         let element = this.settings[indexes.from];
         this.settings.splice(indexes.from, 1);
         this.settings.splice(indexes.to, 0, element);
+
+        let settingsString = "";
+        for(let s of this.settings) {
+            settingsString += JSON.stringify(s) + "#";
+        }
+        localStorage.setItem('settings', settingsString);
     }
 
     switch(k) {
@@ -38,5 +54,11 @@ export class SettingsPage {
                 s.show = !s.show;
             }
         }
+
+        let settingsString = "";
+        for(let s of this.settings) {
+            settingsString += JSON.stringify(s) + "#";
+        }
+        localStorage.setItem('settings', settingsString);
     }
 }
