@@ -14,11 +14,11 @@
 
 
 <ion-content padding>
-    <h6>Personalisieren Sie hier die angezeigten Informationen</h6>
+    <h6>Wählen Sie, welche Informationen unter "Details" angezeigt werden</h6>
     <ion-list reorder="true" (ionItemReorder)="reorderItems($event)">
         <ion-item *ngFor="let setting of settings">
-            <ion-icon *ngIf="setting.show" name="checkmark" (click)="switch(setting.key)"></ion-icon>
-            <ion-icon *ngIf="!setting.show" name="close" (click)="switch(setting.key)"></ion-icon>
+            <ion-icon *ngIf="setting.show" name="checkmark-circle" (click)="switch(setting.key)"></ion-icon>
+            <ion-icon *ngIf="!setting.show" name="close-circle" (click)="switch(setting.key)"></ion-icon>
             {{ setting.name }}
         </ion-item>
     </ion-list>

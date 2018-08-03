@@ -1,19 +1,18 @@
 page-settings {
-    ion-icon[name="close"],
-    ion-icon[name="checkmark"] {
-        color: red;
-        font-size: 3rem;
+    ion-icon[name="close-circle"],
+    ion-icon[name="checkmark-circle"] {
+        font-size: 2rem;
         position: relative;
-        top: 0.5rem;
+        top: 0.25rem;
         padding-right: 5px;
     }
 
-    ion-icon[name="close"], {
-        color: red;
+    ion-icon[name="close-circle"] {
+        color: #f53d3d;
     }
 
-    ion-icon[name="checkmark"] {
-        color: forestgreen;
+    ion-icon[name="checkmark-circle"] {
+        color: #32db64;
     }
 
     .ion-label, .label-wp, .label-md, .label-ios {
