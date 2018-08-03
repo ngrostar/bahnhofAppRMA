@@ -8,6 +8,7 @@ import * as $ from 'jquery';
 import {DataProvider} from "../../providers/data/data";
 import {Contacts} from '@ionic-native/contacts';
 import {ParkplatzProvider} from "../../providers/parkplatz/parkplatz";
+import * as Fuse from 'fuse.js';
 
 declare let google;
 
@@ -116,7 +117,7 @@ export class HomePage {
     showFavorites() {
         this.stationnames = [];
         for (let name of this.favorites) {
-            this.stationnames.push(name);
+                this.stationnames.push({"name": name});
         }
 
         if (this.favorites.length === 0) {
@@ -304,7 +305,7 @@ export class HomePage {
     initializeStations() {
         this.stationnames = [];
         for (let station of this.stations) {
-            this.stationnames.push(station.name);
+            this.stationnames.push({"name": station.name});
         }
     }
 
@@ -320,9 +321,25 @@ export class HomePage {
 
             // Reset items back to all of the items
             this.initializeStations();
-            this.stationnames = this.stationnames.filter((station) => {
-                return (station.toLowerCase().indexOf(val.toLowerCase()) > -1);
-            });
+            let options = {
+                shouldSort: true,
+                threshold: 0.4,
+                location: 0,
+                distance: 100,
+                maxPatternLength: 35,
+                minMatchCharLength: 1,
+                keys: [
+                    "name"
+                ]
+            };
+            console.log("stationnames vor fuse", this.stationnames);
+            let fuse = new Fuse(this.stationnames, options);
+            this.stationnames = fuse.search(val);
+            // this.stationnames = this.stationnames.filter((station) => {
+            //     return (station.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            // });
+            console.log("stationnames nach fuse", this.stationnames);
+
             this.findContacts(val);
         } else { // clear list
             this.stationnames = [];

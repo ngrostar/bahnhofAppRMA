@@ -14,9 +14,9 @@
 
     <ion-list class="filteredStations">
         <ion-item *ngFor="let stationname of stationnames">
-            <div class="foundStation" (click)="foundStation(stationname)">
-                {{stationname}}
-                <ion-icon *ngIf="isFavorite(stationname)" name="heart"></ion-icon>
+            <div class="foundStation" (click)="foundStation(stationname.name)">
+                {{stationname.name}}
+                <ion-icon *ngIf="isFavorite(stationname.name)" name="heart"></ion-icon>
             </div>
         </ion-item>
         <div *ngFor="let contact of contacts">

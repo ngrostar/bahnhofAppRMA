@@ -27,7 +27,7 @@ export class SettingsPage {
             this.settings = this.data.settingsBackup;
             this.data.settings = this.data.settingsBackup;
             let settingsString = "";
-            for(let s of settings) {
+            for(let s of this.settings) {
                 settingsString += JSON.stringify(s) + "#";
             }
             localStorage.setItem('settings', settingsString);
