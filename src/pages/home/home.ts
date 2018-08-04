@@ -35,9 +35,14 @@ export class HomePage {
     public timer: any;
     public loadingPopup: any;
     public pps: any;
+    public nearbyAllowed: boolean = true;
 
     public standardMarkericon = {
         url: 'assets/imgs/marker_rot.png',
+        scaledSize: new google.maps.Size(27, 42)
+    };
+    public invertedMarkericon = {
+        url: 'assets/imgs/marker_invertiert.png',
         scaledSize: new google.maps.Size(27, 42)
     };
 
@@ -203,11 +208,19 @@ export class HomePage {
                 // toggle nearby button
                 let zoom = this.map.getZoom();
                 console.log("Zoom", zoom);
+                
+                let $nearby = $('.nearby');
 
                 if (zoom < 9) {
-                    $('.nearby').css('visibility', 'hidden');
+                    $nearby.css('background', 'grey');
+                    $nearby.css('border', 'grey');
+                    $nearby.css('cursor', 'default');
+                    this.nearbyAllowed = false;
                 } else {
-                    $('.nearby').css('visibility', 'visible');
+                    $nearby.css('background', 'white');
+                    $nearby.css('border', 'white');
+                    $nearby.css('cursor', 'pointer');
+                    this.nearbyAllowed = true;
                 }
             });
 
@@ -272,6 +285,9 @@ export class HomePage {
                     icon: this.standardMarkericon
                 });
 
+                if(station == this.aktStation) {
+                    marker.setIcon(this.invertedMarkericon);
+                }
                 this.markers.push(marker);
 
                 if (center === true) {
@@ -350,49 +366,51 @@ export class HomePage {
     }
 
     findNearby(givenContact = false) {
-        if (!givenContact) {
-            this.clearMarkers();
-        }
-        let bounds = this.map.getBounds();
-        let ne = bounds.getNorthEast(); // LatLng of the north-east corner
-        let sw = bounds.getSouthWest();
+        if(this.nearbyAllowed) {
+            if (!givenContact) {
+                this.clearMarkers();
+            }
+            let bounds = this.map.getBounds();
+            let ne = bounds.getNorthEast(); // LatLng of the north-east corner
+            let sw = bounds.getSouthWest();
 
-        let nearbyStations = [];
-        for (let station of this.stations) {
-            for (let eN of station.evaNumbers) {
-                if (eN.isMain) {
-                    let coords = eN.geographicCoordinates.coordinates;
+            let nearbyStations = [];
+            for (let station of this.stations) {
+                for (let eN of station.evaNumbers) {
+                    if (eN.isMain) {
+                        let coords = eN.geographicCoordinates.coordinates;
 
-                    if (coords[1] < ne.lat() && coords[1] > sw.lat() &&
-                        coords[0] < ne.lng() && coords[0] > sw.lng()) {
-                        nearbyStations.push(station);
+                        if (coords[1] < ne.lat() && coords[1] > sw.lat() &&
+                            coords[0] < ne.lng() && coords[0] > sw.lng()) {
+                            nearbyStations.push(station);
+                        }
                     }
                 }
             }
-        }
 
-        for (let nStation of nearbyStations) {
-            this.addSpecificMarker(nStation);
-        }
-
-        if (nearbyStations.length === 0) {
-            let alert;
-            if (givenContact) {
-                alert = this.alertCtrl.create({
-                    title: 'Keine Stationen in der Nähe gefunden.',
-                    message: 'Sie können jedoch den Kartenausschnitt vergrößern und mit "Stationen suchen" nach weiter entfernten Bahnhöfen suchen.',
-                    buttons: ['OK']
-                });
-            } else {
-                alert = this.alertCtrl.create({
-                    title: 'Keine Stationen im aktuellen Bildausschnitt gefunden.',
-                    buttons: ['OK']
-                });
+            for (let nStation of nearbyStations) {
+                this.addSpecificMarker(nStation);
             }
-            alert.present();
-        }
 
-        this.updateAktStation(null);
+            if (nearbyStations.length === 0) {
+                let alert;
+                if (givenContact) {
+                    alert = this.alertCtrl.create({
+                        title: 'Keine Stationen in der Nähe gefunden.',
+                        message: 'Sie können jedoch den Kartenausschnitt vergrößern und mit "Stationen suchen" nach weiter entfernten Bahnhöfen suchen.',
+                        buttons: ['OK']
+                    });
+                } else {
+                    alert = this.alertCtrl.create({
+                        title: 'Keine Stationen im aktuellen Bildausschnitt gefunden.',
+                        buttons: ['OK']
+                    });
+                }
+                alert.present();
+            }
+
+            this.toggleDetails(false);
+        }
     }
 
     findNearContact() {
@@ -525,16 +543,12 @@ export class HomePage {
                 }
             }
         }
-        let markericon = {
-            url: 'assets/imgs/marker_invertiert.png',
-            scaledSize: new google.maps.Size(27, 42)
-        };
         for (let marker of this.markers) { // remove duplicate markers
             if (marker.getPosition().equals(oldLatLng)) {
                 marker.setIcon(this.standardMarkericon);
             }
             if (marker.getPosition().equals(newLatLng)) {
-                marker.setIcon(markericon);
+                marker.setIcon(this.invertedMarkericon);
             }
         }
     }
