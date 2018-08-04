@@ -36,6 +36,11 @@ export class HomePage {
     public loadingPopup: any;
     public pps: any;
 
+    public standardMarkericon = {
+        url: 'assets/imgs/marker_rot.png',
+        scaledSize: new google.maps.Size(27, 42)
+    };
+
     constructor(public navCtrl: NavController, public events: Events, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public data: DataProvider, public geolocation: Geolocation, public Stada: StadaProvider, public Bfotos: BfotosProvider, public Parkplatz: ParkplatzProvider, public Contacts: Contacts) {
         this.loadStada('stations'); // mögl. Parameter: stations/{id} oder szentralen/{id})
 
@@ -89,8 +94,7 @@ export class HomePage {
     }
 
     clearAktStation() {
-        this.aktStation = null;
-        this.updateAktStation();
+        this.updateAktStation(null);
     }
 
     isAktFavorite(): boolean {
@@ -117,7 +121,7 @@ export class HomePage {
     showFavorites() {
         this.stationnames = [];
         for (let name of this.favorites) {
-                this.stationnames.push({"name": name});
+            this.stationnames.push({ "name": name });
         }
 
         if (this.favorites.length === 0) {
@@ -200,7 +204,7 @@ export class HomePage {
                 let zoom = this.map.getZoom();
                 console.log("Zoom", zoom);
 
-                if(zoom < 9) {
+                if (zoom < 9) {
                     $('.nearby').css('visibility', 'hidden');
                 } else {
                     $('.nearby').css('visibility', 'visible');
@@ -264,7 +268,8 @@ export class HomePage {
                 let marker = new google.maps.Marker({
                     map: this.map,
                     animation: google.maps.Animation.DROP,
-                    position: latLng
+                    position: latLng,
+                    icon: this.standardMarkericon
                 });
 
                 this.markers.push(marker);
@@ -275,8 +280,7 @@ export class HomePage {
 
                 google.maps.event.addListener(marker, 'click', (data) => {
                     this.toggleDetails(false);
-                    this.aktStation = station;
-                    this.updateAktStation();
+                    this.updateAktStation(station);
                     this.toggleDetails(true);
                 });
             }
@@ -305,7 +309,7 @@ export class HomePage {
     initializeStations() {
         this.stationnames = [];
         for (let station of this.stations) {
-            this.stationnames.push({"name": station.name});
+            this.stationnames.push({ "name": station.name });
         }
     }
 
@@ -332,13 +336,11 @@ export class HomePage {
                     "name"
                 ]
             };
-            console.log("stationnames vor fuse", this.stationnames);
             let fuse = new Fuse(this.stationnames, options);
             this.stationnames = fuse.search(val);
             // this.stationnames = this.stationnames.filter((station) => {
             //     return (station.toLowerCase().indexOf(val.toLowerCase()) > -1);
             // });
-            console.log("stationnames nach fuse", this.stationnames);
 
             this.findContacts(val);
         } else { // clear list
@@ -390,8 +392,7 @@ export class HomePage {
             alert.present();
         }
 
-        this.aktStation = null;
-        this.updateAktStation();
+        this.updateAktStation(null);
     }
 
     findNearContact() {
@@ -410,8 +411,7 @@ export class HomePage {
         console.log("aktStation ", aktStation);
 
         this.addSpecificMarker(aktStation, true);
-        this.aktStation = aktStation;
-        this.updateAktStation();
+        this.updateAktStation(aktStation);
 
 
         this.toggleDetails(true);
@@ -431,8 +431,6 @@ export class HomePage {
                 console.log("Contacts", data);
                 this.contacts = data;
             });
-
-
     }
 
     foundContact(contact, address) {
@@ -466,20 +464,19 @@ export class HomePage {
                 let marker = new google.maps.Marker({
                     map: this.map,
                     animation: google.maps.Animation.DROP,
-                    position: latLng
+                    position: latLng,
+                    icon: this.standardMarkericon
                 });
 
                 this.markers.push(marker);
 
                 google.maps.event.addListener(marker, 'click', (data) => {
                     this.toggleDetails(false);
-                    this.aktStation = aktContact;
-                    this.updateAktStation();
+                    this.updateAktStation(aktContact);
                     this.toggleDetails(true);
                 });
 
-                this.aktStation = aktContact;
-                this.updateAktStation();
+                this.updateAktStation(aktContact);
                 console.log("aktStation ist ein Contact", aktContact);
 
                 this.toggleDetails(true);
@@ -493,11 +490,53 @@ export class HomePage {
     openDetails() {
         this.data.aktStation = this.aktStation;
         this.navCtrl.parent.select(1, { 'aktStation': this.aktStation });
+
     }
 
-    updateAktStation() {
+    updateAktStation(newStation) {
+        let oldStation = this.aktStation;
+        this.aktStation = newStation;
         this.events.publish('station:changed', this.aktStation);
         this.data.aktStation = this.aktStation;
+
+        let oldLatLng, newLatLng;
+        if (oldStation) {
+            if (oldStation.isContact) {
+                oldLatLng = oldStation.location;
+            } else {
+                for (let eN of oldStation.evaNumbers) {
+                    if (eN.isMain) {
+                        let coords = eN.geographicCoordinates.coordinates;
+                        oldLatLng = new google.maps.LatLng(coords[1], coords[0]);
+                    }
+                }
+
+            }
+        }
+        if (newStation) {
+            if (newStation.isContact) {
+                newLatLng = newStation.location;
+            } else {
+                for (let eN of newStation.evaNumbers) {
+                    if (eN.isMain) {
+                        let coords = eN.geographicCoordinates.coordinates;
+                        newLatLng = new google.maps.LatLng(coords[1], coords[0]);
+                    }
+                }
+            }
+        }
+        let markericon = {
+            url: 'assets/imgs/marker_invertiert.png',
+            scaledSize: new google.maps.Size(27, 42)
+        };
+        for (let marker of this.markers) { // remove duplicate markers
+            if (marker.getPosition().equals(oldLatLng)) {
+                marker.setIcon(this.standardMarkericon);
+            }
+            if (marker.getPosition().equals(newLatLng)) {
+                marker.setIcon(markericon);
+            }
+        }
     }
 
     clearMarkers() {

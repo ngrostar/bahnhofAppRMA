@@ -36,12 +36,9 @@ export class DataProvider {
 
         if (localStorage.getItem('settings')) {
             let storedSettingsString = localStorage.getItem('settings').slice(0,-1);
-            console.log('storedSettingsVor SPlit', storedSettingsString);
             let storedSettings = storedSettingsString.split("#");
-            console.log('storedSettings', storedSettings);
             for(let s of storedSettings) {
                 let y = JSON.parse(s);
-                console.log('stor y', y);
                 settings.push(y);
             }
             this.settings = settings;
