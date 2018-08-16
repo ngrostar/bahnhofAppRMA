@@ -208,7 +208,7 @@ export class HomePage {
                 // toggle nearby button
                 let zoom = this.map.getZoom();
                 console.log("Zoom", zoom);
-                
+
                 let $nearby = $('.nearby');
 
                 if (zoom < 9) {
@@ -285,7 +285,7 @@ export class HomePage {
                     icon: this.standardMarkericon
                 });
 
-                if(station == this.aktStation) {
+                if (station == this.aktStation) {
                     marker.setIcon(this.invertedMarkericon);
                 }
                 this.markers.push(marker);
@@ -366,7 +366,7 @@ export class HomePage {
     }
 
     findNearby(givenContact = false) {
-        if(this.nearbyAllowed) {
+        if (this.nearbyAllowed) {
             if (!givenContact) {
                 this.clearMarkers();
             }
@@ -410,6 +410,8 @@ export class HomePage {
             }
 
             this.toggleDetails(false);
+        } else {
+            console.log("Stationen in der Nähe suchen nicht erlaubt; Bildausschnitt zu groß");
         }
     }
 
